@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-cream: #F3F1EB;
+    --color-stone: #D8D3C8;
+    --color-warm-grey: #A8A49B;
+    --color-graphite: #242624;
+    --color-forest: #304638;
+    --color-moss: #68755F;
+    --color-wood: #8A6B4D;
+
+    --font-display: var(--font-cormorant), Georgia, serif;
+    --font-sans: var(--font-geist), system-ui, -apple-system, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-cream);
+    color: var(--color-graphite);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Custom Selection styling */
+  ::selection {
+    background-color: var(--color-forest);
+    color: var(--color-cream);
+  }
+}
+
+@theme {
+  --color-cream: #F3F1EB;
+  --color-stone: #D8D3C8;
+  --color-warm-grey: #A8A49B;
+  --color-graphite: #242624;
+  --color-forest: #304638;
+  --color-moss: #68755F;
+  --color-wood: #8A6B4D;
+
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-geist), system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Scrollbar for architectural feel */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F3F1EB;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8D3C8;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A8A49B;
+}
+
+/* Utilities for strict architectural borders & text */
+.font-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.border-architectural {
+  border-color: rgba(36, 38, 36, 0.12);
+}
+
+.border-architectural-light {
+  border-color: rgba(243, 241, 235, 0.15);
+}
