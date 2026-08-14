@@ -23,39 +23,30 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           scrolled
-            ? 'bg-[#F3F1EB]/90 backdrop-blur-md border-b border-[#242624]/10 py-4 shadow-sm'
-            : 'bg-gradient-to-b from-black/40 via-black/10 to-transparent text-white py-6 sm:py-8'
+            ? 'bg-[#080A0D]/90 backdrop-blur-md border-b border-white/10 py-4 shadow-xl text-[#F5F3EA]'
+            : 'bg-gradient-to-b from-[#080A0D]/70 via-[#080A0D]/20 to-transparent text-white py-6 sm:py-8'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex justify-between items-center">
           {/* Logo / Brand Name */}
           <Link
             href="/"
-            className={`font-display text-xl sm:text-2xl font-light tracking-[0.25em] transition-colors ${
-              scrolled ? 'text-[#242624]' : 'text-white'
-            }`}
+            className="font-display text-xl sm:text-2xl font-light tracking-[0.25em] text-[#F5F3EA] hover:text-[#FFE9A3] transition-colors flex items-center gap-2"
           >
-            ESPACIO RÍO
+            <span>ESPACIO RÍO</span>
+            <span className="text-[#B8FF00] text-sm">✦</span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-12">
+          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
             {siteConfig.navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-xs tracking-[0.2em] font-medium transition-colors relative group py-1 ${
-                  scrolled
-                    ? 'text-[#242624]/80 hover:text-[#242624]'
-                    : 'text-white/85 hover:text-white'
-                }`}
+                className="text-xs tracking-[0.2em] font-medium text-[#F5F3EA]/85 hover:text-[#B8FF00] transition-colors relative group py-1"
               >
                 {item.label}
-                <span
-                  className={`absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full ${
-                    scrolled ? 'bg-[#242624]' : 'bg-white'
-                  }`}
-                />
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#B8FF00] transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </nav>
@@ -64,13 +55,9 @@ export default function Header() {
           <button
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menú"
-            className={`md:hidden text-xs tracking-[0.2em] uppercase font-medium border px-3 py-1.5 transition-colors ${
-              scrolled
-                ? 'border-[#242624]/30 text-[#242624] hover:bg-[#242624] hover:text-[#F3F1EB]'
-                : 'border-white/40 text-white hover:bg-white hover:text-[#242624]'
-            }`}
+            className="md:hidden text-xs tracking-[0.2em] uppercase font-semibold border border-[#B8FF00] text-[#B8FF00] hover:bg-[#B8FF00] hover:text-[#080A0D] px-3.5 py-1.5 transition-colors rounded-full"
           >
-            MENÚ
+            MENÚ ✦
           </button>
         </div>
       </header>

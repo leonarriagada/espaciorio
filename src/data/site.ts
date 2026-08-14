@@ -1,24 +1,25 @@
 export const siteConfig = {
   name: 'ESPACIO RÍO',
-  tagline: 'Un lugar para encontrarse',
-  metaTitle: 'Espacio Río — Un lugar para encontrarse',
+  city: 'Concepción',
+  tagline: 'El nuevo punto de encuentro en Concepción',
+  metaTitle: 'Espacio Río — Arquitectura, Gastronomía, Pádel & Lifestyle en Concepción',
   metaDescription:
-    'Un destino boutique de lifestyle, arquitectura contemporánea, gastronomía y naturaleza. Espacio Río es la fusión entre montaña, aire libre y momentos memorables.',
+    'Un nuevo punto de encuentro en Concepción donde arquitectura, gastronomía de autor, pádel, bienestar y vida social conviven en un entorno natural único.',
   location: {
-    address: 'Av. del Río 1450, Valle Central',
-    city: 'Espacio Río',
-    hours: 'Lunes a Domingo — 08:00 a 23:00 hrs',
-    parking: 'Estacionamiento subterráneo y subterráneo VIP disponible',
-    driveThru: 'Acceso directo a Drive-Thru Starbucks',
+    address: 'Av. Pedro de Valdivia / Sector Río, Concepción',
+    city: 'Concepción, Región del Biobío',
+    hours: 'Lunes a Domingo — 07:00 a 00:00 hrs',
+    parking: 'Estacionamiento de dos niveles y accesos vehiculares fluidos',
+    driveThru: 'Acceso exclusivo Drive-Thru Starbucks con tótem vertical',
   },
   socials: {
-    instagram: 'https://instagram.com/espaciorio',
+    instagram: 'https://instagram.com/espaciorio.cl',
     contactEmail: 'contacto@espaciorio.cl',
   },
   navigation: [
-    { label: 'EL ESPACIO', href: '#espacio' },
-    { label: 'LOCALES', href: '#locales' },
-    { label: 'EXPERIENCIAS', href: '#experiencias' },
+    { label: 'EL PROYECTO', href: '#espacio' },
+    { label: 'LOCALES & GASTRO', href: '#locales' },
+    { label: 'PÁDEL & EXPERIENCIAS', href: '#experiencias' },
     { label: 'UBICACIÓN', href: '#ubicacion' },
   ],
 };

@@ -19,17 +19,18 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: '-100%' }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-50 bg-[#304638] text-[#F3F1EB] flex flex-col justify-between p-8 sm:p-12 md:hidden"
+          className="fixed inset-0 z-50 bg-[#080A0D] text-[#F5F3EA] flex flex-col justify-between p-8 sm:p-12 md:hidden"
         >
           {/* Header row */}
-          <div className="flex justify-between items-center border-b border-[#F3F1EB]/15 pb-6">
-            <span className="font-display tracking-[0.25em] text-lg font-light">
-              ESPACIO RÍO
+          <div className="flex justify-between items-center border-b border-white/15 pb-6">
+            <span className="font-display tracking-[0.25em] text-lg font-light text-[#F5F3EA] flex items-center gap-2">
+              <span>ESPACIO RÍO</span>
+              <span className="text-[#B8FF00]">✦</span>
             </span>
             <button
               onClick={onClose}
               aria-label="Cerrar menú"
-              className="text-2xl font-light hover:text-[#D8D3C8] transition-colors p-2 -mr-2"
+              className="text-2xl font-light hover:text-[#B8FF00] transition-colors p-2 -mr-2"
             >
               ✕
             </button>
@@ -47,7 +48,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <Link
                   href={item.href}
                   onClick={onClose}
-                  className="font-display text-4xl font-light tracking-wide text-[#F3F1EB] hover:text-[#D8D3C8] transition-colors block"
+                  className="font-display text-4xl font-light tracking-wide text-[#F5F3EA] hover:text-[#B8FF00] transition-colors block"
                 >
                   {item.label}
                 </Link>
@@ -56,14 +57,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </nav>
 
           {/* Footer details */}
-          <div className="border-t border-[#F3F1EB]/15 pt-6 text-xs text-[#D8D3C8]/70 flex flex-col gap-2">
+          <div className="border-t border-white/15 pt-6 text-xs text-[#F5F3EA]/70 flex flex-col gap-2">
             <p>{siteConfig.location.address}</p>
             <div className="flex justify-between items-center pt-2">
               <a
                 href={siteConfig.socials.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-[#F3F1EB] transition-colors tracking-widest uppercase"
+                className="hover:text-[#B8FF00] transition-colors tracking-widest uppercase text-[#B8FF00] font-semibold"
               >
                 INSTAGRAM ↗
               </a>

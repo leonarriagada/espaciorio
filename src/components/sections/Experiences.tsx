@@ -5,18 +5,22 @@ import FadeIn from '../motion/FadeIn';
 
 export default function Experiences() {
   return (
-    <section id="experiencias" className="py-28 sm:py-40 bg-[#242624] text-[#F3F1EB] overflow-hidden">
+    <section id="experiencias" className="py-28 sm:py-40 bg-[#080A0D] text-[#F5F3EA] overflow-hidden border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Editorial Section Header */}
-        <div className="flex flex-col max-w-2xl mb-20">
+        <div className="flex flex-col max-w-3xl mb-24">
           <FadeIn direction="up">
-            <span className="text-[11px] tracking-[0.3em] uppercase text-[#A8A49B] font-medium mb-3 block">
-              03 / EXPERIENCIAS
-            </span>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-[11px] tracking-[0.3em] uppercase text-[#B8FF00] font-semibold">
+                03 / EXPERIENCIAS & LIFESTYLE
+              </span>
+              <span className="text-xs text-[#B8FF00]">✦</span>
+            </div>
           </FadeIn>
+
           <FadeIn direction="up" delay={0.1}>
-            <h2 className="font-display text-4xl sm:text-6xl font-light text-[#F3F1EB] tracking-wide leading-tight">
-              Momentos diseñados para habitar el espacio.
+            <h2 className="font-display text-4xl sm:text-6xl font-light text-[#F5F3EA] tracking-wide leading-tight">
+              Gastronomía, deporte y encuentros en un mismo lugar.
             </h2>
           </FadeIn>
         </div>
@@ -40,13 +44,13 @@ export default function Experiences() {
                   }`}
                 >
                   <FadeIn direction={isEven ? 'right' : 'left'}>
-                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden shadow-2xl border border-white/10 group bg-[#151719]">
                       <Image
                         src={exp.image}
                         alt={exp.title}
                         fill
                         sizes="(max-width: 1024px) 100vw, 60vw"
-                        className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     </div>
                   </FadeIn>
@@ -59,16 +63,20 @@ export default function Experiences() {
                   }`}
                 >
                   <FadeIn direction="up" delay={0.2}>
-                    <span className="text-xs font-semibold tracking-[0.25em] text-[#68755F] mb-2 block uppercase">
-                      EXPERIENCIA 0{index + 1}
-                    </span>
-                    <h3 className="font-display text-3xl sm:text-4xl font-light text-[#F3F1EB] mb-3">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="bg-[#151719] text-[#B8FF00] text-[10px] tracking-[0.2em] font-semibold uppercase px-3 py-1 rounded-full border border-[#B8FF00]/30">
+                        ✦ 0{index + 1}
+                      </span>
+                      <span className="text-xs font-semibold tracking-[0.25em] text-[#FFE9A3] uppercase">
+                        {exp.subtitle}
+                      </span>
+                    </div>
+
+                    <h3 className="font-display text-3xl sm:text-4xl font-light text-[#F5F3EA] mb-4">
                       {exp.title}
                     </h3>
-                    <p className="text-sm tracking-wide text-[#D8D3C8] font-medium mb-4 italic">
-                      {exp.subtitle}
-                    </p>
-                    <p className="text-sm sm:text-base font-light text-[#A8A49B] leading-relaxed">
+
+                    <p className="text-sm sm:text-base font-light text-[#F5F3EA]/80 leading-relaxed">
                       {exp.description}
                     </p>
                   </FadeIn>
