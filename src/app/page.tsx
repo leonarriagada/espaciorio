@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header';
 import Hero from '@/components/sections/Hero';
 import Introduction from '@/components/sections/Introduction';
+import FiveWorlds from '@/components/sections/FiveWorlds';
 import SpaceSection from '@/components/sections/SpaceSection';
 import Experiences from '@/components/sections/Experiences';
 import Tenants from '@/components/sections/Tenants';
@@ -12,10 +13,11 @@ import Footer from '@/components/layout/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#F3F1EB] text-[#242624] overflow-x-hidden selection:bg-[#304638] selection:text-[#F3F1EB]">
+    <main className="min-h-screen bg-[#F5F3EA] text-[#080A0D] overflow-x-hidden selection:bg-[#B8FF00] selection:text-[#080A0D]">
       <Header />
       <Hero />
       <Introduction />
+      <FiveWorlds />
       <SpaceSection />
       <Experiences />
       <Tenants />
