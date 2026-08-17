@@ -28,7 +28,7 @@ export default function FinalCTA() {
         </FadeIn>
 
         <FadeIn direction="up" delay={0.1}>
-          <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-light tracking-wide text-[#FFE9A3] mb-8 leading-tight drop-shadow-md">
+          <h2 className="font-display text-[clamp(2.75rem,7vw,6rem)] font-light tracking-wide text-[#FFE9A3] mb-8 leading-tight drop-shadow-md">
             ESPACIO RÍO
           </h2>
         </FadeIn>
@@ -42,7 +42,7 @@ export default function FinalCTA() {
         <FadeIn direction="up" delay={0.3}>
           <a
             href="#espacio"
-            className="inline-flex items-center justify-center gap-3 bg-[#FFE9A3] text-[#080A0D] px-10 py-5 text-xs tracking-[0.25em] uppercase font-extrabold hover:bg-[#F5F3EA] transition-all duration-300 shadow-2xl rounded-full transform hover:scale-105"
+            className="inline-flex items-center justify-center gap-3 bg-[#FFE9A3] text-[#080A0D] px-10 py-5 min-h-[48px] text-xs tracking-[0.25em] uppercase font-extrabold hover:bg-[#F5F3EA] transition-all duration-300 shadow-2xl rounded-full transform hover:scale-105"
           >
             <span>RECORRER EL ESPACIO</span>
             <span>✦</span>

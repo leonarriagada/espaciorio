@@ -19,7 +19,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: '-100%' }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-50 bg-[#080A0D] text-[#F5F3EA] flex flex-col justify-between p-8 sm:p-12 md:hidden"
+          className="fixed inset-0 z-50 bg-[#080A0D] text-[#F5F3EA] flex flex-col justify-between p-8 sm:p-12 md:hidden h-[100dvh] overflow-y-auto"
         >
           {/* Header row */}
           <div className="flex justify-between items-center border-b border-white/15 pb-6">

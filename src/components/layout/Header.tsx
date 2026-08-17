@@ -55,7 +55,7 @@ export default function Header() {
           <button
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menú"
-            className="md:hidden text-xs tracking-[0.2em] uppercase font-semibold border border-[#FFE9A3] text-[#FFE9A3] hover:bg-[#FFE9A3] hover:text-[#080A0D] px-3.5 py-1.5 transition-colors rounded-full"
+            className="md:hidden text-xs tracking-[0.2em] uppercase font-semibold border border-[#FFE9A3] text-[#FFE9A3] hover:bg-[#FFE9A3] hover:text-[#080A0D] px-4 py-2 min-h-[44px] inline-flex items-center justify-center transition-colors rounded-full"
           >
             MENÚ ✦
           </button>

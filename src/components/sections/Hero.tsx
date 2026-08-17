@@ -35,7 +35,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full h-[100svh] min-h-[660px] flex flex-col justify-between overflow-hidden bg-[#080A0D]">
+    <section className="relative w-full h-[100dvh] min-h-[620px] flex flex-col justify-between overflow-hidden bg-[#080A0D]">
       {/* Hero Background Images with Cinematic Zoom-out and Cross-fade */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <AnimatePresence mode="popLayout">
@@ -104,7 +104,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="font-display text-6xl sm:text-8xl md:text-9xl font-light text-[#FFFFFF] tracking-wide leading-[0.92] mt-1">
+            <h1 className="font-display text-[clamp(3.2rem,8.5vw,8rem)] font-light text-[#FFFFFF] tracking-wide leading-[0.92] mt-1">
               ESPACIO RÍO
             </h1>
           </motion.div>
@@ -124,16 +124,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="flex justify-between items-end border-t border-white/20 pt-6"
+          className="flex justify-between items-end border-t border-white/20 pt-4"
         >
-          {/* Slide Indicator lines */}
-          <div className="flex items-center gap-2">
+          {/* Slide Indicator lines with Accessible Touch Targets */}
+          <div className="flex items-center gap-1">
             {heroImages.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentImageIndex(idx)}
                 aria-label={`Ver render ${idx + 1}`}
-                className="h-1 py-2 cursor-pointer group focus:outline-none"
+                className="p-3 min-h-[44px] flex items-center justify-center cursor-pointer group focus:outline-none"
               >
                 <div
                   className={`h-[2px] transition-all duration-500 ${
@@ -146,7 +146,7 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="text-xs tracking-[0.2em] text-[#F5F3EA]/80 font-light uppercase hidden md:flex items-center gap-3">
+          <div className="text-xs tracking-[0.2em] text-[#F5F3EA]/80 font-light uppercase hidden md:flex items-center gap-3 py-2">
             <span>GASTRONOMÍA</span>
             <span className="text-[#FFE9A3]">✦</span>
             <span>BOULDER</span>
@@ -157,7 +157,7 @@ export default function Hero() {
           <a
             href="#espacio"
             aria-label="Desplazarse hacia abajo"
-            className="group flex items-center gap-3 text-xs tracking-widest text-white uppercase ml-auto"
+            className="group flex items-center gap-3 text-xs tracking-widest text-white uppercase ml-auto py-2 min-h-[44px]"
           >
             <span className="group-hover:text-[#FFE9A3] transition-colors">DESCUBRIR</span>
             <span className="inline-block animate-bounce text-base text-[#FFE9A3]">↓</span>

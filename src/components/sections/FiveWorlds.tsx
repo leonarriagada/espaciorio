@@ -37,15 +37,15 @@ export default function FiveWorlds() {
           </FadeIn>
         </div>
 
-        {/* 5 Worlds Navigation Tabs */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-12">
+        {/* 5 Worlds Navigation Tabs — Horizontal scroll on mobile, grid on desktop */}
+        <div className="flex overflow-x-auto snap-x space-x-3 lg:space-x-0 lg:grid lg:grid-cols-5 lg:gap-3 mb-12 pb-4 lg:pb-0 scrollbar-none">
           {siteConfig.worlds.map((world) => {
             const isActive = world.id === activeWorldId;
             return (
               <button
                 key={world.id}
                 onClick={() => setActiveWorldId(world.id)}
-                className={`p-4 text-left transition-all duration-300 border flex flex-col justify-between h-32 ${
+                className={`p-4 text-left transition-all duration-300 border flex flex-col justify-between h-32 min-w-[220px] sm:min-w-[240px] lg:min-w-0 snap-start flex-shrink-0 lg:flex-shrink ${
                   isActive
                     ? 'bg-[#0050A0] text-[#F5F3EA] border-[#FFE9A3] shadow-xl scale-[1.02]'
                     : 'bg-[#080A0D]/60 text-[#F5F3EA]/70 border-white/10 hover:border-white/30 hover:bg-[#080A0D]'
