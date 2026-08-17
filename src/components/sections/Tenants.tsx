@@ -30,7 +30,7 @@ export default function Tenants() {
               <span className="text-[11px] tracking-[0.3em] uppercase text-[#0050A0] font-bold">
                 04 / LOCALES & GASTRO
               </span>
-              <span className="text-xs text-[#B8FF00] bg-[#080A0D] px-1.5 py-0.5 rounded">✦</span>
+              <span className="text-xs text-[#FFE9A3] bg-[#080A0D] px-1.5 py-0.5 rounded">✦</span>
             </div>
             <h2 className="font-display text-4xl sm:text-5xl font-light text-[#080A0D] tracking-wide">
               Establecimientos seleccionados.
@@ -98,7 +98,7 @@ export default function Tenants() {
                   <ArrowLink href={`#locales`} className="text-xs">
                     EXPLORAR LOCAL
                   </ArrowLink>
-                  <span className="text-xs text-[#B8FF00] bg-[#080A0D] px-2 py-0.5 rounded font-mono text-[10px]">
+                  <span className="text-xs text-[#FFE9A3] bg-[#080A0D] px-2 py-0.5 rounded font-mono text-[10px]">
                     ✦ OPEN
                   </span>
                 </div>

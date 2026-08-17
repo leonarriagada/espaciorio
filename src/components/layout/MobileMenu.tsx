@@ -25,12 +25,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <div className="flex justify-between items-center border-b border-white/15 pb-6">
             <span className="font-display tracking-[0.25em] text-lg font-light text-[#F5F3EA] flex items-center gap-2">
               <span>ESPACIO RÍO</span>
-              <span className="text-[#B8FF00]">✦</span>
+              <span className="text-[#FFE9A3]">✦</span>
             </span>
             <button
               onClick={onClose}
               aria-label="Cerrar menú"
-              className="text-2xl font-light hover:text-[#B8FF00] transition-colors p-2 -mr-2"
+              className="text-2xl font-light hover:text-[#FFE9A3] transition-colors p-2 -mr-2"
             >
               ✕
             </button>
@@ -48,7 +48,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <Link
                   href={item.href}
                   onClick={onClose}
-                  className="font-display text-4xl font-light tracking-wide text-[#F5F3EA] hover:text-[#B8FF00] transition-colors block"
+                  className="font-display text-4xl font-light tracking-wide text-[#F5F3EA] hover:text-[#FFE9A3] transition-colors block"
                 >
                   {item.label}
                 </Link>
@@ -64,7 +64,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 href={siteConfig.socials.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-[#B8FF00] transition-colors tracking-widest uppercase text-[#B8FF00] font-semibold"
+                className="hover:text-[#FFE9A3] transition-colors tracking-widest uppercase text-[#FFE9A3] font-semibold"
               >
                 INSTAGRAM ↗
               </a>

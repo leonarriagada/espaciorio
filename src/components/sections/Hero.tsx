@@ -79,7 +79,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex items-center gap-3 mb-6"
           >
-            <span className="bg-[#B8FF00] text-[#080A0D] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase px-3.5 py-1 rounded-full inline-flex items-center gap-1.5 shadow-md">
+            <span className="bg-[#FFE9A3] text-[#080A0D] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase px-3.5 py-1 rounded-full inline-flex items-center gap-1.5 shadow-md">
               <span>✦</span>
               <span>CONCEPCIÓN</span>
             </span>
@@ -138,7 +138,7 @@ export default function Hero() {
                 <div
                   className={`h-[2px] transition-all duration-500 ${
                     idx === currentImageIndex
-                      ? 'w-8 bg-[#B8FF00]'
+                      ? 'w-8 bg-[#FFE9A3]'
                       : 'w-4 bg-white/40 group-hover:bg-white/70'
                   }`}
                 />
@@ -148,9 +148,9 @@ export default function Hero() {
 
           <div className="text-xs tracking-[0.2em] text-[#F5F3EA]/80 font-light uppercase hidden md:flex items-center gap-3">
             <span>GASTRONOMÍA</span>
-            <span className="text-[#B8FF00]">✦</span>
-            <span>PÁDEL</span>
-            <span className="text-[#B8FF00]">✦</span>
+            <span className="text-[#FFE9A3]">✦</span>
+            <span>BOULDER</span>
+            <span className="text-[#FFE9A3]">✦</span>
             <span>ARQUITECTURA</span>
           </div>
 
@@ -159,8 +159,8 @@ export default function Hero() {
             aria-label="Desplazarse hacia abajo"
             className="group flex items-center gap-3 text-xs tracking-widest text-white uppercase ml-auto"
           >
-            <span className="group-hover:text-[#B8FF00] transition-colors">DESCUBRIR</span>
-            <span className="inline-block animate-bounce text-base text-[#B8FF00]">↓</span>
+            <span className="group-hover:text-[#FFE9A3] transition-colors">DESCUBRIR</span>
+            <span className="inline-block animate-bounce text-base text-[#FFE9A3]">↓</span>
           </a>
         </motion.div>
       </div>

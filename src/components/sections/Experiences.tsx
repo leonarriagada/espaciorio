@@ -11,10 +11,10 @@ export default function Experiences() {
         <div className="flex flex-col max-w-3xl mb-24">
           <FadeIn direction="up">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-[11px] tracking-[0.3em] uppercase text-[#B8FF00] font-semibold">
+              <span className="text-[11px] tracking-[0.3em] uppercase text-[#FFE9A3] font-semibold">
                 03 / EXPERIENCIAS & LIFESTYLE
               </span>
-              <span className="text-xs text-[#B8FF00]">✦</span>
+              <span className="text-xs text-[#FFE9A3]">✦</span>
             </div>
           </FadeIn>
 
@@ -64,7 +64,7 @@ export default function Experiences() {
                 >
                   <FadeIn direction="up" delay={0.2}>
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="bg-[#151719] text-[#B8FF00] text-[10px] tracking-[0.2em] font-semibold uppercase px-3 py-1 rounded-full border border-[#B8FF00]/30">
+                      <span className="bg-[#151719] text-[#FFE9A3] text-[10px] tracking-[0.2em] font-semibold uppercase px-3 py-1 rounded-full border border-[#FFE9A3]/30">
                         ✦ 0{index + 1}
                       </span>
                       <span className="text-xs font-semibold tracking-[0.25em] text-[#FFE9A3] uppercase">

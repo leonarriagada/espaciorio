@@ -14,7 +14,7 @@ export default function Introduction() {
                 <span className="text-[11px] tracking-[0.3em] uppercase text-[#0050A0] font-bold">
                   01 / EL PROYECTO
                 </span>
-                <span className="text-xs text-[#B8FF00] bg-[#080A0D] px-1.5 py-0.5 rounded">✦</span>
+                <span className="text-xs text-[#FFE9A3] bg-[#080A0D] px-1.5 py-0.5 rounded">✦</span>
                 <span className="text-[11px] tracking-[0.2em] uppercase text-[#151719]/60 font-semibold">
                   CONCEPCIÓN
                 </span>
@@ -31,7 +31,7 @@ export default function Introduction() {
 
             <FadeIn direction="up" delay={0.2}>
               <p className="text-base sm:text-lg text-[#080A0D]/85 font-light leading-relaxed mb-6">
-                Espacio Río llega a Concepción para redefinir el encuentro urbano. Una propuesta arquitectónica contemporánea donde convergen la alta gastronomía, el deporte en <strong className="font-medium text-[#0050A0]">The Padel Club</strong>, el entretenimiento y el comercio boutique en un mismo circuito peatonal.
+                Espacio Río llega a Concepción para redefinir el encuentro urbano. Una propuesta arquitectónica contemporánea donde convergen la alta gastronomía, el deporte y escalada en <strong className="font-medium text-[#0050A0]">Boulder Studio</strong>, el entretenimiento y el comercio boutique en un mismo circuito peatonal.
               </p>
             </FadeIn>
 
@@ -44,11 +44,11 @@ export default function Introduction() {
             <FadeIn direction="up" delay={0.4}>
               <div className="flex flex-wrap gap-3 text-xs tracking-wider uppercase">
                 <span className="bg-[#080A0D] text-[#F5F3EA] px-3.5 py-1.5 rounded-full font-medium flex items-center gap-1.5">
-                  <span className="text-[#B8FF00]">✦</span>
+                  <span className="text-[#FFE9A3]">✦</span>
                   <span>COCTELERÍA & GASTRO</span>
                 </span>
                 <span className="bg-[#0050A0] text-[#FFFFFF] px-3.5 py-1.5 rounded-full font-medium">
-                  PÁDEL & SPORTS
+                  BOULDER & OUTDOOR
                 </span>
                 <span className="bg-[#FFFFFF] text-[#080A0D] border border-[#080A0D]/20 px-3.5 py-1.5 rounded-full font-medium">
                   DRIVE-THRU STARBUCKS
@@ -72,7 +72,7 @@ export default function Introduction() {
             </FadeIn>
 
             {/* Editorial Badge */}
-            <div className="absolute -bottom-6 -left-6 bg-[#080A0D] text-[#F5F3EA] p-6 hidden sm:block max-w-xs shadow-xl border-l-4 border-[#B8FF00]">
+            <div className="absolute -bottom-6 -left-6 bg-[#080A0D] text-[#F5F3EA] p-6 hidden sm:block max-w-xs shadow-xl border-l-4 border-[#FFE9A3]">
               <span className="text-[10px] tracking-[0.25em] uppercase text-[#FFE9A3] font-semibold block mb-1">
                 ✦ FACHADA & ACCESO
               </span>

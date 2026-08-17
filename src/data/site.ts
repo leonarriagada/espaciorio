@@ -2,9 +2,9 @@ export const siteConfig = {
   name: 'ESPACIO RÍO',
   city: 'Concepción',
   tagline: 'La fusión perfecta de lujo y diversión',
-  metaTitle: 'Espacio Río — Gastronomía, Pádel, Boulder, Bienestar & Servicios en Concepción',
+  metaTitle: 'Espacio Río — Gastronomía, Boulder, Bienestar & Servicios en Concepción',
   metaDescription:
-    'El principal destino urbano de lifestyle en Concepción (Av. Pedro de Valdivia 1161). Pádel, Boulder, Yoga, Carwash Premium, Gastronomía de autor y Locales comerciales.',
+    'El principal destino urbano de lifestyle en Concepción (Av. Pedro de Valdivia 1161). Boulder, Yoga, Carwash Premium, Gastronomía de autor y Locales comerciales.',
   location: {
     address: 'Av. Pedro de Valdivia 1161, Concepción',
     city: 'Concepción, Región del Biobío',
@@ -18,7 +18,7 @@ export const siteConfig = {
   },
   navigation: [
     { label: '01 / GASTRONOMÍA', href: '#gastronomia' },
-    { label: '02 / DEPORTE & PÁDEL', href: '#deporte' },
+    { label: '02 / DEPORTE & CLIMBING', href: '#deporte' },
     { label: '03 / BIENESTAR', href: '#bienestar' },
     { label: '04 / SERVICIOS', href: '#servicios' },
     { label: '05 / COMERCIO & ARRIENDO', href: '#locales' },
@@ -37,10 +37,10 @@ export const siteConfig = {
       id: 'world-02',
       number: '02',
       title: 'DEPORTE & CLIMBING',
-      subtitle: 'The Padel Club & Boulder',
-      desc: '3 canchas de pádel de alto estándar con reserva online, muro de escalada Boulder, clases y entrenamiento funcional.',
-      image: '/images/04.jpg',
-      badge: 'PÁDEL & SPORTS',
+      subtitle: 'Boulder & Functional Fitness',
+      desc: 'Muro de escalada Boulder de alto estándar, zonas de entrenamiento funcional, clases guiadas y acondicionamiento.',
+      image: '/images/08.jpg',
+      badge: 'OUTDOOR & SPORTS',
     },
     {
       id: 'world-03',

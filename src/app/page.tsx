@@ -13,7 +13,7 @@ import Footer from '@/components/layout/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#F5F3EA] text-[#080A0D] overflow-x-hidden selection:bg-[#B8FF00] selection:text-[#080A0D]">
+    <main className="min-h-screen bg-[#F5F3EA] text-[#080A0D] overflow-x-hidden selection:bg-[#FFE9A3] selection:text-[#080A0D]">
       <Header />
       <Hero />
       <Introduction />

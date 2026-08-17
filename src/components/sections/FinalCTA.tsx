@@ -9,7 +9,7 @@ export default function FinalCTA() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/09.jpg"
-          alt="Espacio Río — Paseo central, gastronomía y pádel en Concepción"
+          alt="Espacio Río — Paseo central, gastronomía y terrazas en Concepción"
           fill
           sizes="100vw"
           className="object-cover object-center opacity-35 mix-blend-overlay scale-105"
@@ -20,9 +20,9 @@ export default function FinalCTA() {
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
         <FadeIn direction="up">
           <div className="flex items-center gap-2 mb-6">
-            <span className="bg-[#B8FF00] text-[#080A0D] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full shadow-lg inline-flex items-center gap-1.5">
+            <span className="bg-[#FFE9A3] text-[#080A0D] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full shadow-lg inline-flex items-center gap-1.5">
               <span>✦</span>
-              <span>CONCEPCIÓN · LIFESTYLE & PÁDEL</span>
+              <span>CONCEPCIÓN · LIFESTYLE & ARCHITECTURE</span>
             </span>
           </div>
         </FadeIn>
@@ -42,7 +42,7 @@ export default function FinalCTA() {
         <FadeIn direction="up" delay={0.3}>
           <a
             href="#espacio"
-            className="inline-flex items-center justify-center gap-3 bg-[#B8FF00] text-[#080A0D] px-10 py-5 text-xs tracking-[0.25em] uppercase font-extrabold hover:bg-[#FFE9A3] transition-all duration-300 shadow-2xl rounded-full transform hover:scale-105"
+            className="inline-flex items-center justify-center gap-3 bg-[#FFE9A3] text-[#080A0D] px-10 py-5 text-xs tracking-[0.25em] uppercase font-extrabold hover:bg-[#F5F3EA] transition-all duration-300 shadow-2xl rounded-full transform hover:scale-105"
           >
             <span>RECORRER EL ESPACIO</span>
             <span>✦</span>

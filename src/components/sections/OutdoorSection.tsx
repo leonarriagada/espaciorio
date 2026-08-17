@@ -21,10 +21,10 @@ export default function OutdoorSection() {
         <div className="max-w-2xl">
           <FadeIn direction="up">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-[11px] tracking-[0.3em] uppercase text-[#B8FF00] font-bold">
+              <span className="text-[11px] tracking-[0.3em] uppercase text-[#FFE9A3] font-bold">
                 05 / AL AIRE LIBRE
               </span>
-              <span className="text-xs text-[#B8FF00]">✦</span>
+              <span className="text-xs text-[#FFE9A3]">✦</span>
             </div>
           </FadeIn>
 
@@ -43,15 +43,15 @@ export default function OutdoorSection() {
           <FadeIn direction="up" delay={0.3}>
             <div className="flex flex-wrap gap-8 text-xs font-mono tracking-widest text-[#F5F3EA]/80 pt-6 border-t border-white/20">
               <div>
-                <span className="text-[#B8FF00] block text-base font-display">100%</span>
+                <span className="text-[#FFE9A3] block text-base font-display">100%</span>
                 <span>PEATONAL</span>
               </div>
               <div>
-                <span className="text-[#B8FF00] block text-base font-display">NATURAL</span>
+                <span className="text-[#FFE9A3] block text-base font-display">NATURAL</span>
                 <span>PAISAJISMO NATIVO</span>
               </div>
               <div>
-                <span className="text-[#B8FF00] block text-base font-display">AMPLITUD</span>
+                <span className="text-[#FFE9A3] block text-base font-display">AMPLITUD</span>
                 <span>VISTA CORDILLERA</span>
               </div>
             </div>

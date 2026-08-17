@@ -8,8 +8,9 @@
     --color-ivory: #F5F3EA;
     --color-white: #FFFFFF;
     --color-champagne: #FFE9A3;
+    --color-yellow-pastel: #FFE9A3;
+    --color-earth-coffee: #C48B5E;
     --color-rio-blue: #0050A0;
-    --color-lime: #B8FF00;
     --color-soft-pink: #F3C6D8;
 
     --font-display: var(--font-cormorant), Georgia, serif;
@@ -25,7 +26,7 @@
   }
 
   ::selection {
-    background-color: #B8FF00;
+    background-color: #FFE9A3;
     color: #080A0D;
   }
 }
@@ -36,8 +37,9 @@
   --color-ivory: #F5F3EA;
   --color-white: #FFFFFF;
   --color-champagne: #FFE9A3;
+  --color-yellow-pastel: #FFE9A3;
+  --color-earth-coffee: #C48B5E;
   --color-rio-blue: #0050A0;
-  --color-lime: #B8FF00;
   --color-soft-pink: #F3C6D8;
 
   --font-display: var(--font-cormorant), Georgia, serif;

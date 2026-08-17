@@ -18,7 +18,7 @@ export default function FiveWorlds() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 pb-8 border-b border-white/15 gap-6">
           <FadeIn direction="up">
             <div className="flex items-center gap-2 mb-3">
-              <span className="bg-[#B8FF00] text-[#080A0D] text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full">
+              <span className="bg-[#FFE9A3] text-[#080A0D] text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full">
                 ✦ UN DESTINO URBANO
               </span>
               <span className="text-xs tracking-[0.2em] uppercase text-[#FFE9A3] font-semibold">
@@ -47,15 +47,15 @@ export default function FiveWorlds() {
                 onClick={() => setActiveWorldId(world.id)}
                 className={`p-4 text-left transition-all duration-300 border flex flex-col justify-between h-32 ${
                   isActive
-                    ? 'bg-[#0050A0] text-[#F5F3EA] border-[#B8FF00] shadow-xl scale-[1.02]'
+                    ? 'bg-[#0050A0] text-[#F5F3EA] border-[#FFE9A3] shadow-xl scale-[1.02]'
                     : 'bg-[#080A0D]/60 text-[#F5F3EA]/70 border-white/10 hover:border-white/30 hover:bg-[#080A0D]'
                 }`}
               >
                 <div className="flex justify-between items-center">
-                  <span className={`font-mono text-xs ${isActive ? 'text-[#B8FF00]' : 'text-[#FFE9A3]'}`}>
+                  <span className={`font-mono text-xs ${isActive ? 'text-[#FFE9A3]' : 'text-[#FFE9A3]/70'}`}>
                     {world.number}
                   </span>
-                  {isActive && <span className="text-[#B8FF00] text-xs">✦</span>}
+                  {isActive && <span className="text-[#FFE9A3] text-xs">✦</span>}
                 </div>
                 <div>
                   <span className="text-[10px] tracking-widest uppercase block text-[#FFE9A3]/90 font-medium mb-1">
@@ -82,7 +82,7 @@ export default function FiveWorlds() {
               className="object-cover transition-transform duration-700 ease-out hover:scale-105"
             />
             <div className="absolute top-4 left-4">
-              <span className="bg-[#B8FF00] text-[#080A0D] text-[10px] tracking-[0.2em] font-extrabold uppercase px-3 py-1 rounded-full shadow-md">
+              <span className="bg-[#FFE9A3] text-[#080A0D] text-[10px] tracking-[0.2em] font-extrabold uppercase px-3 py-1 rounded-full shadow-md">
                 MUNDO {activeWorld.number} ✦ {activeWorld.badge}
               </span>
             </div>
@@ -102,7 +102,7 @@ export default function FiveWorlds() {
 
             <a
               href="#locales"
-              className="inline-flex items-center gap-3 bg-[#B8FF00] text-[#080A0D] px-6 py-3 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#FFE9A3] transition-colors w-max rounded-full"
+              className="inline-flex items-center gap-3 bg-[#FFE9A3] text-[#080A0D] px-6 py-3 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#F5F3EA] transition-colors w-max rounded-full"
             >
               <span>EXPLORAR OPORTUNIDADES</span>
               <span>↗</span>

@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#F5F3EA] text-[#080A0D] pt-20 pb-12 px-6 sm:px-10 lg:px-16 border-t-4 border-[#0050A0] relative">
       {/* Decorative Brand Accent Line */}
-      <div className="absolute top-0 left-0 w-32 h-1 bg-[#B8FF00]" />
+      <div className="absolute top-0 left-0 w-32 h-1 bg-[#FFE9A3]" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-[#080A0D]/15">
         {/* Brand Column */}
@@ -22,7 +22,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-8 text-xs tracking-widest uppercase text-[#0050A0] font-bold flex items-center gap-2">
-            <span className="bg-[#080A0D] text-[#B8FF00] px-2 py-1 rounded text-[10px]">📍 CONCEPCIÓN</span>
+            <span className="bg-[#080A0D] text-[#FFE9A3] px-2 py-1 rounded text-[10px]">📍 CONCEPCIÓN</span>
             <span>{siteConfig.location.address}</span>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function Footer() {
               rel="noreferrer"
               className="text-sm font-bold text-[#080A0D] hover:text-[#0050A0] transition-colors inline-flex items-center gap-2"
             >
-              <span className="bg-[#B8FF00] text-[#080A0D] px-2.5 py-1 rounded-full text-xs font-semibold">
+              <span className="bg-[#FFE9A3] text-[#080A0D] px-2.5 py-1 rounded-full text-xs font-semibold">
                 ✦ INSTAGRAM
               </span>
               <span>@espaciorio.cl ↗</span>
