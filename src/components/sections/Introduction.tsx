@@ -45,13 +45,13 @@ export default function Introduction() {
               <div className="flex flex-wrap gap-3 text-xs tracking-wider uppercase">
                 <span className="bg-[#080A0D] text-[#F5F3EA] px-3.5 py-1.5 rounded-full font-medium flex items-center gap-1.5">
                   <span className="text-[#FFE9A3]">✦</span>
-                  <span>COCTELERÍA & GASTRO</span>
+                  <span>GASTRONOMÍA & TRATTORIA</span>
                 </span>
                 <span className="bg-[#0050A0] text-[#FFFFFF] px-3.5 py-1.5 rounded-full font-medium">
-                  BOULDER & OUTDOOR
+                  BOULDER & PILATES
                 </span>
                 <span className="bg-[#FFFFFF] text-[#080A0D] border border-[#080A0D]/20 px-3.5 py-1.5 rounded-full font-medium">
-                  DRIVE-THRU STARBUCKS
+                  DRIVE-THRU STARBUCKS (3° EN LA ZONA)
                 </span>
               </div>
             </FadeIn>
