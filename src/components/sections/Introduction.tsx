@@ -62,7 +62,7 @@ export default function Introduction() {
             <FadeIn direction="left" delay={0.2}>
               <div className="relative aspect-[4/5] w-full overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/02.jpg"
+                  src="/images/EspacioRio-Vertical firt image.png"
                   alt="Espacio Río — Vista frontal de la fachada principal y tótem en Concepción"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

@@ -30,7 +30,7 @@ export const siteConfig = {
       title: 'GASTRONOMÍA',
       subtitle: 'Starbucks Drive-Thru, Siempre Pasta & Terrazas',
       desc: 'Café de especialidad con el tercer Starbucks Drive-Thru de la zona, pastas frescas en Siempre Pasta, tapeo en Válgame Dios, hamburguesas gourmet y terrazas abiertas.',
-      image: '/images/05.jpg',
+      image: '/images/seccion02/Gastronomía.png',
       badge: 'GASTRO & LIFE',
     },
     {
@@ -39,7 +39,7 @@ export const siteConfig = {
       title: 'DEPORTE & CLIMBING',
       subtitle: 'Boulder Studio & Functional Training',
       desc: 'Muro de escalada Boulder de estándar profesional, rutas dinámicas para todos los niveles, clases dirigidas y acondicionamiento físico.',
-      image: '/images/10.jpg',
+      image: '/images/seccion02/Deporte & Climbing.png',
       badge: 'OUTDOOR & SPORTS',
     },
     {
@@ -48,7 +48,7 @@ export const siteConfig = {
       title: 'BIENESTAR & BELLEZA',
       subtitle: 'Studio Pilates Reformer & Spa',
       desc: 'Estudio de Pilates Reformer con equipamiento de alta gama, posturas conscientes, salón Manos y Pies nail spa y equilibrio cuerpo-mente.',
-      image: '/images/locales/pilates-wellness-hero.jpg',
+      image: '/images/seccion02/Bienestar & Belleza.png',
       badge: 'WELLNESS & HEALTH',
     },
     {
@@ -57,7 +57,7 @@ export const siteConfig = {
       title: 'SERVICIOS & CONVENIENCIA',
       subtitle: 'Carwash Premium, Farmacia & Oxxo',
       desc: 'Lavado ecológico y detailing de alta gama para vehículos, Farmacia Ahumada, conveniencia Oxxo 24/7, lavandería express y barbería clásica.',
-      image: '/images/locales/carwash-hero.jpg',
+      image: '/images/seccion02/Servicios & Conveniencia.png',
       badge: 'PREMIUM SERVICES',
     },
     {
@@ -66,7 +66,7 @@ export const siteConfig = {
       title: 'COMERCIO BOUTIQUE',
       subtitle: 'La Oveja B, Óptica & Locales',
       desc: 'Moda y artículos esenciales para bebés en La Oveja B, armazones de diseñador en Óptica Boutique y espacios comerciales de primer nivel.',
-      image: '/images/locales/la-oveja-b.jpg',
+      image: '/images/seccion02/Comercio Boutique.png',
       badge: 'RETAIL & SPACES',
     },
   ],
