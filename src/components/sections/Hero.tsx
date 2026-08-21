@@ -76,7 +76,7 @@ export default function Hero() {
             exit={{ opacity: 0, scale: 1.10 }}
             transition={{
               opacity: { duration: 0.6, ease: 'easeInOut' },
-              scale: { duration: 5.0, ease: 'linear' },
+              scale: { duration: 3.0, ease: 'linear' },
             }}
             className="absolute inset-0 will-change-transform"
           >
