@@ -6,7 +6,7 @@
   <p>
     <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 16" /></a>
     <a href="https://react.dev"><img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19" /></a>
-    <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript_5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+    <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript_7.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript 7.0" /></a>
     <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS v4" /></a>
     <a href="https://motion.dev"><img src="https://img.shields.io/badge/Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Motion" /></a>
   </p>
@@ -51,8 +51,8 @@
 | **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first CSS & modern engine |
 | **Animations** | [Motion (Framer Motion)](https://motion.dev/) | Smooth layout animations & transitions |
 | **Icons** | [Lucide React](https://lucide.dev/) | Lightweight, clean SVG icon set |
-| **Language** | [TypeScript](https://www.typescriptlang.org/) | End-to-end type safety |
-| **Typography** | [Geist Font Family](https://vercel.com/font) | Modern sans-serif typography |
+| **Language** | [TypeScript 7](https://www.typescriptlang.org/) | End-to-end type safety |
+| **Typography** | [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond) & [Geist](https://vercel.com/font) | Editorial serif display paired with clean sans-serif |
 
 ---
 
@@ -112,10 +112,11 @@ Ensure you have **Node.js 20+** installed along with your preferred package mana
 
 Espacio Río avoids tech-heavy or overly futuristic aesthetics in favor of **real, constructible, timeless architecture**:
 
-- 🏔️ **Stone & Graphite**: Grounded base tones (`#171717`, `#262626`, `#E5E5E5`)
-- 🌿 **Organic Warmth**: Muted wood hues and biophilic greens
-- ☀️ **Golden Hour Ambience**: Soft warm light highlights and editorial contrast
-- ✏️ **Architectural Precision**: Sharp grids, generous whitespace, clean line weights
+- 🏛️ **Espacio Black & Carbon**: Deep structural base tones (`#080A0D`, `#151719`)
+- 📄 **Ivory & Pure White**: Clean architectural surfaces (`#F5F3EA`, `#FFFFFF`)
+- ☕ **Earth Coffee & Champagne**: Natural warmth and accents (`#C48B5E`, `#FFE9A3`)
+- 🌊 **Río Blue**: Signature brand element highlight (`#0050A0`)
+- ✒️ **Editorial Typography**: Cormorant Garamond display headings paired with Geist UI typography
 
 ---
 
