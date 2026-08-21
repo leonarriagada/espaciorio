@@ -71,12 +71,12 @@ export default function Hero() {
         <AnimatePresence mode="popLayout">
           <motion.div
             key={currentSlide.src}
-            initial={{ opacity: 0, scale: 1.38 }}
+            initial={{ opacity: 0, scale: 1.45 }}
             animate={{ opacity: 1, scale: 1.0 }}
-            exit={{ opacity: 0, scale: 0.95 }}
+            exit={{ opacity: 0, scale: 1.10 }}
             transition={{
-              opacity: { duration: 0.4, ease: 'easeOut' },
-              scale: { duration: 1.9, ease: [0.16, 1, 0.3, 1] },
+              opacity: { duration: 0.6, ease: 'easeInOut' },
+              scale: { duration: 5.0, ease: 'linear' },
             }}
             className="absolute inset-0 will-change-transform"
           >
