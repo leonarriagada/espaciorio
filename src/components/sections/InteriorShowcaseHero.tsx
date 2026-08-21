@@ -26,11 +26,11 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'gastronomia',
     shortInvite: 'Disfruta tu café preferido y bebidas de especialidad con la comodidad de su Drive-Thru exclusivo.',
     badge: 'LOCAL 1 · 3° DRIVE-THRU',
-    image: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_a.png',
+    image: '/images/nuevos-locales/local-1-starbucks-a.png',
     galleryImages: [
-      '/images/nuevos-locales/LOCAL 1 - STARBUCKS_a.png',
-      '/images/nuevos-locales/LOCAL 1 - STARBUCKS_b.png',
-      '/images/nuevos-locales/LOCAL 1 - STARBUCKS_b(1).png',
+      '/images/nuevos-locales/local-1-starbucks-a.png',
+      '/images/nuevos-locales/local-1-starbucks-b.png',
+      '/images/nuevos-locales/local-1-starbucks-b1.png',
     ],
     schedule: '07:00 - 22:00 hrs',
     location: 'Local 1 / Acceso Vehicular',
@@ -42,7 +42,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'gastronomia',
     shortInvite: 'Croissants recién horneados, baguettes artesanales y café gourmet en un espacio acogedor.',
     badge: 'LOCAL 3 · PASTELERÍA FRANCESA',
-    image: '/images/nuevos-locales/LOCAL 4 - BOULANGERIE.png',
+    image: '/images/nuevos-locales/local-3-boulangerie.png',
     schedule: '08:00 - 20:30 hrs',
     location: 'Local 3 / Paseo Central',
   },
@@ -53,7 +53,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'gastronomia',
     shortInvite: 'Gastronomía italiana especializada en pastas caseras elaboradas diariamente con calidad artesanal.',
     badge: 'LOCAL 4 · PASTA CASERA',
-    image: '/images/nuevos-locales/LOCAL 3 - BOULANGERIE.png',
+    image: '/images/nuevos-locales/local-4-sempre-pasta.png',
     schedule: '11:30 - 22:00 hrs',
     location: 'Local 4 / Paseo Central',
   },
@@ -64,7 +64,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'servicios',
     shortInvite: 'Ropa delicada, accesorios, juguetes y regalos para bebés y niños, con marcas premium y servicio personalizado.',
     badge: 'LOCAL 5 · BOUTIQUE INFANTIL',
-    image: '/images/nuevos-locales/LOCAL 5 - LA OVE BEE.png',
+    image: '/images/nuevos-locales/local-5-la-ove-bee.png',
     schedule: '10:00 - 20:00 hrs',
     location: 'Local 5 / Paseo Comercial',
   },
@@ -75,7 +75,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'servicios',
     shortInvite: 'Cortes clásicos, perfilado de barba y el ritual de la toalla caliente.',
     badge: 'LOCAL 6 · CORTE & BARBA',
-    image: '/images/nuevos-locales/LOCAL 6 - BARBERIA.png',
+    image: '/images/nuevos-locales/local-6-barberia.png',
     schedule: '10:00 - 20:30 hrs',
     location: 'Local 6 / Paseo Comercial',
   },
@@ -86,7 +86,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'bienestar',
     shortInvite: 'Manicure, pedicure spa y tratamientos de cuidado personal en un entorno relajante.',
     badge: 'LOCAL 7 · SPA & NAILS',
-    image: '/images/nuevos-locales/LOCAL 7 - MANOS Y PIES.png',
+    image: '/images/nuevos-locales/local-7-manos-pies.png',
     schedule: '09:30 - 20:00 hrs',
     location: 'Local 7 / Sector Bienestar',
   },
@@ -97,7 +97,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'servicios',
     shortInvite: 'Vestuario, zapatos y accesorios femeninos exclusivos diseñados para destacar tu estilo propio con elegancia.',
     badge: 'LOCAL 8 · MODA & CALZADO',
-    image: '/images/nuevos-locales/LOCAL 8 - VALGAME DIOS.png',
+    image: '/images/nuevos-locales/local-8-valgame-dios.png',
     schedule: '10:30 - 20:30 hrs',
     location: 'Local 8 / Paseo Comercial',
   },
@@ -108,7 +108,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'servicios',
     shortInvite: 'Taller de alfarería, piezas artesanales únicas hechas a mano y expresión creativa.',
     badge: 'LOCAL 9 · TALLER DE ARTE',
-    image: '/images/nuevos-locales/LOCAL 9 - CERAMICA GRES.png',
+    image: '/images/nuevos-locales/local-9-ceramica-gres.png',
     schedule: '10:00 - 19:30 hrs',
     location: 'Local 9 / Paseo Comercial',
   },
@@ -119,7 +119,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'servicios',
     shortInvite: 'Gestión inmobiliaria integral y asesoría profesional en la zona.',
     badge: 'LOCAL 10 · REAL ESTATE',
-    image: '/images/nuevos-locales/LOCAL 10 - CORREDORA DE PROPIEDADES.png',
+    image: '/images/nuevos-locales/local-10-corredora.png',
     schedule: '09:00 - 18:30 hrs',
     location: 'Local 10 / Sector Servicios',
   },
@@ -130,7 +130,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'bienestar',
     shortInvite: 'Fortalecimiento postural y entrenamiento consciente con equipamiento de alta gama.',
     badge: 'LOCAL 2 · REFORMER STUDIO',
-    image: '/images/nuevos-locales/LOCAL 2 - PILATES REFORMER.png',
+    image: '/images/nuevos-locales/local-2-pilates.png',
     schedule: '07:30 - 21:00 hrs',
     location: 'Local 2 / Nivel 2',
   },
@@ -141,7 +141,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'bienestar',
     shortInvite: 'Espacio equipado para entrenamiento funcional, fuerza y acondicionamiento personal.',
     badge: 'LOCAL 11 · FITNESS CLUB',
-    image: '/images/nuevos-locales/LOCAL 11 - GYM.png',
+    image: '/images/nuevos-locales/local-11-gym.png',
     schedule: '07:00 - 22:00 hrs',
     location: 'Local 11 / Sector Deportivo',
   },
@@ -152,7 +152,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'bienestar',
     shortInvite: 'Canchas de pádel techadas con estándar profesional para jugar a cualquier hora.',
     badge: 'PÁDEL CLUB TECHADO',
-    image: '/images/nuevos-locales/CANCHAS PADEL.png',
+    image: '/images/nuevos-locales/canchas-padel.png',
     schedule: '07:30 - 23:00 hrs',
     location: 'Sector Deportivo Cubierto',
   },
@@ -163,7 +163,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'servicios',
     shortInvite: 'Espacio equipado para reuniones corporativas, celebraciones privadas y networking.',
     badge: 'QUINCHO & EVENTOS',
-    image: '/images/nuevos-locales/QUINCHO COORPORATIVO.png',
+    image: '/images/nuevos-locales/quincho-corporativo.png',
     schedule: 'Reserva Previa',
     location: 'Sector Terrazas Nivel 2',
   },
@@ -174,7 +174,7 @@ const storeInteriors: StoreInterior[] = [
     categoryTag: 'servicios',
     shortInvite: 'Lavado ecológico de alta presión y detallado mientras disfrutás tu paseo.',
     badge: 'CARWASH & DETAILING',
-    image: '/images/nuevos-locales/CARWASH.png',
+    image: '/images/nuevos-locales/carwash.png',
     schedule: '08:30 - 19:30 hrs',
     location: 'Estacionamiento Nivel 1',
   },
@@ -208,7 +208,7 @@ export default function InteriorShowcaseHero() {
     const interval = setInterval(() => {
       setSelectedIndex((prev) => (prev + 1) % filteredStores.length);
       setActiveSubImageIndex(0);
-    }, 2000);
+    }, 4500);
 
     return () => clearInterval(interval);
   }, [isAutoplay, filteredStores.length]);
@@ -241,7 +241,7 @@ export default function InteriorShowcaseHero() {
   return (
     <section
       id="locales"
-      className="relative w-full min-h-screen bg-[#0D1117] text-[#F5F3EA] py-16 sm:py-24 px-4 sm:px-8 lg:px-12 overflow-hidden flex flex-col justify-between"
+      className="relative w-full min-h-screen bg-[#0D1117] text-[#F5F3EA] py-12 sm:py-24 px-3 sm:px-8 lg:px-12 overflow-hidden flex flex-col justify-between"
       onMouseEnter={() => setIsAutoplay(false)}
       onMouseLeave={() => setIsAutoplay(true)}
     >
@@ -249,7 +249,7 @@ export default function InteriorShowcaseHero() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#FFE9A3]/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#162A38]/50 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-[1600px] mx-auto w-full z-10 my-auto flex flex-col gap-10">
+      <div className="max-w-[1600px] mx-auto w-full z-10 my-auto flex flex-col gap-6 sm:gap-10">
         {/* Header section with categories */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
@@ -257,7 +257,7 @@ export default function InteriorShowcaseHero() {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFE9A3]/10 border border-[#FFE9A3]/30 text-[#FFE9A3] text-xs font-semibold tracking-widest uppercase mb-4"
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFE9A3]/10 border border-[#FFE9A3]/30 text-[#FFE9A3] text-xs font-semibold tracking-widest uppercase mb-3 sm:mb-4"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>02 / LOCALES COMERCIALES</span>
@@ -268,7 +268,7 @@ export default function InteriorShowcaseHero() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="font-display text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight"
+              className="font-display text-2xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight"
             >
               Conoce nuestros <span className="italic text-[#FFE9A3]">locales comerciales</span>
             </motion.h2>
@@ -278,7 +278,7 @@ export default function InteriorShowcaseHero() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="mt-2 text-sm sm:text-base text-[#F5F3EA]/80 font-light max-w-xl"
+              className="mt-2 text-xs sm:text-base text-[#F5F3EA]/80 font-light max-w-xl"
             >
               Explora los 11 locales comerciales y áreas exclusivas con movimiento y perspectiva.
             </motion.p>
@@ -291,40 +291,44 @@ export default function InteriorShowcaseHero() {
             viewport={{ once: true }}
             className="flex flex-wrap items-center gap-3"
           >
-            <div className="flex flex-wrap items-center gap-2 bg-[#161B22] p-1.5 rounded-2xl border border-white/10 shadow-xl">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 bg-[#161B22] p-1.5 rounded-2xl border border-white/10 shadow-xl">
               <button
                 onClick={() => handleFilterChange('all')}
-                className={`px-4 py-2 rounded-xl text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'all'
-                  ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
-                  : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                  }`}
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+                  activeFilter === 'all'
+                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
+                    : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
+                }`}
               >
                 Todos ({storeInteriors.length})
               </button>
               <button
                 onClick={() => handleFilterChange('gastronomia')}
-                className={`px-4 py-2 rounded-xl text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'gastronomia'
-                  ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
-                  : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                  }`}
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+                  activeFilter === 'gastronomia'
+                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
+                    : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
+                }`}
               >
                 Gastronomía
               </button>
               <button
                 onClick={() => handleFilterChange('bienestar')}
-                className={`px-4 py-2 rounded-xl text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'bienestar'
-                  ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
-                  : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                  }`}
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+                  activeFilter === 'bienestar'
+                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
+                    : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
+                }`}
               >
                 Bienestar & Deporte
               </button>
               <button
                 onClick={() => handleFilterChange('servicios')}
-                className={`px-4 py-2 rounded-xl text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'servicios'
-                  ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
-                  : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                  }`}
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+                  activeFilter === 'servicios'
+                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
+                    : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
+                }`}
               >
                 Moda & Servicios
               </button>
@@ -332,7 +336,7 @@ export default function InteriorShowcaseHero() {
 
             <button
               onClick={() => setIsAutoplay(!isAutoplay)}
-              className="w-10 h-10 rounded-2xl bg-[#161B22] border border-white/10 text-[#FFE9A3] flex items-center justify-center hover:border-[#FFE9A3] transition-colors cursor-pointer"
+              className="w-9 sm:w-10 h-9 sm:h-10 rounded-2xl bg-[#161B22] border border-white/10 text-[#FFE9A3] flex items-center justify-center hover:border-[#FFE9A3] transition-colors cursor-pointer"
               title={isAutoplay ? 'Pausar rotación' : 'Reanudar rotación'}
             >
               {isAutoplay ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -340,9 +344,9 @@ export default function InteriorShowcaseHero() {
           </motion.div>
         </div>
 
-        {/* Dynamic 3D Motion Stage (No Sidebar - Full Width Immersive Showcase) */}
-        <div className="relative w-full py-6 flex items-center justify-center perspective-[1200px] min-h-[540px] sm:min-h-[640px]">
-          {/* Left Floating Card (Previous) */}
+        {/* Dynamic 3D Motion Stage */}
+        <div className="relative w-full py-2 sm:py-6 flex items-center justify-center perspective-[1200px] min-h-[460px] sm:min-h-[600px]">
+          {/* Left Floating Card (Previous - Hidden on Mobile) */}
           <motion.div
             key={`prev-${prevStore.id}`}
             onClick={handlePrev}
@@ -368,13 +372,13 @@ export default function InteriorShowcaseHero() {
             </div>
           </motion.div>
 
-          {/* Center Dominant Active Card with Motion & Parallax Effects */}
+          {/* Center Active Store Card */}
           <motion.div
             key={`active-${currentStore.id}-${currentDisplayedImage}`}
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-30 w-full max-w-[1100px] aspect-[4/3] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-[#161B22] border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] group flex flex-col justify-between"
+            className="relative z-30 w-full max-w-[1100px] min-h-[440px] sm:min-h-[540px] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-[#161B22] border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] group flex flex-col justify-between"
           >
             <Image
               src={currentDisplayedImage}
@@ -386,35 +390,36 @@ export default function InteriorShowcaseHero() {
               onClick={() => setFullscreenImage(currentDisplayedImage)}
             />
 
-            {/* Dark Vignette Overlay for Text Readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117]/95 via-[#0D1117]/25 to-black/40 pointer-events-none z-10" />
+            {/* Dark Gradient Overlay for Maximum Text Legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117]/95 via-[#0D1117]/40 to-black/60 pointer-events-none z-10" />
 
             {/* Top Overlay Bar */}
-            <div className="relative z-20 p-6 sm:p-8 flex justify-between items-start">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="bg-[#080A0D]/85 backdrop-blur-md border border-[#FFE9A3]/50 text-[#FFE9A3] text-xs sm:text-sm font-semibold tracking-wider uppercase px-4 py-1.5 rounded-full shadow-lg">
+            <div className="relative z-20 p-4 sm:p-8 flex justify-between items-start">
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap max-w-[75%]">
+                <span className="bg-[#080A0D]/85 backdrop-blur-md border border-[#FFE9A3]/50 text-[#FFE9A3] text-[10px] sm:text-xs font-semibold tracking-wider uppercase px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-lg">
                   {currentStore.badge}
                 </span>
 
                 {hasSubGallery && (
-                  <span className="bg-[#FFE9A3] text-[#080A0D] text-xs font-semibold tracking-wider uppercase px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 shadow-lg">
+                  <span className="bg-[#FFE9A3] text-[#080A0D] text-[10px] sm:text-xs font-semibold tracking-wider uppercase px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full inline-flex items-center gap-1 shadow-lg">
                     <span>3 VISTAS</span>
                   </span>
                 )}
               </div>
 
               {/* Sub Gallery Switcher + Fullscreen Zoom Button */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 {hasSubGallery && (
-                  <div className="flex items-center gap-2 bg-[#080A0D]/80 backdrop-blur-md p-1.5 rounded-full border border-white/20">
+                  <div className="flex items-center gap-1.5 bg-[#080A0D]/80 backdrop-blur-md p-1 rounded-full border border-white/20">
                     {currentStore.galleryImages!.map((_, subIdx) => (
                       <button
                         key={subIdx}
                         onClick={() => setActiveSubImageIndex(subIdx)}
-                        className={`w-7 h-7 rounded-full text-xs font-bold transition-all cursor-pointer ${subIdx === activeSubImageIndex
-                          ? 'bg-[#FFE9A3] text-[#080A0D] scale-110'
-                          : 'bg-white/20 text-white hover:bg-white/40'
-                          }`}
+                        className={`w-6 sm:w-7 h-6 sm:h-7 rounded-full text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
+                          subIdx === activeSubImageIndex
+                            ? 'bg-[#FFE9A3] text-[#080A0D] scale-110'
+                            : 'bg-white/20 text-white hover:bg-white/40'
+                        }`}
                       >
                         {subIdx + 1}
                       </button>
@@ -425,68 +430,68 @@ export default function InteriorShowcaseHero() {
                 <button
                   onClick={() => setFullscreenImage(currentDisplayedImage)}
                   aria-label="Ver pantalla completa"
-                  className="w-10 h-10 rounded-full bg-[#080A0D]/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-colors cursor-pointer"
+                  className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-[#080A0D]/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-colors cursor-pointer"
                   title="Expandir imagen en pantalla completa"
                 >
-                  <Maximize2 className="w-4.5 h-4.5" />
+                  <Maximize2 className="w-3.5 sm:w-4.5 h-3.5 sm:h-4.5" />
                 </button>
               </div>
             </div>
 
             {/* Bottom Content Overlay */}
-            <div className="relative z-20 p-6 sm:p-10 flex flex-col gap-4 mt-auto">
-              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-[#FFE9A3]">
+            <div className="relative z-20 p-5 sm:p-10 flex flex-col gap-2.5 sm:gap-4 mt-auto">
+              <div className="flex items-center gap-2 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-[#FFE9A3]">
                 <span>{currentStore.category}</span>
               </div>
 
-              <h3 className="font-display text-3xl sm:text-5xl lg:text-6xl text-white font-normal tracking-wide">
+              <h3 className="font-display text-2xl sm:text-5xl lg:text-6xl text-white font-normal tracking-wide leading-tight">
                 {currentStore.name}
               </h3>
 
-              <p className="text-sm sm:text-base text-[#F5F3EA]/90 font-light max-w-2xl leading-relaxed">
+              <p className="text-xs sm:text-base text-[#F5F3EA]/90 font-light max-w-2xl leading-relaxed line-clamp-3 sm:line-clamp-none">
                 {currentStore.shortInvite}
               </p>
 
-              <div className="flex flex-wrap items-center justify-between gap-4 mt-2 pt-4 border-t border-white/20 text-xs text-[#F5F3EA]/90 font-light">
-                <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-wrap items-center justify-between gap-3 mt-1 sm:mt-2 pt-3 sm:pt-4 border-t border-white/20 text-[11px] sm:text-xs text-[#F5F3EA]/90 font-light">
+                <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                   <span className="inline-flex items-center gap-1.5">
-                    <Clock className="w-4 h-4 text-[#FFE9A3]" />
+                    <Clock className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-[#FFE9A3]" />
                     {currentStore.schedule}
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <MapPin className="w-4 h-4 text-[#FFE9A3]" />
+                    <MapPin className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-[#FFE9A3]" />
                     {currentStore.location}
                   </span>
                 </div>
 
                 <button
                   onClick={() => setActiveModalStore(currentStore)}
-                  className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#FFE9A3] hover:underline cursor-pointer py-1"
+                  className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-[#FFE9A3] hover:underline cursor-pointer py-1"
                 >
-                  <span>Ver detalle completo</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Ver detalle</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
 
-            {/* Navigation Arrows inside Center Card */}
+            {/* Navigation Arrows (Desktop: Side Floating, Mobile: Neatly Positioned) */}
             <button
               onClick={handlePrev}
               aria-label="Anterior"
-              className="absolute top-1/2 -translate-y-1/2 left-4 z-30 w-12 h-12 rounded-full bg-[#080A0D]/75 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-colors cursor-pointer shadow-xl"
+              className="hidden sm:flex absolute top-1/2 -translate-y-1/2 left-4 z-30 w-12 h-12 rounded-full bg-[#080A0D]/80 backdrop-blur-md border border-white/20 text-white items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-colors cursor-pointer shadow-xl"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={handleNext}
               aria-label="Siguiente"
-              className="absolute top-1/2 -translate-y-1/2 right-4 z-30 w-12 h-12 rounded-full bg-[#080A0D]/75 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-colors cursor-pointer shadow-xl"
+              className="hidden sm:flex absolute top-1/2 -translate-y-1/2 right-4 z-30 w-12 h-12 rounded-full bg-[#080A0D]/80 backdrop-blur-md border border-white/20 text-white items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-colors cursor-pointer shadow-xl"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
           </motion.div>
 
-          {/* Right Floating Card (Next) */}
+          {/* Right Floating Card (Next - Hidden on Mobile) */}
           <motion.div
             key={`next-${nextStore.id}`}
             onClick={handleNext}
@@ -513,8 +518,31 @@ export default function InteriorShowcaseHero() {
           </motion.div>
         </div>
 
+        {/* Mobile Navigation Controls Bar */}
+        <div className="flex sm:hidden items-center justify-between bg-[#161B22] p-2.5 rounded-2xl border border-white/10 text-xs">
+          <button
+            onClick={handlePrev}
+            className="flex items-center gap-1 text-[#FFE9A3] font-semibold px-3 py-1.5 rounded-xl bg-white/5 active:bg-white/15"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span>Anterior</span>
+          </button>
+
+          <span className="text-white/70 font-mono text-[11px]">
+            {selectedIndex + 1} / {filteredStores.length}
+          </span>
+
+          <button
+            onClick={handleNext}
+            className="flex items-center gap-1 text-[#FFE9A3] font-semibold px-3 py-1.5 rounded-xl bg-white/5 active:bg-white/15"
+          >
+            <span>Siguiente</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+
         {/* Bottom Filmstrip Thumbnail Track Navigation */}
-        <div className="flex items-center justify-center gap-3 overflow-x-auto py-3 px-2 custom-scrollbar">
+        <div className="flex items-center justify-start sm:justify-center gap-2.5 overflow-x-auto py-2 px-1 custom-scrollbar">
           {filteredStores.map((store, idx) => {
             const isSelected = idx === selectedIndex;
             return (
@@ -524,10 +552,11 @@ export default function InteriorShowcaseHero() {
                   setSelectedIndex(idx);
                   setActiveSubImageIndex(0);
                 }}
-                className={`relative flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${isSelected
-                  ? 'w-24 sm:w-28 h-14 sm:h-16 border-2 border-[#FFE9A3] scale-105 shadow-lg'
-                  : 'w-16 sm:w-20 h-10 sm:h-12 border border-white/10 opacity-50 hover:opacity-100'
-                  }`}
+                className={`relative flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${
+                  isSelected
+                    ? 'w-20 sm:w-28 h-12 sm:h-16 border-2 border-[#FFE9A3] scale-105 shadow-lg'
+                    : 'w-14 sm:w-20 h-9 sm:h-12 border border-white/10 opacity-50 hover:opacity-100'
+                }`}
                 title={store.name}
               >
                 <Image

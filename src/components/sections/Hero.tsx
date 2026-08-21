@@ -12,7 +12,7 @@ const heroImages = [
     category: 'ARQUITECTURA & ENTORNOS',
   },
   {
-    src: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_a.png',
+    src: '/images/nuevos-locales/local-1-starbucks-a.png',
     label: 'STARBUCKS · DRIVE-THRU',
     category: 'GASTRONOMÍA & DRIVE-THRU',
   },
@@ -22,7 +22,7 @@ const heroImages = [
     category: 'ARQUITECTURA & PASEO',
   },
   {
-    src: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_b.png',
+    src: '/images/nuevos-locales/local-1-starbucks-b.png',
     label: 'STARBUCKS · ESPACIO EXCLUSIVO',
     category: 'GASTRONOMÍA & CAFÉ',
   },
@@ -32,7 +32,7 @@ const heroImages = [
     category: 'MASTERPLAN & LIFESTYLE',
   },
   {
-    src: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_b(1).png',
+    src: '/images/nuevos-locales/local-1-starbucks-b1.png',
     label: 'STARBUCKS · TERRAZA EXTERIOR',
     category: 'GASTRONOMÍA & VIBE',
   },
