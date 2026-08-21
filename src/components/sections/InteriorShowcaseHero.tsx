@@ -214,16 +214,19 @@ export default function InteriorShowcaseHero() {
   }, [isAutoplay, filteredStores.length]);
 
   const handleNext = () => {
+    setIsAutoplay(false);
     setSelectedIndex((prev) => (prev + 1) % filteredStores.length);
     setActiveSubImageIndex(0);
   };
 
   const handlePrev = () => {
+    setIsAutoplay(false);
     setSelectedIndex((prev) => (prev - 1 + filteredStores.length) % filteredStores.length);
     setActiveSubImageIndex(0);
   };
 
   const handleFilterChange = (filter: CategoryFilter) => {
+    setIsAutoplay(false);
     setActiveFilter(filter);
     setSelectedIndex(0);
     setActiveSubImageIndex(0);
@@ -242,8 +245,6 @@ export default function InteriorShowcaseHero() {
     <section
       id="locales"
       className="relative w-full min-h-screen bg-[#0D1117] text-[#F5F3EA] py-12 sm:py-24 px-3 sm:px-8 lg:px-12 overflow-hidden flex flex-col justify-between"
-      onMouseEnter={() => setIsAutoplay(false)}
-      onMouseLeave={() => setIsAutoplay(true)}
     >
       {/* Background Subtle Ambient Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#FFE9A3]/5 rounded-full blur-[140px] pointer-events-none" />
@@ -549,6 +550,7 @@ export default function InteriorShowcaseHero() {
               <button
                 key={store.id}
                 onClick={() => {
+                  setIsAutoplay(false);
                   setSelectedIndex(idx);
                   setActiveSubImageIndex(0);
                 }}
