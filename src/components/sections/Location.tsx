@@ -1,104 +1,144 @@
+'use client';
+
 import React from 'react';
 import { siteConfig } from '@/data/site';
-import FadeIn from '../motion/FadeIn';
+import { MapPin, Clock, Car, Sparkles, Navigation, Coffee } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export default function Location() {
-  return (
-    <section id="ubicacion" className="py-24 sm:py-36 px-6 sm:px-10 lg:px-16 bg-[#D8D3C8]/30 border-t border-[#242624]/10 text-[#242624]">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Details Column */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div>
-              <FadeIn direction="up">
-                <span className="text-[11px] tracking-[0.3em] uppercase text-[#68755F] font-semibold mb-3 block">
-                  07 / UBICACIÓN & ACCESO
-                </span>
-                <h2 className="font-display text-4xl sm:text-5xl font-light text-[#242624] tracking-wide mb-4">
-                  Encuéntranos.
-                </h2>
-                <p className="text-lg font-light text-[#68755F] italic mb-8">
-                  Tu próximo destino está más cerca.
-                </p>
-              </FadeIn>
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.location.address)}`;
 
-              <FadeIn direction="up" delay={0.1} className="space-y-6 text-sm font-light text-[#242624]/85">
-                <div className="border-b border-[#242624]/10 pb-4">
-                  <span className="text-[11px] uppercase tracking-widest text-[#A8A49B] block mb-1">
+  return (
+    <section id="ubicacion" className="relative w-full py-24 sm:py-32 px-6 sm:px-10 lg:px-16 bg-[#0D1117] text-[#F5F3EA] overflow-hidden">
+      {/* Background Accent Gradients */}
+      <div className="absolute top-1/2 -right-40 w-96 h-96 bg-[#FFE9A3]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-96 h-96 bg-[#162A38]/40 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto z-10 relative">
+        {/* Header Tag */}
+        <div className="flex flex-col gap-3 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFE9A3]/10 border border-[#FFE9A3]/30 text-[#FFE9A3] text-xs font-semibold tracking-widest uppercase self-start"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>04 / UBICACIÓN & ACCESO</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-display text-4xl sm:text-6xl font-light text-white tracking-tight"
+          >
+            Encuéntranos en <span className="italic text-[#FFE9A3]">Pedro de Valdivia</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-base sm:text-lg font-light text-[#F5F3EA]/80 max-w-xl"
+          >
+            Acceso expedito, estacionamiento cómodo y la mejor ubicación en Concepción.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          {/* Information Column */}
+          <div className="lg:col-span-5 flex flex-col justify-between gap-8">
+            <div className="flex flex-col gap-4">
+              {/* Address Card */}
+              <div className="p-6 rounded-2xl bg-[#161B22] border border-white/10 flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-[#FFE9A3]/10 text-[#FFE9A3]">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-[#FFE9A3] font-semibold block mb-1">
                     DIRECCIÓN
                   </span>
-                  <p className="text-base font-normal">{siteConfig.location.address}</p>
-                </div>
-
-                <div className="border-b border-[#242624]/10 pb-4">
-                  <span className="text-[11px] uppercase tracking-widest text-[#A8A49B] block mb-1">
-                    HORARIOS GENERALES
-                  </span>
-                  <p>{siteConfig.location.hours}</p>
-                </div>
-
-                <div className="border-b border-[#242624]/10 pb-4">
-                  <span className="text-[11px] uppercase tracking-widest text-[#A8A49B] block mb-1">
-                    ESTACIONAMIENTO
-                  </span>
-                  <p>{siteConfig.location.parking}</p>
-                </div>
-
-                <div>
-                  <span className="text-[11px] uppercase tracking-widest text-[#A8A49B] block mb-1">
-                    ACCESO DIRECTO
-                  </span>
-                  <p>{siteConfig.location.driveThru}</p>
-                </div>
-              </FadeIn>
-            </div>
-
-            <FadeIn direction="up" delay={0.2} className="pt-8">
-              <a
-                href="https://maps.google.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-3 bg-[#242624] text-[#F3F1EB] px-8 py-4 text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#304638] transition-colors w-full sm:w-auto"
-              >
-                <span>CÓMO LLEGAR EN MAPS</span>
-                <span>↗</span>
-              </a>
-            </FadeIn>
-          </div>
-
-          {/* Architectural Map Representation Block */}
-          <div className="lg:col-span-7">
-            <FadeIn direction="left" delay={0.2} className="h-full min-h-[380px]">
-              <div className="relative w-full h-full min-h-[380px] bg-[#242624] p-8 sm:p-12 text-[#F3F1EB] flex flex-col justify-between border border-[#242624]/10 shadow-inner">
-                {/* Simulated Map / Spatial Grid Lines */}
-                <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#F3F1EB_1px,transparent_1px),linear-gradient(to_bottom,#F3F1EB_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-
-                <div className="relative z-10 flex justify-between items-start">
-                  <span className="font-display text-2xl font-light tracking-widest text-[#D8D3C8]">
-                    ESPACIO RÍO
-                  </span>
-                  <span className="text-[10px] tracking-widest uppercase bg-[#304638] px-3 py-1 text-[#F3F1EB]">
-                    COORDINADAS CORDILLERA
-                  </span>
-                </div>
-
-                <div className="relative z-10 my-auto py-12">
-                  <div className="inline-block p-4 border border-[#68755F] bg-[#304638]/60 backdrop-blur-sm max-w-sm">
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-[#A8A49B] block mb-1">
-                      PUNTO DE REFERENCIA
-                    </span>
-                    <p className="text-xs font-light text-[#F3F1EB]">
-                      Conexión expedita con avenidas principales, acceso directo a estacionamientos y zona Drive-Thru Starbucks.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="relative z-10 flex justify-between items-center text-xs text-[#A8A49B] border-t border-white/10 pt-4">
-                  <span>LAT -33.40 / LON -70.55</span>
-                  <span>ACCESO ABIERTO</span>
+                  <p className="text-base font-medium text-white">{siteConfig.location.address}</p>
+                  <p className="text-xs text-[#F5F3EA]/60 font-light mt-0.5">Concepción, Región del Biobío</p>
                 </div>
               </div>
-            </FadeIn>
+
+              {/* Hours Card */}
+              <div className="p-6 rounded-2xl bg-[#161B22] border border-white/10 flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-[#FFE9A3]/10 text-[#FFE9A3]">
+                  <Clock className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-[#FFE9A3] font-semibold block mb-1">
+                    HORARIOS DE ATENCIÓN
+                  </span>
+                  <p className="text-sm font-medium text-white">{siteConfig.location.hours}</p>
+                  <p className="text-xs text-[#F5F3EA]/60 font-light mt-0.5">Locales y servicios con horarios específicos</p>
+                </div>
+              </div>
+
+              {/* Parking Card */}
+              <div className="p-6 rounded-2xl bg-[#161B22] border border-white/10 flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-[#FFE9A3]/10 text-[#FFE9A3]">
+                  <Car className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-[#FFE9A3] font-semibold block mb-1">
+                    ESTACIONAMIENTO & CARWASH
+                  </span>
+                  <p className="text-sm font-light text-[#F5F3EA]/90">{siteConfig.location.parking}</p>
+                </div>
+              </div>
+
+              {/* Drive-Thru Card */}
+              <div className="p-6 rounded-2xl bg-[#161B22] border border-white/10 flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-[#FFE9A3]/10 text-[#FFE9A3]">
+                  <Coffee className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-[#FFE9A3] font-semibold block mb-1">
+                    ACCESO DRIVE-THRU
+                  </span>
+                  <p className="text-sm font-light text-[#F5F3EA]/90">{siteConfig.location.driveThru}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Google Maps Button */}
+            <a
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center gap-3 bg-[#FFE9A3] text-[#080A0D] py-4 px-8 rounded-full text-xs font-semibold tracking-widest uppercase hover:bg-white transition-all shadow-xl cursor-pointer"
+            >
+              <Navigation className="w-4 h-4" />
+              <span>Abrir en Google Maps</span>
+              <span>↗</span>
+            </a>
+          </div>
+
+          {/* Interactive Google Map Embed */}
+          <div className="lg:col-span-7 min-h-[420px] rounded-3xl overflow-hidden border border-white/15 shadow-2xl relative bg-[#161B22]">
+            <iframe
+              title="Mapa de Espacio Río en Concepción"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.543!2d-73.054!3d-36.835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b5c32d43a5bd%3A0x123456789!2sAv.%20Pedro%20de%20Valdivia%201161%2C%20Concepci%C3%B3n!5e0!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl"
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: 'contrast(1.05) saturate(1.1)' }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full min-h-[420px]"
+            />
+
+            {/* Map Overlay Capsule */}
+            <div className="absolute top-4 left-4 bg-[#080A0D]/90 backdrop-blur-md border border-[#FFE9A3]/30 px-4 py-2 rounded-full text-xs text-[#FFE9A3] font-semibold tracking-wider flex items-center gap-2 shadow-lg z-10">
+              <span className="w-2 h-2 rounded-full bg-[#FFE9A3] animate-pulse" />
+              <span>CONCEPCIÓN · BIOBÍO</span>
+            </div>
           </div>
         </div>
       </div>

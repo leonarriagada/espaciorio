@@ -41,7 +41,7 @@ export default function FinalCTA() {
 
         <FadeIn direction="up" delay={0.3}>
           <a
-            href="#espacio"
+            href="#locales"
             className="inline-flex items-center justify-center gap-3 bg-[#FFE9A3] text-[#080A0D] px-10 py-5 min-h-[48px] text-xs tracking-[0.25em] uppercase font-extrabold hover:bg-[#F5F3EA] transition-all duration-300 shadow-2xl rounded-full transform hover:scale-105"
           >
             <span>RECORRER EL ESPACIO</span>

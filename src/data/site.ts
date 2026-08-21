@@ -17,11 +17,10 @@ export const siteConfig = {
     contactEmail: 'contacto@espaciorio.cl',
   },
   navigation: [
-    { label: '01 / GASTRONOMÍA', href: '#gastronomia' },
-    { label: '02 / DEPORTE & CLIMBING', href: '#deporte' },
-    { label: '03 / BIENESTAR', href: '#bienestar' },
-    { label: '04 / SERVICIOS', href: '#servicios' },
-    { label: '05 / LOCALES & MIX', href: '#locales' },
+    { label: '01 / INICIO', href: '#hero' },
+    { label: '02 / LOCALES POR DENTRO', href: '#locales' },
+    { label: '03 / LA EXPERIENCIA', href: '#experiencia' },
+    { label: '04 / UBICACIÓN', href: '#ubicacion' },
   ],
   worlds: [
     {

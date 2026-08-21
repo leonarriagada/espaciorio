@@ -3,23 +3,88 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
+import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 const heroImages = [
   {
-    src: '/images/01.jpg',
-    alt: 'Espacio Río — Vista panorámica general del proyecto en Concepción',
+    src: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_a.png',
+    label: 'LOCAL 1 · STARBUCKS DRIVE-THRU',
+    category: 'GASTRONOMÍA & DRIVE-THRU',
   },
   {
-    src: '/images/02.jpg',
-    alt: 'Espacio Río — Fachada principal, tótem y entorno natural',
+    src: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_b.png',
+    label: 'LOCAL 1 · STARBUCKS CAFÉ',
+    category: 'GASTRONOMÍA',
   },
   {
-    src: '/images/03.jpg',
-    alt: 'Espacio Río — Vista aérea del máster plan y terrazas',
+    src: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_b(1).png',
+    label: 'LOCAL 1 · STARBUCKS TERRAZA',
+    category: 'GASTRONOMÍA',
   },
   {
-    src: '/images/08.jpg',
-    alt: 'Espacio Río — Paseo comercial y ambiente al aire libre',
+    src: '/images/nuevos-locales/LOCAL 2 - PILATES REFORMER.png',
+    label: 'LOCAL 2 · PILATES REFORMER',
+    category: 'BIENESTAR & MIND-BODY',
+  },
+  {
+    src: '/images/nuevos-locales/LOCAL 4 - BOULANGERIE.png',
+    label: 'LOCAL 3 · BOULANGERIE',
+    category: 'PANADERÍA & PASTELERÍA FRANCESA',
+  },
+  {
+    src: '/images/nuevos-locales/LOCAL 3 - BOULANGERIE.png',
+    label: 'LOCAL 4 · SEMPRE PASTA',
+    category: 'GASTRONOMÍA ITALIANA & PASTAS',
+  },
+  {
+    src: '/images/nuevos-locales/LOCAL 5 - LA OVE BEE.png',
+    label: 'LOCAL 5 · LA OVE BEE',
+    category: 'BOUTIQUE INFANTIL & BEBÉS',
+  },
+  {
+    src: '/images/nuevos-locales/LOCAL 6 - BARBERIA.png',
+    label: 'LOCAL 6 · BARBERÍA TRADICIONAL',
+    category: 'GROOMING & CORTE MASCULINO',
+  },
+  {
+    src: '/images/nuevos-locales/LOCAL 7 - MANOS Y PIES.png',
+    label: 'LOCAL 7 · MANOS Y PIES SPA',
+    category: 'SPA & NAILS',
+  },
+  {
+    src: '/images/nuevos-locales/LOCAL 8 - VALGAME DIOS.png',
+    label: 'LOCAL 8 · VÁLGAME DIOS',
+    category: 'MODA BOUTIQUE & CALZADO',
+  },
+  {
+    src: '/images/nuevos-locales/LOCAL 9 - CERAMICA GRES.png',
+    label: 'LOCAL 9 · CERÁMICA GRES',
+    category: 'ARTE & TALLER DE ALFARERÍA',
+  },
+  {
+    src: '/images/nuevos-locales/LOCAL 10 - CORREDORA DE PROPIEDADES.png',
+    label: 'LOCAL 10 · REAL ESTATE',
+    category: 'SERVICIOS INMOBILIARIOS',
+  },
+  {
+    src: '/images/nuevos-locales/LOCAL 11 - GYM.png',
+    label: 'LOCAL 11 · GYM STUDIO',
+    category: 'DEPORTE & FITNESS CLUB',
+  },
+  {
+    src: '/images/nuevos-locales/CANCHAS PADEL.png',
+    label: 'CANCHAS DE PÁDEL',
+    category: 'DEPORTE & PÁDEL CLUB',
+  },
+  {
+    src: '/images/nuevos-locales/CARWASH.png',
+    label: 'CARWASH PREMIUM',
+    category: 'SERVICIOS & ECO DETAILING',
+  },
+  {
+    src: '/images/nuevos-locales/QUINCHO COORPORATIVO.png',
+    label: 'QUINCHO CORPORATIVO',
+    category: 'EVENTOS & NETWORKING',
   },
 ];
 
@@ -29,30 +94,40 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(timer);
   }, []);
 
+  const handlePrev = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
+  const handleNext = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const currentSlide = heroImages[currentImageIndex];
+
   return (
-    <section className="relative w-full h-[100dvh] min-h-[620px] flex flex-col justify-between overflow-hidden bg-[#080A0D]">
+    <section id="hero" className="relative w-full h-[100dvh] min-h-[620px] flex flex-col justify-between overflow-hidden bg-[#080A0D]">
       {/* Hero Background Images with Cinematic Zoom-out and Cross-fade */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <AnimatePresence mode="popLayout">
           <motion.div
-            key={heroImages[currentImageIndex].src}
-            initial={{ opacity: 0, scale: 1.15 }}
+            key={currentSlide.src}
+            initial={{ opacity: 0, scale: 1.12 }}
             animate={{ opacity: 1, scale: 1.0 }}
             exit={{ opacity: 0 }}
             transition={{
               opacity: { duration: 1.0, ease: [0.22, 1, 0.36, 1] },
-              scale: { duration: 4.2, ease: 'easeOut' },
+              scale: { duration: 4.5, ease: 'easeOut' },
             }}
             className="absolute inset-0"
           >
             <Image
-              src={heroImages[currentImageIndex].src}
-              alt={heroImages[currentImageIndex].alt}
+              src={currentSlide.src}
+              alt={currentSlide.label}
               fill
               priority={currentImageIndex === 0}
               sizes="100vw"
@@ -63,29 +138,39 @@ export default function Hero() {
         </AnimatePresence>
 
         {/* Editorial Vignette & Contrast Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080A0D]/60 via-[#080A0D]/25 to-[#080A0D]/80 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080A0D]/70 via-[#080A0D]/30 to-[#080A0D]/90 pointer-events-none z-10" />
       </div>
 
       {/* Hero Content Container */}
-      <div className="relative z-20 max-w-7xl mx-auto w-full h-full px-6 sm:px-10 lg:px-12 flex flex-col justify-between pt-32 pb-12">
+      <div className="relative z-20 max-w-7xl mx-auto w-full h-full px-6 sm:px-10 lg:px-12 flex flex-col justify-between pt-32 pb-10">
         <div />
 
-        {/* Central Editorial Heading with High Contrast Typography */}
+        {/* Central Editorial Heading */}
         <div className="max-w-4xl my-auto">
-          {/* Brand Tag Capsule */}
+          {/* Brand Tag Capsule with Active Image Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex items-center gap-3 mb-6"
+            className="flex items-center gap-3 mb-6 flex-wrap"
           >
             <span className="bg-[#FFE9A3] text-[#080A0D] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase px-3.5 py-1 rounded-full inline-flex items-center gap-1.5 shadow-md">
               <span>✦</span>
               <span>CONCEPCIÓN</span>
             </span>
-            <span className="text-xs tracking-[0.25em] uppercase text-[#F5F3EA]/80 font-medium hidden sm:inline-block">
-              LIFESTYLE & ARCHITECTURE
-            </span>
+
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={currentSlide.label}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                className="bg-[#080A0D]/80 backdrop-blur-md border border-[#FFE9A3]/40 text-[#FFE9A3] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase px-3.5 py-1 rounded-full inline-flex items-center gap-1.5 shadow-md"
+              >
+                <Sparkles className="w-3 h-3 text-[#FFE9A3]" />
+                <span>{currentSlide.label}</span>
+              </motion.span>
+            </AnimatePresence>
           </motion.div>
 
           {/* Mixed Contrast Typography */}
@@ -115,51 +200,51 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.7 }}
             className="mt-6 text-base sm:text-xl font-light text-[#F5F3EA]/90 tracking-wide max-w-xl leading-relaxed"
           >
-            El nuevo punto de encuentro en Concepción donde gastronomía, deporte, arquitectura y vida social convergen.
+            El nuevo punto de encuentro en Concepción donde gastronomía, deporte, moda boutique y servicios convergen.
           </motion.p>
         </div>
 
-        {/* Scroll Indicator & Slide Progress Indicators */}
+        {/* Navigation & Counter Bar */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="flex justify-between items-end border-t border-white/20 pt-4"
+          className="flex justify-between items-center border-t border-white/20 pt-4"
         >
-          {/* Slide Indicator lines with Accessible Touch Targets */}
-          <div className="flex items-center gap-1">
-            {heroImages.map((_, idx) => (
+          {/* Active Category Display & Manual Controls */}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <button
-                key={idx}
-                onClick={() => setCurrentImageIndex(idx)}
-                aria-label={`Ver render ${idx + 1}`}
-                className="p-3 min-h-[44px] flex items-center justify-center cursor-pointer group focus:outline-none"
+                onClick={handlePrev}
+                aria-label="Anterior"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#FFE9A3] hover:text-[#080A0D] text-white flex items-center justify-center transition-colors cursor-pointer backdrop-blur-sm"
               >
-                <div
-                  className={`h-[2px] transition-all duration-500 ${
-                    idx === currentImageIndex
-                      ? 'w-8 bg-[#FFE9A3]'
-                      : 'w-4 bg-white/40 group-hover:bg-white/70'
-                  }`}
-                />
+                <ChevronLeft className="w-4 h-4" />
               </button>
-            ))}
+              <button
+                onClick={handleNext}
+                aria-label="Siguiente"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#FFE9A3] hover:text-[#080A0D] text-white flex items-center justify-center transition-colors cursor-pointer backdrop-blur-sm"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            <span className="text-xs tracking-widest text-[#FFE9A3] font-mono font-semibold">
+              {String(currentImageIndex + 1).padStart(2, '0')} / {String(heroImages.length).padStart(2, '0')}
+            </span>
           </div>
 
           <div className="text-xs tracking-[0.2em] text-[#F5F3EA]/80 font-light uppercase hidden md:flex items-center gap-3 py-2">
-            <span>GASTRONOMÍA</span>
-            <span className="text-[#FFE9A3]">✦</span>
-            <span>BOULDER</span>
-            <span className="text-[#FFE9A3]">✦</span>
-            <span>ARQUITECTURA</span>
+            <span>{currentSlide.category}</span>
           </div>
 
           <a
-            href="#espacio"
+            href="#locales"
             aria-label="Desplazarse hacia abajo"
             className="group flex items-center gap-3 text-xs tracking-widest text-white uppercase ml-auto py-2 min-h-[44px]"
           >
-            <span className="group-hover:text-[#FFE9A3] transition-colors">DESCUBRIR</span>
+            <span className="group-hover:text-[#FFE9A3] transition-colors">DESCUBRIR LOCALES</span>
             <span className="inline-block animate-bounce text-base text-[#FFE9A3]">↓</span>
           </a>
         </motion.div>

@@ -4,6 +4,7 @@ export interface Tenant {
   category: string;
   description: string;
   image: string;
+  galleryImages?: string[];
   badge?: string;
   logo?: string;
   schedule?: string;
