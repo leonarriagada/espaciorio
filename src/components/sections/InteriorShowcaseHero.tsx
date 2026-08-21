@@ -208,7 +208,7 @@ export default function InteriorShowcaseHero() {
     const interval = setInterval(() => {
       setSelectedIndex((prev) => (prev + 1) % filteredStores.length);
       setActiveSubImageIndex(0);
-    }, 4500);
+    }, 2500);
 
     return () => clearInterval(interval);
   }, [isAutoplay, filteredStores.length]);
@@ -295,41 +295,37 @@ export default function InteriorShowcaseHero() {
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 bg-[#161B22] p-1.5 rounded-2xl border border-white/10 shadow-xl">
               <button
                 onClick={() => handleFilterChange('all')}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${
-                  activeFilter === 'all'
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'all'
                     ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
                     : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                }`}
+                  }`}
               >
                 Todos ({storeInteriors.length})
               </button>
               <button
                 onClick={() => handleFilterChange('gastronomia')}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${
-                  activeFilter === 'gastronomia'
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'gastronomia'
                     ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
                     : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                }`}
+                  }`}
               >
                 Gastronomía
               </button>
               <button
                 onClick={() => handleFilterChange('bienestar')}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${
-                  activeFilter === 'bienestar'
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'bienestar'
                     ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
                     : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                }`}
+                  }`}
               >
                 Bienestar & Deporte
               </button>
               <button
                 onClick={() => handleFilterChange('servicios')}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${
-                  activeFilter === 'servicios'
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'servicios'
                     ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
                     : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                }`}
+                  }`}
               >
                 Moda & Servicios
               </button>
@@ -416,11 +412,10 @@ export default function InteriorShowcaseHero() {
                       <button
                         key={subIdx}
                         onClick={() => setActiveSubImageIndex(subIdx)}
-                        className={`w-6 sm:w-7 h-6 sm:h-7 rounded-full text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
-                          subIdx === activeSubImageIndex
+                        className={`w-6 sm:w-7 h-6 sm:h-7 rounded-full text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${subIdx === activeSubImageIndex
                             ? 'bg-[#FFE9A3] text-[#080A0D] scale-110'
                             : 'bg-white/20 text-white hover:bg-white/40'
-                        }`}
+                          }`}
                       >
                         {subIdx + 1}
                       </button>
@@ -554,11 +549,10 @@ export default function InteriorShowcaseHero() {
                   setSelectedIndex(idx);
                   setActiveSubImageIndex(0);
                 }}
-                className={`relative flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${
-                  isSelected
+                className={`relative flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${isSelected
                     ? 'w-20 sm:w-28 h-12 sm:h-16 border-2 border-[#FFE9A3] scale-105 shadow-lg'
                     : 'w-14 sm:w-20 h-9 sm:h-12 border border-white/10 opacity-50 hover:opacity-100'
-                }`}
+                  }`}
                 title={store.name}
               >
                 <Image
