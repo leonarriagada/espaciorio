@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+  <h1>🌿 ESPACIO RÍO</h1>
+  <p><strong>Premium Outdoor Lifestyle Destination & Architectural Digital Experience</strong></p>
 
-First, run the development server:
+  <p>
+    <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 16" /></a>
+    <a href="https://react.dev"><img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19" /></a>
+    <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript_5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+    <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS v4" /></a>
+    <a href="https://motion.dev"><img src="https://img.shields.io/badge/Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Motion" /></a>
+  </p>
+
+  <p>
+    <a href="#-about-the-project">About</a> •
+    <a href="#-key-features">Features</a> •
+    <a href="#-tech-stack">Tech Stack</a> •
+    <a href="#-getting-started">Getting Started</a> •
+    <a href="#-project-structure">Structure</a> •
+    <a href="#-design-philosophy">Design System</a>
+  </p>
+
+  <hr />
+</div>
+
+## 🏛️ About The Project
+
+**Espacio Río** is a flagship digital experience designed as the direct online extension of a premier architectural outdoor lifestyle destination. Moving beyond generic commercial directories and conventional corporate layouts, Espacio Río translates low-rise contemporary architecture, biophilic integration, gastronomy, and spatial flow into an immersive, editorial web environment.
+
+> *"Entering the website feels like walking into Espacio Río itself."*
+
+---
+
+## ✨ Key Features
+
+- **🏞️ Spatial Narrative Flow**: Designed around a physical walkthrough sequence (*Arrive → Discover → Explore → Connect → Experience*).
+- **🌍 The Five Worlds**: Dynamic showcase highlighting the core pillars of the destination: Architecture, Outdoor & Nature, Gastronomy, Lifestyle & Shopping, and Events.
+- **🎨 Editorial Architecture & Biophilic Aesthetics**: Natural stone, white facades, graphite, high-transparency glass, and warm wood accents paired with rich greenery.
+- **⚡ Motion & Fluid Micro-Interactions**: Framer Motion integration for organic transitions, smooth scroll animations, and spatial hover effects.
+- **📱 Responsive Layout & Container Engineering**: Mobile-first design crafted for fluid viewing on mobile, tablet, desktop, and ultra-wide displays.
+- **📍 Interactive Tenant & Location Guide**: Interactive directory highlighting curated brands, dining spaces, and physical accessibility.
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology | Description |
+| :--- | :--- | :--- |
+| **Framework** | [Next.js 16 (App Router)](https://nextjs.org/) | Server Components, routing & optimization |
+| **UI Library** | [React 19](https://react.dev/) | Concurrent UI rendering |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first CSS & modern engine |
+| **Animations** | [Motion (Framer Motion)](https://motion.dev/) | Smooth layout animations & transitions |
+| **Icons** | [Lucide React](https://lucide.dev/) | Lightweight, clean SVG icon set |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) | End-to-end type safety |
+| **Typography** | [Geist Font Family](https://vercel.com/font) | Modern sans-serif typography |
+
+---
+
+## 📁 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+espaciorio/
+├── public/                 # Static assets, logos, and favicon
+└── src/
+    ├── app/                # Next.js App Router (pages & layouts)
+    │   ├── globals.css     # Design system tokens & base styles
+    │   ├── layout.tsx      # Root HTML structure & SEO metadata
+    │   └── page.tsx        # Main spatial landing page
+    ├── components/         # Modular React components
+    │   ├── layout/         # Header, Navigation, Footer, Mobile Menu
+    │   ├── motion/         # Reusable animation wrappers & primitives
+    │   ├── sections/       # Hero, FiveWorlds, Gallery, Location, Tenants, CTA
+    │   └── ui/             # Reusable UI primitives (Buttons, Cards, Modals)
+    ├── data/               # Structured content & tenant catalogs
+    ├── lib/                # Utilities & helper modules
+    └── types/              # TypeScript definitions & interface models
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
 
-## Learn More
+Ensure you have **Node.js 20+** installed along with your preferred package manager (`pnpm`, `npm`, `yarn`, or `bun`).
 
-To learn more about Next.js, take a look at the following resources:
+### Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/leonarriagada/espaciorio.git
+   cd espaciorio
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Install dependencies:**
+   ```bash
+   pnpm install
+   # or npm install / yarn install / bun install
+   ```
 
-## Deploy on Vercel
+3. **Run the development server:**
+   ```bash
+   pnpm dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Open in browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000) to view the live experience.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📐 Design Philosophy & Palette
+
+Espacio Río avoids tech-heavy or overly futuristic aesthetics in favor of **real, constructible, timeless architecture**:
+
+- 🏔️ **Stone & Graphite**: Grounded base tones (`#171717`, `#262626`, `#E5E5E5`)
+- 🌿 **Organic Warmth**: Muted wood hues and biophilic greens
+- ☀️ **Golden Hour Ambience**: Soft warm light highlights and editorial contrast
+- ✏️ **Architectural Precision**: Sharp grids, generous whitespace, clean line weights
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/leonarriagada/espaciorio/issues).
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is released under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+  <p>Crafted with precision for <strong>Espacio Río</strong></p>
+</div>
