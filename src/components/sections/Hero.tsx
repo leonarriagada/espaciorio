@@ -49,7 +49,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 4000);
+    }, 2000);
 
     return () => clearInterval(timer);
   }, []);
@@ -71,14 +71,14 @@ export default function Hero() {
         <AnimatePresence mode="popLayout">
           <motion.div
             key={currentSlide.src}
-            initial={{ opacity: 0, scale: 1.12 }}
+            initial={{ opacity: 0, scale: 1.38 }}
             animate={{ opacity: 1, scale: 1.0 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{
-              opacity: { duration: 1.0, ease: [0.22, 1, 0.36, 1] },
-              scale: { duration: 4.5, ease: 'easeOut' },
+              opacity: { duration: 0.4, ease: 'easeOut' },
+              scale: { duration: 1.9, ease: [0.16, 1, 0.3, 1] },
             }}
-            className="absolute inset-0"
+            className="absolute inset-0 will-change-transform"
           >
             <Image
               src={currentSlide.src}
