@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { siteConfig } from '@/data/site';
 
 export default function Footer() {
@@ -12,10 +13,19 @@ export default function Footer() {
         {/* Brand Column */}
         <div className="md:col-span-5 flex flex-col justify-between">
           <div>
-            <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-light tracking-[0.15em] mb-4 text-[#080A0D] flex items-baseline gap-2">
-              <span>ESPACIO RÍO</span>
-              <span className="text-[#0050A0] text-xl">✦</span>
-            </h3>
+            {/* Official Brand Logo (Black Contrast Filter for Light Footer) */}
+            <div className="mb-6">
+              <div className="relative w-48 sm:w-60 h-11 sm:h-14">
+                <Image
+                  src="/LOGO.png"
+                  alt="Espacio Río Logo"
+                  fill
+                  sizes="240px"
+                  className="object-contain object-left brightness-0"
+                />
+              </div>
+            </div>
+
             <p className="text-sm font-light text-[#080A0D]/80 max-w-sm leading-relaxed">
               {siteConfig.tagline}. Un destino boutique de lifestyle donde convergen arquitectura contemporánea, gastronomía de autor, deporte y entorno natural.
             </p>

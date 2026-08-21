@@ -28,9 +28,15 @@ export default function FinalCTA() {
         </FadeIn>
 
         <FadeIn direction="up" delay={0.1}>
-          <h2 className="font-display text-[clamp(2.75rem,7vw,6rem)] font-light tracking-wide text-[#FFE9A3] mb-8 leading-tight drop-shadow-md">
-            ESPACIO RÍO
-          </h2>
+          <div className="relative w-72 sm:w-[420px] h-20 sm:h-28 mb-8 my-2 drop-shadow-2xl">
+            <Image
+              src="/LOGO.png"
+              alt="Espacio Río Logo"
+              fill
+              sizes="(max-width: 640px) 288px, 420px"
+              className="object-contain object-center"
+            />
+          </div>
         </FadeIn>
 
         <FadeIn direction="up" delay={0.2}>

@@ -24,7 +24,7 @@ export default function Location() {
             className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFE9A3]/10 border border-[#FFE9A3]/30 text-[#FFE9A3] text-xs font-semibold tracking-widest uppercase self-start"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>04 / UBICACIÓN & ACCESO</span>
+            <span>03 / UBICACIÓN & ACCESO</span>
           </motion.div>
 
           <motion.h2

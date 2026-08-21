@@ -208,7 +208,7 @@ export default function InteriorShowcaseHero() {
     const interval = setInterval(() => {
       setSelectedIndex((prev) => (prev + 1) % filteredStores.length);
       setActiveSubImageIndex(0);
-    }, 1500);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [isAutoplay, filteredStores.length]);
@@ -260,7 +260,7 @@ export default function InteriorShowcaseHero() {
               className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFE9A3]/10 border border-[#FFE9A3]/30 text-[#FFE9A3] text-xs font-semibold tracking-widest uppercase mb-4"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>02 / ESPACIOS POR DENTRO</span>
+              <span>02 / LOCALES COMERCIALES</span>
             </motion.div>
 
             <motion.h2
@@ -270,7 +270,7 @@ export default function InteriorShowcaseHero() {
               transition={{ delay: 0.1 }}
               className="font-display text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight"
             >
-              Conoce los locales <span className="italic text-[#FFE9A3]">por dentro</span>
+              Conoce nuestros <span className="italic text-[#FFE9A3]">locales comerciales</span>
             </motion.h2>
 
             <motion.p

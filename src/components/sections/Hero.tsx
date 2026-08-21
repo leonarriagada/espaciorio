@@ -7,84 +7,39 @@ import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 const heroImages = [
   {
+    src: '/images/01.jpg',
+    label: 'VISTA PANORÁMICA GENERAL',
+    category: 'ARQUITECTURA & ENTORNOS',
+  },
+  {
     src: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_a.png',
-    label: 'LOCAL 1 · STARBUCKS DRIVE-THRU',
+    label: 'STARBUCKS · DRIVE-THRU',
     category: 'GASTRONOMÍA & DRIVE-THRU',
   },
   {
+    src: '/images/02.jpg',
+    label: 'FACHADA PRINCIPAL & ACCESOS',
+    category: 'ARQUITECTURA & PASEO',
+  },
+  {
     src: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_b.png',
-    label: 'LOCAL 1 · STARBUCKS CAFÉ',
-    category: 'GASTRONOMÍA',
+    label: 'STARBUCKS · ESPACIO EXCLUSIVO',
+    category: 'GASTRONOMÍA & CAFÉ',
+  },
+  {
+    src: '/images/03.jpg',
+    label: 'VISTA AÉREA Y TERRAZAS',
+    category: 'MASTERPLAN & LIFESTYLE',
   },
   {
     src: '/images/nuevos-locales/LOCAL 1 - STARBUCKS_b(1).png',
-    label: 'LOCAL 1 · STARBUCKS TERRAZA',
-    category: 'GASTRONOMÍA',
+    label: 'STARBUCKS · TERRAZA EXTERIOR',
+    category: 'GASTRONOMÍA & VIBE',
   },
   {
-    src: '/images/nuevos-locales/LOCAL 2 - PILATES REFORMER.png',
-    label: 'LOCAL 2 · PILATES REFORMER',
-    category: 'BIENESTAR & MIND-BODY',
-  },
-  {
-    src: '/images/nuevos-locales/LOCAL 4 - BOULANGERIE.png',
-    label: 'LOCAL 3 · BOULANGERIE',
-    category: 'PANADERÍA & PASTELERÍA FRANCESA',
-  },
-  {
-    src: '/images/nuevos-locales/LOCAL 3 - BOULANGERIE.png',
-    label: 'LOCAL 4 · SEMPRE PASTA',
-    category: 'GASTRONOMÍA ITALIANA & PASTAS',
-  },
-  {
-    src: '/images/nuevos-locales/LOCAL 5 - LA OVE BEE.png',
-    label: 'LOCAL 5 · LA OVE BEE',
-    category: 'BOUTIQUE INFANTIL & BEBÉS',
-  },
-  {
-    src: '/images/nuevos-locales/LOCAL 6 - BARBERIA.png',
-    label: 'LOCAL 6 · BARBERÍA TRADICIONAL',
-    category: 'GROOMING & CORTE MASCULINO',
-  },
-  {
-    src: '/images/nuevos-locales/LOCAL 7 - MANOS Y PIES.png',
-    label: 'LOCAL 7 · MANOS Y PIES SPA',
-    category: 'SPA & NAILS',
-  },
-  {
-    src: '/images/nuevos-locales/LOCAL 8 - VALGAME DIOS.png',
-    label: 'LOCAL 8 · VÁLGAME DIOS',
-    category: 'MODA BOUTIQUE & CALZADO',
-  },
-  {
-    src: '/images/nuevos-locales/LOCAL 9 - CERAMICA GRES.png',
-    label: 'LOCAL 9 · CERÁMICA GRES',
-    category: 'ARTE & TALLER DE ALFARERÍA',
-  },
-  {
-    src: '/images/nuevos-locales/LOCAL 10 - CORREDORA DE PROPIEDADES.png',
-    label: 'LOCAL 10 · REAL ESTATE',
-    category: 'SERVICIOS INMOBILIARIOS',
-  },
-  {
-    src: '/images/nuevos-locales/LOCAL 11 - GYM.png',
-    label: 'LOCAL 11 · GYM STUDIO',
-    category: 'DEPORTE & FITNESS CLUB',
-  },
-  {
-    src: '/images/nuevos-locales/CANCHAS PADEL.png',
-    label: 'CANCHAS DE PÁDEL',
-    category: 'DEPORTE & PÁDEL CLUB',
-  },
-  {
-    src: '/images/nuevos-locales/CARWASH.png',
-    label: 'CARWASH PREMIUM',
-    category: 'SERVICIOS & ECO DETAILING',
-  },
-  {
-    src: '/images/nuevos-locales/QUINCHO COORPORATIVO.png',
-    label: 'QUINCHO CORPORATIVO',
-    category: 'EVENTOS & NETWORKING',
+    src: '/images/08.jpg',
+    label: 'PASEO COMERCIAL PEDRO DE VALDIVIA',
+    category: 'PASEO PEATONAL',
   },
 ];
 
@@ -189,8 +144,8 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="font-display text-[clamp(3.2rem,8.5vw,8rem)] font-light text-[#FFFFFF] tracking-wide leading-[0.92] mt-1">
-              ESPACIO RÍO
+            <h1 className="font-display text-[clamp(2.5rem,6.5vw,6rem)] font-light text-[#FFFFFF] tracking-wide leading-[0.95] mt-2 uppercase">
+              TU NUEVO PUNTO DE ENCUENTRO
             </h1>
           </motion.div>
 
@@ -200,7 +155,7 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.7 }}
             className="mt-6 text-base sm:text-xl font-light text-[#F5F3EA]/90 tracking-wide max-w-xl leading-relaxed"
           >
-            El nuevo punto de encuentro en Concepción donde gastronomía, deporte, moda boutique y servicios convergen.
+            El nuevo destino en Pedro de Valdivia donde gastronomía, deporte, moda boutique y servicios convergen.
           </motion.p>
         </div>
 

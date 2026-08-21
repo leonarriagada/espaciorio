@@ -18,9 +18,8 @@ export const siteConfig = {
   },
   navigation: [
     { label: '01 / INICIO', href: '#hero' },
-    { label: '02 / LOCALES POR DENTRO', href: '#locales' },
-    { label: '03 / LA EXPERIENCIA', href: '#experiencia' },
-    { label: '04 / UBICACIÓN', href: '#ubicacion' },
+    { label: '02 / LOCALES COMERCIALES', href: '#locales' },
+    { label: '03 / UBICACIÓN', href: '#ubicacion' },
   ],
   worlds: [
     {
