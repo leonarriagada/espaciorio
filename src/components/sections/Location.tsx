@@ -93,16 +93,21 @@ export default function Location() {
                 </div>
               </div>
 
-              {/* Drive-Thru Card */}
+              {/* Contact Phone & Email Card */}
               <div className="p-6 rounded-2xl bg-[#161B22] border border-white/10 flex items-start gap-4">
                 <div className="p-3 rounded-xl bg-[#FFE9A3]/10 text-[#FFE9A3]">
-                  <Coffee className="w-5 h-5" />
+                  <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="text-[10px] uppercase tracking-widest text-[#FFE9A3] font-semibold block mb-1">
-                    ACCESO DRIVE-THRU
+                    TELÉFONO & CORREO DE CONTACTO
                   </span>
-                  <p className="text-sm font-light text-[#F5F3EA]/90">{siteConfig.location.driveThru}</p>
+                  <p className="text-sm font-medium text-white flex items-center gap-2">
+                    <span>📞 {siteConfig.socials.phone}</span>
+                  </p>
+                  <p className="text-xs text-[#F5F3EA]/70 font-light mt-0.5">
+                    ✉ {siteConfig.socials.contactEmail}
+                  </p>
                 </div>
               </div>
             </div>

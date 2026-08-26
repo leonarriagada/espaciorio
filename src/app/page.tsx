@@ -1,9 +1,11 @@
 import Header from '@/components/layout/Header';
 import Hero from '@/components/sections/Hero';
 import InteriorShowcaseHero from '@/components/sections/InteriorShowcaseHero';
+import CommercialLeasing from '@/components/sections/CommercialLeasing';
 import Location from '@/components/sections/Location';
 import FinalCTA from '@/components/sections/FinalCTA';
 import Footer from '@/components/layout/Footer';
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 export default function Home() {
   return (
@@ -11,9 +13,11 @@ export default function Home() {
       <Header />
       <Hero />
       <InteriorShowcaseHero />
+      <CommercialLeasing />
       <Location />
       <FinalCTA />
       <Footer />
+      <WhatsAppButton />
     </main>
   );
 }

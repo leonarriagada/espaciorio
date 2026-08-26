@@ -27,7 +27,7 @@ export default function Tenants() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-8 border-b border-[#080A0D]/15 gap-6">
           <FadeIn direction="up">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-[11px] tracking-[0.3em] uppercase text-[#0050A0] font-bold">
+              <span className="text-[11px] tracking-[0.3em] uppercase text-[#C48B5E] font-bold">
                 04 / MIX COMERCIAL & SERVICIOS
               </span>
               <span className="text-xs text-[#FFE9A3] bg-[#080A0D] px-1.5 py-0.5 rounded">✦</span>
@@ -39,15 +39,15 @@ export default function Tenants() {
 
           {/* Minimalist Filter Index */}
           <FadeIn direction="up" delay={0.1}>
-            <div className="flex flex-wrap gap-3 sm:gap-4 text-xs tracking-widest uppercase font-medium">
+            <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs tracking-widest uppercase font-semibold">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
-                  className={`pb-1 transition-all relative ${
+                  className={`px-3 py-1.5 rounded-full transition-all cursor-pointer border ${
                     filter === cat
-                      ? 'text-[#080A0D] font-bold border-b-2 border-[#0050A0]'
-                      : 'text-[#151719]/60 hover:text-[#080A0D]'
+                      ? 'bg-[#080A0D] text-[#FFE9A3] border-[#080A0D] shadow-md font-bold'
+                      : 'bg-white/60 text-[#151719]/70 border-[#080A0D]/15 hover:border-[#080A0D]/40 hover:text-[#080A0D]'
                   }`}
                 >
                   {cat}
@@ -61,10 +61,10 @@ export default function Tenants() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {filteredTenants.map((tenant: Tenant, index: number) => (
             <FadeIn key={tenant.slug} direction="up" delay={0.05 * (index % 6)}>
-              <article className="group flex flex-col justify-between h-full bg-[#FFFFFF] p-6 shadow-sm border border-[#080A0D]/10 hover:border-[#0050A0]/40 transition-all duration-300 hover:shadow-md">
+              <article className="group flex flex-col justify-between h-full bg-[#FFFFFF] p-6 shadow-sm border border-[#080A0D]/10 hover:border-[#080A0D]/40 transition-all duration-300 hover:shadow-xl rounded-2xl">
                 {/* Image Aspect ratio Container */}
                 <div>
-                  <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-[#EBE7DC]">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden mb-6 bg-[#EBE7DC] rounded-xl">
                     <Image
                       src={tenant.image}
                       alt={tenant.name}
@@ -86,14 +86,22 @@ export default function Tenants() {
                     <span className="text-xs font-mono text-[#080A0D]/50">
                       {index < 9 ? `0${index + 1}` : index + 1}
                     </span>
-                    <span className="text-[11px] uppercase tracking-wider text-[#0050A0] font-semibold truncate text-right">
+                    <span className="text-[11px] uppercase tracking-wider text-[#C48B5E] font-bold truncate text-right">
                       {tenant.category}
                     </span>
                   </div>
 
-                  <h3 className="font-display text-2xl font-normal text-[#080A0D] mb-2 tracking-wide group-hover:text-[#0050A0] transition-colors">
-                    {tenant.name}
-                  </h3>
+                  {/* Store Brand Logo & Title */}
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <h3 className="font-display text-2xl font-normal text-[#080A0D] tracking-wide group-hover:text-[#C48B5E] transition-colors">
+                      {tenant.name}
+                    </h3>
+                    {tenant.logo && (
+                      <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-[#F5F3EA] text-[#080A0D] border border-[#080A0D]/10 flex-shrink-0">
+                        {tenant.logo}
+                      </span>
+                    )}
+                  </div>
 
                   <p className="text-xs sm:text-sm text-[#080A0D]/75 font-light leading-relaxed mb-4">
                     {tenant.description}
@@ -108,13 +116,17 @@ export default function Tenants() {
                 </div>
 
                 {/* Card Action Link & Schedule */}
-                <div className="pt-4 border-t border-[#080A0D]/10 flex justify-between items-center text-xs">
+                <div className="pt-4 border-t border-[#080A0D]/10 flex justify-between items-center text-xs gap-3">
                   <span className="text-[#080A0D]/60 text-[11px] font-mono">
                     {tenant.schedule || 'Próxima Apertura'}
                   </span>
-                  <span className="text-xs text-[#0050A0] font-semibold tracking-wider uppercase group-hover:underline">
-                    VER MÁS ↗
-                  </span>
+                  <a
+                    href={`/local?slug=${tenant.slug}`}
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold tracking-wider text-[#080A0D] bg-[#FFE9A3] hover:bg-[#080A0D] hover:text-[#FFE9A3] px-3.5 py-1.5 rounded-full transition-colors cursor-pointer shadow-xs"
+                  >
+                    <span>Ver detalles</span>
+                    <span className="text-sm">↗</span>
+                  </a>
                 </div>
               </article>
             </FadeIn>

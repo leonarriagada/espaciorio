@@ -28,6 +28,8 @@ export default function Masterplan3DViewer({ onSelectBuilding }: Masterplan3DVie
     if (height <= 0) height = 520;
     if (width <= 0) width = 800;
 
+    const isMobile = window.innerWidth < 768;
+
     // 1. Scene Setup
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#0D1117');
@@ -37,19 +39,19 @@ export default function Masterplan3DViewer({ onSelectBuilding }: Masterplan3DVie
     const camera = new THREE.PerspectiveCamera(45, isNaN(aspect) ? 1.77 : aspect, 0.1, 1000);
     camera.position.set(22, 18, 22);
 
-    // 3. Renderer Setup
+    // 3. Renderer Setup (Optimized for Mobile)
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+      renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: false, powerPreference: 'high-performance' });
     } catch (e) {
       console.error('WebGL initialization failed:', e);
       return;
     }
 
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 2));
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = isMobile ? THREE.BasicShadowMap : THREE.PCFSoftShadowMap;
 
     container.appendChild(renderer.domElement);
 
@@ -72,8 +74,9 @@ export default function Masterplan3DViewer({ onSelectBuilding }: Masterplan3DVie
     const sunLight = new THREE.DirectionalLight(0xfffaed, 2.5);
     sunLight.position.set(15, 25, 12);
     sunLight.castShadow = true;
-    sunLight.shadow.mapSize.width = 2048;
-    sunLight.shadow.mapSize.height = 2048;
+    const shadowRes = isMobile ? 1024 : 2048;
+    sunLight.shadow.mapSize.width = shadowRes;
+    sunLight.shadow.mapSize.height = shadowRes;
     scene.add(sunLight);
 
     const fillLight = new THREE.DirectionalLight(0x7aaee8, 0.9);

@@ -92,8 +92,8 @@ export default function Hero() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Editorial Vignette & Contrast Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080A0D]/70 via-[#080A0D]/30 to-[#080A0D]/90 pointer-events-none z-10" />
+        {/* Editorial Vignette & Dynamic Contrast Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080A0D]/75 via-[#080A0D]/35 to-[#080A0D]/90 pointer-events-none z-10" />
       </div>
 
       {/* Hero Content Container */}
@@ -103,48 +103,25 @@ export default function Hero() {
         {/* Central Editorial Heading */}
         <div className="max-w-4xl my-auto">
           {/* Brand Tag Capsule with Active Image Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex items-center gap-3 mb-6 flex-wrap"
-          >
-            <span className="bg-[#FFE9A3] text-[#080A0D] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase px-3.5 py-1 rounded-full inline-flex items-center gap-1.5 shadow-md">
-              <span>✦</span>
-              <span>CONCEPCIÓN</span>
-            </span>
 
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={currentSlide.label}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 10 }}
-                className="bg-[#080A0D]/80 backdrop-blur-md border border-[#FFE9A3]/40 text-[#FFE9A3] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase px-3.5 py-1 rounded-full inline-flex items-center gap-1.5 shadow-md"
-              >
-                <Sparkles className="w-3 h-3 text-[#FFE9A3]" />
-                <span>{currentSlide.label}</span>
-              </motion.span>
-            </AnimatePresence>
-          </motion.div>
 
-          {/* Mixed Contrast Typography */}
+          {/* Mixed Contrast Typography with Text Shadows */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-1"
+            className="flex flex-col gap-1 text-hero-shadow"
           >
             <div className="flex items-baseline gap-4 flex-wrap">
               <span className="text-xs sm:text-sm font-semibold tracking-[0.4em] uppercase text-[#FFE9A3]">
                 VIVE
               </span>
-              <span className="font-display italic text-2xl sm:text-4xl text-[#F5F3EA]/90 font-normal">
+              <span className="font-display italic text-2xl sm:text-4xl text-[#F5F3EA] font-normal drop-shadow-lg">
                 la nueva experiencia
               </span>
             </div>
 
-            <h1 className="font-display text-[clamp(2.5rem,6.5vw,6rem)] font-light text-[#FFFFFF] tracking-wide leading-[0.95] mt-2 uppercase">
+            <h1 className="font-display text-[clamp(2.5rem,6.5vw,6rem)] font-light text-[#FFFFFF] tracking-wide leading-[0.95] mt-2 uppercase drop-shadow-2xl">
               TU NUEVO PUNTO DE ENCUENTRO
             </h1>
           </motion.div>
@@ -153,7 +130,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.7 }}
-            className="mt-6 text-base sm:text-xl font-light text-[#F5F3EA]/90 tracking-wide max-w-xl leading-relaxed"
+            className="mt-6 text-base sm:text-xl font-light text-[#F5F3EA] tracking-wide max-w-xl leading-relaxed text-hero-shadow"
           >
             El nuevo destino en Pedro de Valdivia donde gastronomía, deporte, moda boutique y servicios convergen.
           </motion.p>

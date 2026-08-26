@@ -29,7 +29,7 @@ import Masterplan3DViewer from '@/components/sections/Masterplan3DViewer';
 export interface ZoneData {
   id: string;
   title: string;
-  category: 'gastronomia' | 'bienestar' | 'servicios' | 'deporte' | 'general';
+  category: 'gastronomia' | 'bienestar' | 'barberia' | 'servicios' | 'deporte' | 'general';
   categoryLabel: string;
   area: string;
   nivel: string;
@@ -119,10 +119,10 @@ export const ZONES_REGISTRY: Record<string, ZoneData> = {
     id: 'zone-c1',
     title: 'La Ove Bee',
     category: 'servicios',
-    categoryLabel: 'Moda & Boutique',
+    categoryLabel: 'Moda & Boutique Infantil',
     area: '60,00 m²',
     nivel: 'Piso 1',
-    uso: 'Boutique de vestuario femenino y accesorios de autor',
+    uso: 'Boutique de vestuario infantil y regalos boutique',
     status: 'operativo',
     statusLabel: 'En Operación',
     slug: 'la-ove-bee',
@@ -183,8 +183,8 @@ export const ZONES_REGISTRY: Record<string, ZoneData> = {
   'zone-c6': {
     id: 'zone-c6',
     title: 'Barbería Tradicional',
-    category: 'servicios',
-    categoryLabel: 'Cuidado Personal',
+    category: 'barberia',
+    categoryLabel: 'Barbería & Grooming',
     area: '60,00 m²',
     nivel: 'Piso 1',
     uso: 'Corte de cabello masculino, barbería y tratamiento capilar',
@@ -197,7 +197,7 @@ export const ZONES_REGISTRY: Record<string, ZoneData> = {
     id: 'zone-c-n1',
     title: 'Canchas de Pádel (Pista 1)',
     category: 'deporte',
-    categoryLabel: 'Deporte & Recreación',
+    categoryLabel: 'Arriendo de Canchas & Pádel',
     area: '1.120,00 m²',
     nivel: 'Piso 1',
     uso: 'Cancha deportiva panorámica con césped sintético e iluminación',
@@ -210,7 +210,7 @@ export const ZONES_REGISTRY: Record<string, ZoneData> = {
     id: 'zone-c-n2',
     title: 'Canchas de Pádel (Pista 2)',
     category: 'deporte',
-    categoryLabel: 'Deporte & Recreación',
+    categoryLabel: 'Arriendo de Canchas & Pádel',
     area: '1.120,00 m²',
     nivel: 'Piso 1',
     uso: 'Cancha deportiva panorámica con iluminación profesional',
@@ -240,7 +240,7 @@ export const ZONES_REGISTRY: Record<string, ZoneData> = {
     uso: 'Lavado ecológico y detallado vehicular',
     status: 'operativo',
     statusLabel: 'En Operación',
-    slug: 'carwash',
+    slug: 'carwash-premium',
     image: '/images/nuevos-locales/carwash.png',
   },
   'zone-quincho': {
@@ -259,7 +259,7 @@ export const ZONES_REGISTRY: Record<string, ZoneData> = {
 };
 
 type FloorLevel = 'piso1' | 'piso2' | 'subterraneo';
-type CategoryFilter = 'all' | 'gastronomia' | 'bienestar' | 'servicios' | 'deporte';
+type CategoryFilter = 'all' | 'gastronomia' | 'bienestar' | 'barberia' | 'servicios' | 'deporte';
 
 export default function MasterplanMap({ onSelectLocal, selectedSlug }: MasterplanMapProps) {
   const [activeFloor, setActiveFloor] = useState<FloorLevel>('piso1');
@@ -417,6 +417,17 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
           </button>
 
           <button
+            onClick={() => setActiveCategory('barberia')}
+            className={`px-3 py-1.5 rounded-xl text-[11px] font-medium tracking-wider uppercase transition-all cursor-pointer ${
+              activeCategory === 'barberia'
+                ? 'bg-[#FFE9A3] text-[#080A0D] font-bold shadow-md'
+                : 'bg-white/5 text-[#F5F3EA]/60 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            Barbería
+          </button>
+
+          <button
             onClick={() => setActiveCategory('servicios')}
             className={`px-3 py-1.5 rounded-xl text-[11px] font-medium tracking-wider uppercase transition-all cursor-pointer ${
               activeCategory === 'servicios'
@@ -445,7 +456,7 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onClick={(e) => !isIsometric && handleBackgroundClick(e)}
-        className={`relative w-full bg-[#0D1117] rounded-3xl border border-white/15 overflow-hidden shadow-2xl transition-all duration-500 ${
+        className={`relative w-full bg-[#0D1117] rounded-3xl border border-white/15 overflow-hidden shadow-2xl transition-all duration-500 touch-pan-y ${
           isIsometric ? 'h-[580px]' : 'aspect-[1150/560] min-h-[420px]'
         }`}
       >

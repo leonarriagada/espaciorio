@@ -11,7 +11,7 @@ export default function Introduction() {
           <div className="lg:col-span-6 flex flex-col justify-center pr-0 lg:pr-8">
             <FadeIn direction="up">
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-[11px] tracking-[0.3em] uppercase text-[#0050A0] font-bold">
+                <span className="text-[11px] tracking-[0.3em] uppercase text-[#C48B5E] font-bold">
                   01 / EL PROYECTO
                 </span>
                 <span className="text-xs text-[#FFE9A3] bg-[#080A0D] px-1.5 py-0.5 rounded">✦</span>
@@ -25,13 +25,13 @@ export default function Introduction() {
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-light tracking-wide text-[#080A0D] leading-[1.08] mb-8">
                 Más que un espacio.
                 <br />
-                <span className="italic font-normal text-[#0050A0]">Un estilo de vida urbano.</span>
+                <span className="italic font-normal text-[#C48B5E]">Tu lugar de encuentro.</span>
               </h2>
             </FadeIn>
 
             <FadeIn direction="up" delay={0.2}>
               <p className="text-base sm:text-lg text-[#080A0D]/85 font-light leading-relaxed mb-6">
-                Espacio Río llega a Concepción para redefinir el encuentro urbano. Una propuesta arquitectónica contemporánea donde convergen la alta gastronomía, el deporte y escalada en <strong className="font-medium text-[#0050A0]">Boulder Studio</strong>, el entretenimiento y el comercio boutique en un mismo circuito peatonal.
+                Espacio Río llega a Concepción para redefinir el encuentro urbano. Una propuesta arquitectónica contemporánea donde convergen la alta gastronomía, el deporte y arriendo de canchas en <strong className="font-medium text-[#080A0D]">Pádel & Gym Studio</strong>, el entretenimiento y el comercio boutique en un mismo circuito peatonal.
               </p>
             </FadeIn>
 
@@ -47,8 +47,8 @@ export default function Introduction() {
                   <span className="text-[#FFE9A3]">✦</span>
                   <span>GASTRONOMÍA & TRATTORIA</span>
                 </span>
-                <span className="bg-[#0050A0] text-[#FFFFFF] px-3.5 py-1.5 rounded-full font-medium">
-                  BOULDER & PILATES
+                <span className="bg-[#151719] text-[#FFE9A3] px-3.5 py-1.5 rounded-full font-medium">
+                  CANCHAS & PILATES
                 </span>
                 <span className="bg-[#FFFFFF] text-[#080A0D] border border-[#080A0D]/20 px-3.5 py-1.5 rounded-full font-medium">
                   DRIVE-THRU STARBUCKS (3° EN LA ZONA)

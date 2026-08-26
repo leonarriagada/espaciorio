@@ -4,7 +4,7 @@ import FadeIn from '../motion/FadeIn';
 
 export default function OutdoorSection() {
   return (
-    <section className="relative w-full py-32 sm:py-48 overflow-hidden bg-[#0050A0] text-[#F5F3EA]">
+    <section className="relative w-full py-32 sm:py-48 overflow-hidden bg-[#080A0D] text-[#F5F3EA]">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -12,9 +12,9 @@ export default function OutdoorSection() {
           alt="Espacio Río — Entorno natural de coníferas y aire libre en Concepción"
           fill
           sizes="100vw"
-          className="object-cover object-center opacity-25 mix-blend-overlay"
+          className="object-cover object-center opacity-30 mix-blend-overlay"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0050A0] via-[#0050A0]/90 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080A0D] via-[#080A0D]/90 to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">

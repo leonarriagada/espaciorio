@@ -57,7 +57,7 @@ export default function FiveWorlds() {
                 onClick={() => setActiveIndex(idx)}
                 className={`p-4 text-left transition-all duration-300 border flex flex-col justify-between h-32 cursor-pointer ${
                   isActive
-                    ? 'bg-[#0050A0] text-[#F5F3EA] border-[#FFE9A3] shadow-xl scale-[1.02]'
+                    ? 'bg-[#080A0D] text-[#F5F3EA] border-[#FFE9A3] shadow-xl scale-[1.02]'
                     : 'bg-[#080A0D]/60 text-[#F5F3EA]/70 border-white/10 hover:border-white/30 hover:bg-[#080A0D]'
                 }`}
               >
@@ -90,7 +90,7 @@ export default function FiveWorlds() {
                 onClick={() => setActiveIndex(idx)}
                 className={`snap-start flex-shrink-0 px-4 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-300 flex items-center gap-2 border whitespace-nowrap ${
                   isActive
-                    ? 'bg-[#0050A0] text-[#FFFFFF] border-[#FFE9A3] shadow-lg scale-[1.02]'
+                    ? 'bg-[#080A0D] text-[#FFE9A3] border-[#FFE9A3] shadow-lg scale-[1.02]'
                     : 'bg-[#080A0D] text-[#F5F3EA]/70 border-white/15 hover:border-white/30'
                 }`}
               >
