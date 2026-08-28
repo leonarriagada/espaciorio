@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, MapPin, Clock, ArrowRight, ChevronLeft, ChevronRight, X, Maximize2, Pause, Play } from 'lucide-react';
@@ -190,6 +190,54 @@ export default function InteriorShowcaseHero() {
   const [activeModalStore, setActiveModalStore] = useState<StoreInterior | null>(null);
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
 
+  const thumbnailContainerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftState, setScrollLeftState] = useState(0);
+
+  // Auto-scroll selected thumbnail into center view smoothly (only horizontal, without moving window page position)
+  useEffect(() => {
+    const container = thumbnailContainerRef.current;
+    if (!container) return;
+    const activeChild = container.children[selectedIndex] as HTMLElement;
+    if (activeChild) {
+      const containerWidth = container.clientWidth;
+      const childLeft = activeChild.offsetLeft;
+      const childWidth = activeChild.clientWidth;
+      const targetScrollLeft = childLeft - (containerWidth / 2) + (childWidth / 2);
+
+      container.scrollTo({
+        left: targetScrollLeft,
+        behavior: 'smooth',
+      });
+    }
+  }, [selectedIndex]);
+
+  const scrollThumbnails = (direction: 'left' | 'right') => {
+    if (!thumbnailContainerRef.current) return;
+    const amount = direction === 'left' ? -220 : 220;
+    thumbnailContainerRef.current.scrollBy({ left: amount, behavior: 'smooth' });
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!thumbnailContainerRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - thumbnailContainerRef.current.offsetLeft);
+    setScrollLeftState(thumbnailContainerRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !thumbnailContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - thumbnailContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    thumbnailContainerRef.current.scrollLeft = scrollLeftState - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    setIsDragging(false);
+  };
+
   const filteredStores = storeInteriors.filter((store) => {
     if (activeFilter === 'all') return true;
     return store.categoryTag === activeFilter;
@@ -290,42 +338,46 @@ export default function InteriorShowcaseHero() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="flex flex-wrap items-center gap-3"
+            className="flex items-center gap-2 sm:gap-3 max-w-full overflow-hidden"
           >
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 bg-[#161B22] p-1.5 rounded-2xl border border-white/10 shadow-xl">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-0.5 max-w-full">
               <button
                 onClick={() => handleFilterChange('all')}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'all'
-                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
-                    : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                  }`}
+                className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer flex-shrink-0 ${
+                  activeFilter === 'all'
+                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-[0_4px_16px_rgba(255,233,163,0.3)] font-bold scale-102'
+                    : 'bg-[#161B22]/90 backdrop-blur-md border border-white/15 text-[#F5F3EA]/70 hover:text-white hover:border-white/35 hover:bg-white/10'
+                }`}
               >
                 Todos ({storeInteriors.length})
               </button>
               <button
                 onClick={() => handleFilterChange('gastronomia')}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'gastronomia'
-                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
-                    : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                  }`}
+                className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer flex-shrink-0 ${
+                  activeFilter === 'gastronomia'
+                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-[0_4px_16px_rgba(255,233,163,0.3)] font-bold scale-102'
+                    : 'bg-[#161B22]/90 backdrop-blur-md border border-white/15 text-[#F5F3EA]/70 hover:text-white hover:border-white/35 hover:bg-white/10'
+                }`}
               >
                 Gastronomía
               </button>
               <button
                 onClick={() => handleFilterChange('bienestar')}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'bienestar'
-                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
-                    : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                  }`}
+                className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer flex-shrink-0 ${
+                  activeFilter === 'bienestar'
+                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-[0_4px_16px_rgba(255,233,163,0.3)] font-bold scale-102'
+                    : 'bg-[#161B22]/90 backdrop-blur-md border border-white/15 text-[#F5F3EA]/70 hover:text-white hover:border-white/35 hover:bg-white/10'
+                }`}
               >
                 Bienestar & Deporte
               </button>
               <button
                 onClick={() => handleFilterChange('servicios')}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[10px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeFilter === 'servicios'
-                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-semibold'
-                    : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-                  }`}
+                className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer flex-shrink-0 ${
+                  activeFilter === 'servicios'
+                    ? 'bg-[#FFE9A3] text-[#080A0D] shadow-[0_4px_16px_rgba(255,233,163,0.3)] font-bold scale-102'
+                    : 'bg-[#161B22]/90 backdrop-blur-md border border-white/15 text-[#F5F3EA]/70 hover:text-white hover:border-white/35 hover:bg-white/10'
+                }`}
               >
                 Moda & Servicios
               </button>
@@ -333,7 +385,7 @@ export default function InteriorShowcaseHero() {
 
             <button
               onClick={() => setIsAutoplay(!isAutoplay)}
-              className="w-9 sm:w-10 h-9 sm:h-10 rounded-2xl bg-[#161B22] border border-white/10 text-[#FFE9A3] flex items-center justify-center hover:border-[#FFE9A3] transition-colors cursor-pointer"
+              className="w-9 sm:w-10 h-9 sm:h-10 rounded-full bg-[#161B22]/90 backdrop-blur-md border border-white/15 text-[#FFE9A3] flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] hover:border-[#FFE9A3] transition-all cursor-pointer flex-shrink-0 shadow-lg"
               title={isAutoplay ? 'Pausar rotación' : 'Reanudar rotación'}
             >
               {isAutoplay ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -384,6 +436,7 @@ export default function InteriorShowcaseHero() {
               sizes="(max-width: 1200px) 100vw, 1100px"
               className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out cursor-pointer"
               priority
+              loading="eager"
               onClick={() => setFullscreenImage(currentDisplayedImage)}
             />
 
@@ -538,34 +591,93 @@ export default function InteriorShowcaseHero() {
         </div>
 
         {/* Bottom Filmstrip Thumbnail Track Navigation */}
-        <div className="flex items-center justify-start sm:justify-center gap-2.5 overflow-x-auto py-2 px-1 custom-scrollbar">
-          {filteredStores.map((store, idx) => {
-            const isSelected = idx === selectedIndex;
-            return (
-              <button
-                key={store.id}
-                onClick={() => {
-                  setIsAutoplay(false);
-                  setSelectedIndex(idx);
-                  setActiveSubImageIndex(0);
-                }}
-                className={`relative flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${isSelected
-                    ? 'w-20 sm:w-28 h-12 sm:h-16 border-2 border-[#FFE9A3] scale-105 shadow-lg'
-                    : 'w-14 sm:w-20 h-9 sm:h-12 border border-white/10 opacity-50 hover:opacity-100'
-                  }`}
-                title={store.name}
+        <div className="relative w-full max-w-5xl mx-auto flex flex-col items-center gap-3 mt-2">
+          {/* Controls + Filmstrip container */}
+          <div className="relative w-full flex items-center gap-2">
+            {/* Left Nav Button */}
+            <button
+              onClick={() => scrollThumbnails('left')}
+              aria-label="Deslizar miniaturas a la izquierda"
+              className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#161B22]/90 border border-white/15 text-[#FFE9A3] flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-all cursor-pointer z-20 shadow-md"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {/* Thumbnail Scroll Area with Gradient Masks */}
+            <div className="relative flex-1 overflow-hidden rounded-2xl">
+              {/* Fade Gradient Masks on Edges */}
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-r from-[#0D1117] to-transparent z-10" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-l from-[#0D1117] to-transparent z-10" />
+
+              <div
+                ref={thumbnailContainerRef}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUpOrLeave}
+                onMouseLeave={handleMouseUpOrLeave}
+                className={`flex items-center gap-2 sm:gap-3 overflow-x-auto py-2 px-6 no-scrollbar select-none ${
+                  isDragging ? 'cursor-grabbing' : 'cursor-grab'
+                }`}
               >
-                <Image
-                  src={store.image}
-                  alt={store.name}
-                  fill
-                  sizes="112px"
-                  className="object-cover"
-                />
-                <div className={`absolute inset-0 ${isSelected ? 'bg-transparent' : 'bg-black/40'}`} />
-              </button>
-            );
-          })}
+                {filteredStores.map((store, idx) => {
+                  const isSelected = idx === selectedIndex;
+                  return (
+                    <button
+                      key={store.id}
+                      onClick={() => {
+                        if (isDragging) return;
+                        setIsAutoplay(false);
+                        setSelectedIndex(idx);
+                        setActiveSubImageIndex(0);
+                      }}
+                      className={`relative flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer ${
+                        isSelected
+                          ? 'w-20 sm:w-28 h-12 sm:h-16 border-2 border-[#FFE9A3] scale-105 shadow-[0_0_15px_rgba(255,233,163,0.3)]'
+                          : 'w-14 sm:w-20 h-9 sm:h-12 border border-white/10 opacity-50 hover:opacity-100 hover:scale-102'
+                      }`}
+                      title={store.name}
+                    >
+                      <Image
+                        src={store.image}
+                        alt={store.name}
+                        fill
+                        sizes="112px"
+                        className="object-cover pointer-events-none"
+                      />
+                      <div className={`absolute inset-0 ${isSelected ? 'bg-transparent' : 'bg-black/40'}`} />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Nav Button */}
+            <button
+              onClick={() => scrollThumbnails('right')}
+              aria-label="Deslizar miniaturas a la derecha"
+              className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#161B22]/90 border border-white/15 text-[#FFE9A3] flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-all cursor-pointer z-20 shadow-md"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Minimalist Champagne Progress Line & Counter */}
+          <div className="flex items-center gap-4 w-full max-w-md px-4">
+            <span className="text-[10px] font-mono text-[#FFE9A3]/80 tracking-widest">
+              {String(selectedIndex + 1).padStart(2, '0')}
+            </span>
+            <div className="flex-1 h-[2px] bg-white/10 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-[#FFE9A3]"
+                initial={false}
+                animate={{ width: `${((selectedIndex + 1) / filteredStores.length) * 100}%` }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+            <span className="text-[10px] font-mono text-white/40 tracking-widest">
+              {String(filteredStores.length).padStart(2, '0')}
+            </span>
+          </div>
         </div>
       </div>
 

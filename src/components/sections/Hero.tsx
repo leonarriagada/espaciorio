@@ -85,6 +85,7 @@ export default function Hero() {
               alt={currentSlide.label}
               fill
               priority={currentImageIndex === 0}
+              loading={currentImageIndex === 0 ? 'eager' : undefined}
               sizes="100vw"
               className="object-cover object-center"
               quality={90}

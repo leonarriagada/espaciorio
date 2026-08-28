@@ -5,16 +5,16 @@ import FadeIn from '../motion/FadeIn';
 export default function FinalCTA() {
   return (
     <section className="relative py-28 sm:py-40 bg-[#080A0D] text-[#F5F3EA] text-center px-6 sm:px-10 overflow-hidden border-t border-white/10">
-      {/* Rich Background Image with Vibrant Overlay */}
+      {/* Rich Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/09.jpg"
           alt="Espacio Río — Paseo central, gastronomía y terrazas en Concepción"
           fill
           sizes="100vw"
-          className="object-cover object-center opacity-30 mix-blend-overlay scale-105"
+          className="object-cover object-center scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080A0D]/95 via-[#080A0D]/90 to-[#151719]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
@@ -40,10 +40,10 @@ export default function FinalCTA() {
         </FadeIn>
 
         <FadeIn direction="up" delay={0.2}>
-          <h2 className="font-display text-3xl sm:text-5xl text-[#FFE9A3] font-normal tracking-wide mb-3">
+          <h2 className="font-display text-3xl sm:text-5xl text-[#FFE9A3] font-normal tracking-wide mb-3 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
             Espacio Río, tu lugar de encuentro.
           </h2>
-          <p className="text-base sm:text-xl font-light text-[#F5F3EA]/90 tracking-wide mb-10 max-w-xl">
+          <p className="text-base sm:text-xl font-light text-[#F5F3EA] tracking-wide mb-10 max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
             Ven a vivir una experiencia única de gastronomía, deporte, bienestar y marcas boutique en Pedro de Valdivia.
           </p>
         </FadeIn>
