@@ -35,7 +35,7 @@ export default function WhatsAppButton() {
         >
           <div className="relative w-full h-full">
             <Image
-              src="/padel.png"
+              src="/logo_padel.png"
               alt="Reservar Cancha de Pádel"
               fill
               sizes="72px"
