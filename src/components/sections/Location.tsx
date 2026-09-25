@@ -129,7 +129,7 @@ export default function Location() {
           <div className="lg:col-span-7 min-h-[420px] rounded-3xl overflow-hidden border border-white/15 shadow-2xl relative bg-[#161B22]">
             <iframe
               title="Mapa de Espacio Río en Concepción (Vista Satelital)"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.543!2d-73.054!3d-36.835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b5c32d43a5bd%3A0x123456789!2sAv.%20Pedro%20de%20Valdivia%201161%2C%20Concepci%C3%B3n!5e1!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl&t=k"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.543!2d-73.054!3d-36.835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b5c32d43a5bd%3A0x123456789!2sAv.%20Pedro%20de%20Valdivia%201173%2C%20Concepci%C3%B3n!5e1!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl&t=k"
               width="100%"
               height="100%"
               style={{ border: 0, filter: 'contrast(1.05) saturate(1.1)' }}

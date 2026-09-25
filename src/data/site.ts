@@ -4,9 +4,9 @@ export const siteConfig = {
   tagline: 'Espacio Río, tu lugar de encuentro',
   metaTitle: 'Espacio Río — Tu lugar de encuentro en Concepción',
   metaDescription:
-    'Espacio Río, tu lugar de encuentro en Concepción (Av. Pedro de Valdivia 1161). Starbucks Drive-Thru, Pilates Reformer, Canchas de Pádel, Barbería, Carwash Premium, Sempre Pasta y locales boutique.',
+    'Espacio Río, tu lugar de encuentro en Concepción (Av. Pedro de Valdivia 1173). Starbucks Drive-Thru, Pilates Reformer, Canchas de Pádel, Barbería, Carwash Premium, Sempre Pasta y locales boutique.',
   location: {
-    address: 'Avda. Pedro de Valdivia 1161, Concepción',
+    address: 'Avda. Pedro de Valdivia 1173, Concepción',
     city: 'Concepción, Región del Biobío',
     phone: '+569 9519 8669',
     hours: 'Lunes a Domingo — 07:00 a 00:00 hrs',

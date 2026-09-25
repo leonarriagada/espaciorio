@@ -41,7 +41,7 @@ export default function FiveWorlds() {
 
           <FadeIn direction="up" delay={0.1}>
             <p className="text-xs sm:text-sm font-light text-[#F5F3EA]/80 max-w-md leading-relaxed">
-              La fusión perfecta de lujo y diversión en Av. Pedro de Valdivia 1161, Concepción. Deporte, gastronomía, bienestar y servicios en un mismo circuito.
+              La fusión perfecta de lujo y diversión en Av. Pedro de Valdivia 1173, Concepción. Deporte, gastronomía, bienestar y servicios en un mismo circuito.
             </p>
           </FadeIn>
         </div>
