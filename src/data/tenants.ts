@@ -1,4 +1,4 @@
-import { Tenant, Experience, GalleryItem } from '@/types';
+import { Tenant } from '@/types';
 
 export const tenantsData: Tenant[] = [
   {
@@ -226,64 +226,3 @@ export const tenantsData: Tenant[] = [
   },
 ];
 
-export const experiencesData: Experience[] = [
-  {
-    id: 'exp-01',
-    title: 'GASTRONOMÍA & CONVENIENCIA',
-    subtitle: 'Starbucks Drive-Thru, Boulangerie, Sempre Pasta & Kiosclub.',
-    description: 'Café de especialidad en Starbucks (Local 01), pastelería y deli francés en Boulangerie (Local 02), pastas frescas en Sempre Pasta (Local 04a) y snacks importados en Kiosclub (Locales 03 y 04).',
-    image: '/images/nuevos-locales/local-1-starbucks-b.png',
-  },
-  {
-    id: 'exp-02',
-    title: 'BIENESTAR, BELLEZA & DEPORTE',
-    subtitle: 'Canchas de Pádel, Pilates Reformer, Navi BarberShop & Chini Beauty Studio.',
-    description: 'Canchas de pádel panorámicas, estudio de Pilates Reformer con Pablo Simpson (Locales 11b-11c), barbería de autor en Navi BarberShop (Local 10) y estética en Chini Beauty Studio (Local 09).',
-    image: '/images/nuevos-locales/canchas-padel.png',
-  },
-  {
-    id: 'exp-03',
-    title: 'BOUTIQUE, ARTE & SERVICIOS',
-    subtitle: 'Válgame Dios, La Ove Bee, Javiera Poch, José Manuel & Cerámica Gres.',
-    description: 'Vestuario de autor en Válgame Dios (Local 06), boutique infantil en La Ove Bee (Local 05), calzado en Javiera Poch (Local 07), concept store en José Manuel (Local 08) y cerámica de autor con Fiorella Innocenti (Local 11e).',
-    image: '/images/nuevos-locales/quincho-corporativo.png',
-  },
-];
-
-export const galleryData: GalleryItem[] = [
-  {
-    id: 'gal-1',
-    title: 'Starbucks Drive-Thru',
-    category: 'gastronomia',
-    image: '/images/nuevos-locales/local-1-starbucks-a.png',
-    aspect: 'panorama',
-  },
-  {
-    id: 'gal-2',
-    title: 'Canchas de Pádel Cubiertas',
-    category: 'encuentro',
-    image: '/images/nuevos-locales/canchas-padel.png',
-    aspect: 'portrait',
-  },
-  {
-    id: 'gal-3',
-    title: 'Boulangerie Pastelería & Deli',
-    category: 'gastronomia',
-    image: '/images/nuevos-locales/local-3-boulangerie.png',
-    aspect: 'square',
-  },
-  {
-    id: 'gal-4',
-    title: 'Quincho Corporativo & Eventos',
-    category: 'encuentro',
-    image: '/images/nuevos-locales/quincho-corporativo.png',
-    aspect: 'panorama',
-  },
-  {
-    id: 'gal-5',
-    title: 'Studio Pilates Reformer',
-    category: 'paisaje',
-    image: '/images/nuevos-locales/local-2-pilates.png',
-    aspect: 'portrait',
-  },
-];
