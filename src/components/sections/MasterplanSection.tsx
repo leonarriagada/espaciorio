@@ -10,6 +10,8 @@ import {
   ExternalLink,
   CheckCircle,
   MessageCircle,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import MasterplanMap from '@/components/sections/MasterplanMap';
 import { tenantsData } from '@/data/tenants';
@@ -20,20 +22,83 @@ export default function MasterplanSection() {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const detailsRef = useRef<HTMLDivElement>(null);
 
+  // Track navigation & drag-to-scroll states (inspired by Section 02)
+  const pillsContainerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftState, setScrollLeftState] = useState(0);
+
   const currentLocal = tenantsData.find((t) => t.slug === selectedSlug) || tenantsData[0];
   const gallery = currentLocal.galleryImages || [currentLocal.image];
   const mainDisplayedImage = gallery[activeImageIndex] || currentLocal.image;
 
+  // Auto-scroll the active pill into view smoothly whenever selectedSlug changes
+  React.useEffect(() => {
+    const container = pillsContainerRef.current;
+    if (!container) return;
+    const selectedIndex = tenantsData.findIndex((t) => t.slug === selectedSlug);
+    if (selectedIndex >= 0) {
+      const activeChild = container.children[selectedIndex] as HTMLElement;
+      if (activeChild) {
+        const containerWidth = container.clientWidth;
+        const childLeft = activeChild.offsetLeft;
+        const childWidth = activeChild.clientWidth;
+        const targetScrollLeft = childLeft - containerWidth / 2 + childWidth / 2;
+
+        container.scrollTo({
+          left: targetScrollLeft,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [selectedSlug]);
+
+  const scrollPills = (direction: 'left' | 'right') => {
+    if (!pillsContainerRef.current) return;
+    const amount = direction === 'left' ? -260 : 260;
+    pillsContainerRef.current.scrollBy({ left: amount, behavior: 'smooth' });
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!pillsContainerRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - pillsContainerRef.current.offsetLeft);
+    setScrollLeftState(pillsContainerRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !pillsContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - pillsContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    pillsContainerRef.current.scrollLeft = scrollLeftState - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    setIsDragging(false);
+  };
+
   const handleSelectLocal = (slug: string) => {
     setSelectedSlug(slug);
     setActiveImageIndex(0);
-    // Smoothly scroll down to details if user clicks on the map and details are out of view
     if (detailsRef.current) {
       const rect = detailsRef.current.getBoundingClientRect();
       if (rect.top < 0 || rect.top > window.innerHeight - 150) {
         detailsRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     }
+  };
+
+  const handlePrevLocal = () => {
+    const currentIndex = tenantsData.findIndex((t) => t.slug === selectedSlug);
+    const newIndex = (currentIndex - 1 + tenantsData.length) % tenantsData.length;
+    handleSelectLocal(tenantsData[newIndex].slug);
+  };
+
+  const handleNextLocal = () => {
+    const currentIndex = tenantsData.findIndex((t) => t.slug === selectedSlug);
+    const newIndex = (currentIndex + 1) % tenantsData.length;
+    handleSelectLocal(tenantsData[newIndex].slug);
   };
 
   const whatsappMessage = encodeURIComponent(
@@ -80,24 +145,73 @@ export default function MasterplanSection() {
           <MasterplanMap onSelectLocal={handleSelectLocal} selectedSlug={selectedSlug} />
         </FadeIn>
 
-        {/* Store Selector Pills */}
-        <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-2 custom-scrollbar">
-          {tenantsData.map((tenant) => {
-            const isSelected = tenant.slug === selectedSlug;
-            return (
-              <button
-                key={tenant.slug}
-                onClick={() => handleSelectLocal(tenant.slug)}
-                className={`px-4 py-2 rounded-2xl text-xs font-medium tracking-wider uppercase transition-all duration-300 flex-shrink-0 cursor-pointer border ${
-                  isSelected
-                    ? 'bg-[#FFE9A3] text-[#080A0D] border-[#FFE9A3] shadow-lg font-bold scale-105'
-                    : 'bg-[#161B22]/70 text-[#F5F3EA]/70 border-white/10 hover:border-white/30 hover:text-white'
-                }`}
-              >
-                {tenant.name}
-              </button>
-            );
-          })}
+        {/* Store Selector Track with Elegant Controls (Section 02 Style) */}
+        <div className="relative w-full flex items-center gap-2 pt-1">
+          {/* Left Arrow Button */}
+          <button
+            onClick={() => scrollPills('left')}
+            aria-label="Deslizar locales a la izquierda"
+            className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#161B22]/90 border border-white/15 text-[#FFE9A3] flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-all cursor-pointer z-20 shadow-lg hover:scale-105"
+          >
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
+
+          {/* Pills Container with Edge Gradient Masks */}
+          <div className="relative flex-1 overflow-hidden rounded-2xl">
+            {/* Left and Right Fade Masks */}
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#0C0E12] to-transparent z-10" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#0C0E12] to-transparent z-10" />
+
+            <div
+              ref={pillsContainerRef}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUpOrLeave}
+              onMouseLeave={handleMouseUpOrLeave}
+              className={`flex items-center gap-2.5 overflow-x-auto py-2.5 px-6 no-scrollbar select-none ${
+                isDragging ? 'cursor-grabbing' : 'cursor-grab'
+              }`}
+            >
+              {tenantsData.map((tenant) => {
+                const isSelected = tenant.slug === selectedSlug;
+                return (
+                  <button
+                    key={tenant.slug}
+                    onClick={() => {
+                      if (isDragging) return;
+                      handleSelectLocal(tenant.slug);
+                    }}
+                    className={`px-4 py-2.5 rounded-2xl text-xs font-medium tracking-wider uppercase transition-all duration-300 flex-shrink-0 cursor-pointer border ${
+                      isSelected
+                        ? 'bg-[#FFE9A3] text-[#080A0D] border-[#FFE9A3] shadow-[0_0_15px_rgba(255,233,163,0.35)] font-bold scale-105'
+                        : 'bg-[#161B22]/80 text-[#F5F3EA]/70 border-white/10 hover:border-white/30 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {tenant.name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Arrow Button */}
+          <button
+            onClick={() => scrollPills('right')}
+            aria-label="Deslizar locales a la derecha"
+            className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#161B22]/90 border border-white/15 text-[#FFE9A3] flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-all cursor-pointer z-20 shadow-lg hover:scale-105"
+          >
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
+        </div>
+
+        {/* Track Counter & Status Bar */}
+        <div className="flex items-center justify-between text-xs text-[#F5F3EA]/60 px-2 -mt-4">
+          <span className="font-mono text-[11px] text-[#FFE9A3] uppercase tracking-wider font-semibold">
+            Local {tenantsData.findIndex((t) => t.slug === selectedSlug) + 1} de {tenantsData.length} · {currentLocal.name}
+          </span>
+          <span className="text-[11px] text-white/40 hidden sm:inline">
+            Desliza o usa las flechas para explorar cada local
+          </span>
         </div>
 
         {/* Selected Local Showcase Card */}
@@ -132,6 +246,23 @@ export default function MasterplanSection() {
                   {currentLocal.badge}
                 </span>
               </div>
+
+              {/* Floating Prev / Next Controls over the Image Stage (Inspired by Section 02) */}
+              <button
+                onClick={handlePrevLocal}
+                aria-label="Local anterior"
+                className="absolute top-1/2 -translate-y-1/2 left-3 sm:left-4 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#080A0D]/75 backdrop-blur-md border border-white/20 text-[#FFE9A3] flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-all cursor-pointer shadow-xl hover:scale-105 opacity-85 hover:opacity-100"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <button
+                onClick={handleNextLocal}
+                aria-label="Local siguiente"
+                className="absolute top-1/2 -translate-y-1/2 right-3 sm:right-4 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#080A0D]/75 backdrop-blur-md border border-white/20 text-[#FFE9A3] flex items-center justify-center hover:bg-[#FFE9A3] hover:text-[#080A0D] transition-all cursor-pointer shadow-xl hover:scale-105 opacity-85 hover:opacity-100"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
 
             {/* Thumbnail Gallery Row */}

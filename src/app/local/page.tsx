@@ -49,7 +49,7 @@ export default function LocalDemoPage() {
         <MasterplanMap onSelectLocal={handleSelectLocal} selectedSlug={selectedSlug} />
 
         {/* Store Selector Pills */}
-        <div className="flex items-center gap-3 overflow-x-auto pb-3 custom-scrollbar">
+        <div className="flex items-center gap-3 overflow-x-auto pb-3 no-scrollbar">
           {tenantsData.map((tenant) => {
             const isSelected = tenant.slug === selectedSlug;
             return (
