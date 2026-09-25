@@ -24,7 +24,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           {/* Header row */}
           <div className="flex justify-between items-center border-b border-white/15 pb-6">
             <span className="font-display tracking-[0.25em] text-lg font-light text-[#F5F3EA] flex items-center gap-2">
-              <span>ESPACIO RÍO</span>
+              <span>ESPACIO RIO</span>
               <span className="text-[#FFE9A3]">✦</span>
             </span>
             <button
@@ -68,7 +68,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               >
                 INSTAGRAM ↗
               </a>
-              <span>© {new Date().getFullYear()} ESPACIO RÍO</span>
+              <span>© {new Date().getFullYear()} ESPACIO RIO</span>
             </div>
           </div>
         </motion.div>

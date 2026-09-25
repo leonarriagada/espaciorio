@@ -22,7 +22,7 @@ export default function FinalCTA() {
           <div className="flex items-center gap-2 mb-6">
             <span className="bg-[#FFE9A3] text-[#080A0D] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full shadow-lg inline-flex items-center gap-1.5">
               <span>✦</span>
-              <span>CONCEPCIÓN · ESPACIO RÍO</span>
+              <span>CONCEPCIÓN · ESPACIO RIO</span>
             </span>
           </div>
         </FadeIn>

@@ -1,4 +1,4 @@
-# ESPACIO RÍO
+# ESPACIO RIO
 
 ## MASTER SPEC — Digital Experience & Frontend Architecture
 
@@ -364,12 +364,12 @@ Estructura:
 
 ```text
 --------------------------------------------------
-ESPACIO RÍO                       EL ESPACIO
+ESPACIO RIO                       EL ESPACIO
                                   LOCALES
                                   EXPERIENCIAS
                                   UBICACIÓN
 
-                    ESPACIO RÍO
+                    ESPACIO RIO
 
               Un lugar para encontrarse.
 
@@ -705,7 +705,7 @@ Ejemplo conceptual:
 ```text
 ██████████████████████████████████
 
-             ESPACIO RÍO
+             ESPACIO RIO
 
         Ven a descubrirlo.
 
@@ -732,7 +732,7 @@ Contenido:
 
 ```text
 ESPACIO
-RÍO
+RIO
 
 Un lugar para encontrarse.
 
@@ -756,7 +756,7 @@ Mantenerlo limpio.
 Desktop:
 
 ```text
-ESPACIO RÍO
+ESPACIO RIO
 
 EL ESPACIO
 LOCALES
@@ -1295,9 +1295,9 @@ No aplicar ruido fuerte sobre toda la interfaz.
 
 ---
 
-# 45. "RÍO" COMO RECURSO GRÁFICO
+# 45. "RIO" COMO RECURSO GRÁFICO
 
-No representar un río literal de forma obvia.
+No representar un rio literal de forma obvia.
 
 Utilizar una línea orgánica muy fina como elemento ocasional de navegación visual.
 
@@ -1731,7 +1731,7 @@ No construir "una web para un centro comercial".
 
 Construir:
 
-# **LA EXPERIENCIA DIGITAL DE ESPACIO RÍO.**
+# **LA EXPERIENCIA DIGITAL DE ESPACIO RIO.**
 
 ---
 

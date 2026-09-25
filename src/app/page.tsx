@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header';
 import Hero from '@/components/sections/Hero';
 import InteriorShowcaseHero from '@/components/sections/InteriorShowcaseHero';
+import MasterplanSection from '@/components/sections/MasterplanSection';
 import CommercialLeasing from '@/components/sections/CommercialLeasing';
 import Location from '@/components/sections/Location';
 import FinalCTA from '@/components/sections/FinalCTA';
@@ -13,6 +14,7 @@ export default function Home() {
       <Header />
       <Hero />
       <InteriorShowcaseHero />
+      <MasterplanSection />
       <CommercialLeasing />
       <Location />
       <FinalCTA />

@@ -1,23 +1,12 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ZoomIn,
   ZoomOut,
   RotateCcw,
-  Box,
-  CheckCircle,
-  Store,
-  X,
-  ShieldCheck,
-  Building2,
-  Car,
-  Filter,
-  ArrowRight
 } from 'lucide-react';
-import Masterplan3DViewer from '@/components/sections/Masterplan3DViewer';
 
 export interface ZoneData {
   id: string;
@@ -235,6 +224,8 @@ export const ZONES_REGISTRY: Record<string, ZoneData> = {
     uso: 'Unidad comercial disponible con vitrina directa hacia el paseo y terrazas',
     status: 'disponible',
     statusLabel: 'Disponible',
+    slug: 'local-11d-disponible',
+    image: '/images/nuevos-locales/local-10-corredora.png',
   },
   'lot-16': {
     id: 'lot-16',
@@ -298,23 +289,17 @@ export const ZONES_REGISTRY: Record<string, ZoneData> = {
     uso: 'Senderos peatonales, áreas verdes nativas y plazas de descanso familiar',
     status: 'operativo',
     statusLabel: 'Uso Público',
+    slug: 'parque-entorno-natural',
+    image: '/images/nuevos-locales/canchas-padel.png',
   },
 };
 
-type FloorLevel = 'piso1' | 'piso2' | 'subterraneo';
-type CategoryFilter = 'all' | 'gastronomia' | 'bienestar' | 'barberia' | 'servicios' | 'deporte';
-
 export default function MasterplanMap({ onSelectLocal, selectedSlug }: MasterplanMapProps) {
-  const [activeFloor, setActiveFloor] = useState<FloorLevel>('piso1');
-  const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
   const [zoomLevel, setZoomLevel] = useState<number>(1);
-  const [isIsometric, setIsIsometric] = useState<boolean>(false);
   const [hoveredZoneId, setHoveredZoneId] = useState<string | null>(null);
-  const [activeDrawerZone, setActiveDrawerZone] = useState<ZoneData | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
   const containerRef = useRef<HTMLDivElement>(null);
-
   const activeHoverZone = hoveredZoneId ? ZONES_REGISTRY[hoveredZoneId] : null;
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -328,40 +313,21 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
 
   const handleZoneClick = (zoneId: string) => {
     const zone = ZONES_REGISTRY[zoneId];
-    if (zone) {
-      setActiveDrawerZone(zone);
-      if (zone.slug && onSelectLocal) {
-        onSelectLocal(zone.slug);
-      }
-    }
-  };
-
-  const handleBackgroundClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget || (e.target as HTMLElement).tagName === 'svg') {
-      setActiveDrawerZone(null);
+    if (zone?.slug && onSelectLocal) {
+      onSelectLocal(zone.slug);
     }
   };
 
   const handleZoomIn = () => setZoomLevel((prev) => Math.min(prev + 0.25, 2.2));
   const handleZoomOut = () => setZoomLevel((prev) => Math.max(prev - 0.25, 0.85));
-  const handleResetZoom = () => {
-    setZoomLevel(1);
-    setIsIsometric(false);
-  };
-
-  const isZoneFiltered = (zoneId: string) => {
-    if (activeCategory === 'all') return true;
-    const zone = ZONES_REGISTRY[zoneId];
-    return zone ? zone.category === activeCategory : true;
-  };
+  const handleResetZoom = () => setZoomLevel(1);
 
   const getLotState = (zoneId: string) => {
     const zone = ZONES_REGISTRY[zoneId];
-    const isSelected = activeDrawerZone?.id === zoneId || (Boolean(zone?.slug) && zone?.slug === selectedSlug);
+    const isSelected = Boolean(zone?.slug) && zone?.slug === selectedSlug;
     const isHovered = hoveredZoneId === zoneId;
-    const isMatch = isZoneFiltered(zoneId);
 
-    return { isSelected, isHovered, isMatch };
+    return { isSelected, isHovered, isMatch: true };
   };
 
   const renderLot = (
@@ -374,7 +340,7 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
     areaText?: string,
     fontSizeNum = 14
   ) => {
-    const { isSelected, isHovered, isMatch } = getLotState(id);
+    const { isSelected, isHovered } = getLotState(id);
     let fill = '#796c5b';
     let stroke = '#8d806e';
     let strokeWidth = 1;
@@ -382,12 +348,7 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
     let textColor = '#eee8dd';
     let areaColor = '#d2c9bc';
 
-    if (!isMatch) {
-      fill = '#252320';
-      stroke = '#3a3832';
-      textColor = '#55524b';
-      areaColor = '#44423c';
-    } else if (isSelected) {
+    if (isSelected) {
       fill = '#FFE9A3';
       stroke = '#FFFFFF';
       strokeWidth = 2;
@@ -461,146 +422,14 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
 
   return (
     <div className="flex flex-col gap-6 w-full relative">
-      {/* Top Filter & Level Control Bar */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-[#161B22]/90 p-5 sm:p-6 rounded-3xl border border-white/10 shadow-2xl">
-        {/* Floor Level Switcher */}
-        <div className="flex items-center gap-1.5 p-1.5 bg-[#080A0D] rounded-2xl border border-white/10 overflow-x-auto custom-scrollbar">
-          <button
-            onClick={() => setActiveFloor('piso1')}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 ${
-              activeFloor === 'piso1'
-                ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-bold'
-                : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <Building2 className="w-3.5 h-3.5" />
-            <span>Piso 1 · Locales</span>
-          </button>
-
-          <button
-            onClick={() => setActiveFloor('piso2')}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 ${
-              activeFloor === 'piso2'
-                ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-bold'
-                : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <Building2 className="w-3.5 h-3.5" />
-            <span>Piso 2 · Terrazas</span>
-          </button>
-
-          <button
-            onClick={() => setActiveFloor('subterraneo')}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 ${
-              activeFloor === 'subterraneo'
-                ? 'bg-[#FFE9A3] text-[#080A0D] shadow-lg font-bold'
-                : 'text-[#F5F3EA]/70 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <Car className="w-3.5 h-3.5" />
-            <span>Nivel -1 · Carwash</span>
-          </button>
-        </div>
-
-        {/* Category Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
-          <span className="text-[10px] uppercase font-bold text-[#FFE9A3] tracking-widest hidden sm:inline flex items-center gap-1">
-            <Filter className="w-3 h-3" />
-            <span>Filtrar:</span>
-          </span>
-
-          <button
-            onClick={() => setActiveCategory('all')}
-            className={`px-3 py-1.5 rounded-xl text-[11px] font-medium tracking-wider uppercase transition-all cursor-pointer ${
-              activeCategory === 'all'
-                ? 'bg-white/20 text-white border border-white/30 font-bold'
-                : 'bg-white/5 text-[#F5F3EA]/60 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            Todos
-          </button>
-
-          <button
-            onClick={() => setActiveCategory('gastronomia')}
-            className={`px-3 py-1.5 rounded-xl text-[11px] font-medium tracking-wider uppercase transition-all cursor-pointer ${
-              activeCategory === 'gastronomia'
-                ? 'bg-[#FFE9A3] text-[#080A0D] font-bold shadow-md'
-                : 'bg-white/5 text-[#F5F3EA]/60 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            Gastronomía
-          </button>
-
-          <button
-            onClick={() => setActiveCategory('bienestar')}
-            className={`px-3 py-1.5 rounded-xl text-[11px] font-medium tracking-wider uppercase transition-all cursor-pointer ${
-              activeCategory === 'bienestar'
-                ? 'bg-[#FFE9A3] text-[#080A0D] font-bold shadow-md'
-                : 'bg-white/5 text-[#F5F3EA]/60 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            Bienestar
-          </button>
-
-          <button
-            onClick={() => setActiveCategory('barberia')}
-            className={`px-3 py-1.5 rounded-xl text-[11px] font-medium tracking-wider uppercase transition-all cursor-pointer ${
-              activeCategory === 'barberia'
-                ? 'bg-[#FFE9A3] text-[#080A0D] font-bold shadow-md'
-                : 'bg-white/5 text-[#F5F3EA]/60 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            Barbería
-          </button>
-
-          <button
-            onClick={() => setActiveCategory('servicios')}
-            className={`px-3 py-1.5 rounded-xl text-[11px] font-medium tracking-wider uppercase transition-all cursor-pointer ${
-              activeCategory === 'servicios'
-                ? 'bg-[#FFE9A3] text-[#080A0D] font-bold shadow-md'
-                : 'bg-white/5 text-[#F5F3EA]/60 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            Servicios
-          </button>
-
-          <button
-            onClick={() => setActiveCategory('deporte')}
-            className={`px-3 py-1.5 rounded-xl text-[11px] font-medium tracking-wider uppercase transition-all cursor-pointer ${
-              activeCategory === 'deporte'
-                ? 'bg-[#FFE9A3] text-[#080A0D] font-bold shadow-md'
-                : 'bg-white/5 text-[#F5F3EA]/60 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            Deporte
-          </button>
-        </div>
-      </div>
-
       {/* Main Full-Width Map Stage Container */}
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
-        onClick={(e) => !isIsometric && handleBackgroundClick(e)}
-        className={`relative w-full bg-[#111210] rounded-3xl border border-[#3A3932] overflow-hidden shadow-2xl transition-all duration-500 touch-pan-y ${
-          isIsometric ? 'h-[580px]' : 'aspect-[1237/650] min-h-[460px]'
-        }`}
+        className="relative w-full bg-[#111210] rounded-3xl border border-[#3A3932] overflow-hidden shadow-2xl transition-all duration-500 touch-pan-y aspect-[1237/650] min-h-[440px]"
       >
         {/* Action Controls Overlay */}
         <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-[#161B22]/90 backdrop-blur-md p-1.5 rounded-2xl border border-white/15 shadow-xl">
-          <button
-            onClick={() => setIsIsometric((prev) => !prev)}
-            className={`p-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-              isIsometric ? 'bg-[#FFE9A3] text-[#080A0D]' : 'text-white/80 hover:bg-white/10'
-            }`}
-            title="Vista 3D Maqueta"
-          >
-            <Box className="w-4 h-4" />
-            <span className="hidden sm:inline text-[11px] uppercase tracking-wider">3D Maqueta</span>
-          </button>
-
-          <div className="w-px h-5 bg-white/15" />
-
           <button
             onClick={handleZoomIn}
             className="p-2 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
@@ -626,43 +455,19 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
           </button>
         </div>
 
-        {/* Real 3D Blender WebGL Model View when 3D Maqueta is active */}
-        {isIsometric ? (
-          <Masterplan3DViewer
-            onSelectBuilding={(name) => {
-              if (name.includes('Starbucks')) handleZoneClick('lot-01');
-              else if (name.includes('Boulangerie')) handleZoneClick('lot-02');
-              else if (name.includes('Kiosclub')) handleZoneClick('lot-03');
-              else if (name.includes('SemprePasta')) handleZoneClick('lot-04a');
-              else if (name.includes('OveBee')) handleZoneClick('lot-05');
-              else if (name.includes('ValgameDios')) handleZoneClick('lot-06');
-              else if (name.includes('JavieraPoch')) handleZoneClick('lot-07');
-              else if (name.includes('JoseManuel')) handleZoneClick('lot-08');
-              else if (name.includes('ChiniBeauty') || name.includes('ManosPies')) handleZoneClick('lot-09');
-              else if (name.includes('Barberia') || name.includes('Navi')) handleZoneClick('lot-10');
-              else if (name.includes('Corredora') || name.includes('Claudia')) handleZoneClick('lot-12');
-              else if (name.includes('Pilates')) handleZoneClick('lot-13');
-              else if (name.includes('Ceramica') || name.includes('Fiorella')) handleZoneClick('lot-16');
-              else if (name.includes('Padel')) handleZoneClick('lot-padel');
-              else if (name.includes('Parque')) handleZoneClick('lot-parque');
-            }}
-          />
-        ) : (
-          /* Floor 1 SVG Map (Exact Architectural Layout 1237 x 650) */
-          activeFloor === 'piso1' && (
-            <div
-              className="w-full h-full transition-transform duration-500 ease-out origin-center"
-              style={{
-                transform: `scale(${zoomLevel})`,
-              }}
-            >
-              <svg
-                viewBox="0 0 1237 650"
-                preserveAspectRatio="xMidYMid meet"
-                className="w-full h-full block touch-none select-none"
-                aria-label="Plano interactivo Espacio Río"
-                onClick={handleBackgroundClick}
-              >
+        {/* Floor 1 SVG Map (Exact Architectural Layout 1237 x 650) */}
+        <div
+          className="w-full h-full transition-transform duration-500 ease-out origin-center"
+          style={{
+            transform: `scale(${zoomLevel})`,
+          }}
+        >
+          <svg
+            viewBox="0 0 1237 650"
+            preserveAspectRatio="xMidYMid meet"
+            className="w-full h-full block touch-none select-none"
+            aria-label="Plano interactivo Espacio Río"
+          >
                 {/* Access / Dimension lines */}
                 <path d="M38 90V530 M42 90V530 M36 530h12 M36 90h12" fill="none" stroke="#3c3c36" strokeWidth={1} />
                 <path d="M48 110h-16 M48 160h-16 M48 206h-16 M48 515h-16" fill="none" stroke="#3c3c36" strokeWidth={1} />
@@ -917,15 +722,15 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
                       getLotState('lot-01').isSelected
                         ? '#FFE9A3'
                         : getLotState('lot-01').isHovered
-                        ? '#9b8a72'
-                        : '#796c5b'
+                          ? '#9b8a72'
+                          : '#796c5b'
                     }
                     stroke={
                       getLotState('lot-01').isSelected
                         ? '#FFFFFF'
                         : getLotState('lot-01').isHovered
-                        ? '#c1ad90'
-                        : '#8d806e'
+                          ? '#c1ad90'
+                          : '#8d806e'
                     }
                     strokeWidth={getLotState('lot-01').isSelected ? 2 : 1}
                     filter={
@@ -1142,7 +947,7 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
                 {/* Architectural Scale & Footnote Legend */}
                 <line x1="66" y1="579" x2="1190" y2="579" stroke="#2e2f2b" strokeWidth={1} />
                 <text x="66" y="596" fill="#827d73" fontSize={8} letterSpacing="1.7px">
-                  ESPACIO RÍO · EMPLAZAMIENTO PISO 1 · SUPERFICIES
+                  ESPACIO RIO · EMPLAZAMIENTO PISO 1 · SUPERFICIES
                 </text>
                 <text x="66" y="610" fill="#827d73" fontSize={8} letterSpacing="1.7px">
                   PLANO ARQ-002 · B02 · ABRIL 2026 · ÁREA DENTRO DE DESLINDE
@@ -1167,54 +972,10 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
                 </text>
               </svg>
             </div>
-          )
-        )}
-
-        {/* Floor 2 View */}
-        {activeFloor === 'piso2' && (
-          <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-[#080A0D]/90">
-            <div className="w-16 h-16 rounded-full bg-[#FFE9A3]/10 border border-[#FFE9A3]/30 flex items-center justify-center text-[#FFE9A3] mb-4">
-              <Building2 className="w-8 h-8" />
-            </div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#FFE9A3] mb-1">
-              Planta Nivel 2
-            </span>
-            <h4 className="font-display text-2xl text-white font-normal mb-3">
-              Terrazas Mirador & Quincho Corporativo
-            </h4>
-            <button
-              onClick={() => handleZoneClick('lot-quincho')}
-              className="bg-[#FFE9A3] text-[#080A0D] px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors cursor-pointer shadow-lg"
-            >
-              Ver Ficha Quincho
-            </button>
-          </div>
-        )}
-
-        {/* Subterraneo View */}
-        {activeFloor === 'subterraneo' && (
-          <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-[#080A0D]/90">
-            <div className="w-16 h-16 rounded-full bg-[#FFE9A3]/10 border border-[#FFE9A3]/30 flex items-center justify-center text-[#FFE9A3] mb-4">
-              <Car className="w-8 h-8" />
-            </div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#FFE9A3] mb-1">
-              Nivel -1 Estacionamientos
-            </span>
-            <h4 className="font-display text-2xl text-white font-normal mb-3">
-              Estacionamientos & Carwash Detailing
-            </h4>
-            <button
-              onClick={() => handleZoneClick('lot-carwash')}
-              className="bg-[#FFE9A3] text-[#080A0D] px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors cursor-pointer shadow-lg"
-            >
-              Ver Ficha Carwash
-            </button>
-          </div>
-        )}
 
         {/* Floating Tooltip on Hover */}
         <AnimatePresence>
-          {activeHoverZone && activeFloor === 'piso1' && (
+          {activeHoverZone && (
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 5 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -1250,138 +1011,8 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
                 </p>
 
                 <span className="text-[9px] font-bold text-[#FFE9A3] uppercase tracking-widest pt-1 flex items-center gap-1">
-                  <span>✦ Clic para ver ficha completa</span>
+                  <span>✦ Clic para ver ficha abajo</span>
                 </span>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Slide-Over Side Drawer */}
-        <AnimatePresence>
-          {activeDrawerZone && (
-            <motion.div
-              initial={{ x: '100%', opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: '100%', opacity: 0 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-              className="absolute top-0 right-0 z-40 w-full sm:w-[420px] h-full bg-[#161B22]/98 backdrop-blur-2xl border-l border-white/20 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl"
-            >
-              <div className="flex flex-col gap-6">
-                {/* Drawer Header */}
-                <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <span className="bg-[#FFE9A3]/10 border border-[#FFE9A3]/30 text-[#FFE9A3] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                      {activeDrawerZone.categoryLabel}
-                    </span>
-                    <span className="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
-                      <ShieldCheck className="w-3.5 h-3.5" />
-                      <span>{activeDrawerZone.statusLabel}</span>
-                    </span>
-                  </div>
-
-                  <button
-                    onClick={() => setActiveDrawerZone(null)}
-                    className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
-                    title="Cerrar panel lateral"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-
-                {/* Title & Description */}
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-[#FFE9A3] tracking-widest block mb-1">
-                    Unidad / Local
-                  </span>
-                  <h3 className="font-display text-2xl sm:text-3xl text-white font-normal leading-tight mb-2">
-                    {activeDrawerZone.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#F5F3EA]/80 font-light leading-relaxed">
-                    {activeDrawerZone.uso}
-                  </p>
-                </div>
-
-                {/* Render 3D Image Preview */}
-                {activeDrawerZone.image && (
-                  <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-[#080A0D] border border-white/15 shadow-lg group">
-                    <Image
-                      src={activeDrawerZone.image}
-                      alt={activeDrawerZone.title}
-                      fill
-                      sizes="400px"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute top-3 left-3 bg-[#080A0D]/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-semibold text-[#FFE9A3] uppercase tracking-wider border border-[#FFE9A3]/30">
-                      Vista Interior
-                    </div>
-                  </div>
-                )}
-
-                {/* Specifications Grid */}
-                <div className="grid grid-cols-2 gap-3 p-4 rounded-2xl bg-[#080A0D]/60 border border-white/10 text-xs">
-                  <div>
-                    <span className="text-[10px] uppercase font-semibold text-[#FFE9A3] block mb-0.5">
-                      Superficie
-                    </span>
-                    <span className="text-sm font-bold text-white">{activeDrawerZone.area}</span>
-                  </div>
-
-                  <div>
-                    <span className="text-[10px] uppercase font-semibold text-[#FFE9A3] block mb-0.5">
-                      Ubicación
-                    </span>
-                    <span className="text-sm font-bold text-white">{activeDrawerZone.nivel}</span>
-                  </div>
-                </div>
-
-                {/* Highlights */}
-                <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#FFE9A3]">
-                    Ventajas del espacio
-                  </span>
-                  <div className="flex flex-col gap-2 text-xs text-[#F5F3EA]/80 font-light">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#FFE9A3] flex-shrink-0" />
-                      <span>Ubicación privilegiada en paseo Espacio Río.</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#FFE9A3] flex-shrink-0" />
-                      <span>Acceso directo a estacionamientos de clientes.</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#FFE9A3] flex-shrink-0" />
-                      <span>Conexión directa con Av. Pedro de Valdivia.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
-                <a
-                  href="#contacto"
-                  onClick={() => setActiveDrawerZone(null)}
-                  className="w-full bg-[#FFE9A3] text-[#080A0D] px-6 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors cursor-pointer shadow-lg flex items-center justify-center gap-2 text-center"
-                >
-                  <Store className="w-4 h-4" />
-                  <span>Consultar por este espacio</span>
-                </a>
-
-                {activeDrawerZone.slug && (
-                  <button
-                    onClick={() => {
-                      if (onSelectLocal && activeDrawerZone.slug) {
-                        onSelectLocal(activeDrawerZone.slug);
-                      }
-                      setActiveDrawerZone(null);
-                    }}
-                    className="w-full bg-white/10 border border-white/20 text-white px-5 py-3 rounded-2xl text-xs font-semibold uppercase tracking-wider hover:bg-white/20 transition-colors cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    <span>Ver Galería y Detalles del Local</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                )}
               </div>
             </motion.div>
           )}

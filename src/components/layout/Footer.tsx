@@ -108,7 +108,7 @@ export default function Footer() {
             {/* Official Mobile App Download Links */}
             <div className="pt-3 border-t border-[#080A0D]/10 flex flex-col gap-2">
               <span className="text-[10px] tracking-[0.2em] uppercase text-[#C48B5E] font-bold">
-                📱 DESCARGA LA APP ESPACIO RÍO
+                📱 DESCARGA LA APP ESPACIO RIO
               </span>
               <div className="flex flex-wrap gap-2">
                 <a
@@ -141,9 +141,9 @@ export default function Footer() {
 
       {/* Sub-footer copyright */}
       <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-[#080A0D]/60 gap-4">
-        <p>© {new Date().getFullYear()} ESPACIO RÍO. TODOS LOS DERECHOS RESERVADOS.</p>
+        <p>© {new Date().getFullYear()} ESPACIO RIO. TODOS LOS DERECHOS RESERVADOS.</p>
         <p className="font-bold tracking-widest text-[10px] uppercase text-[#C48B5E]">
-          ESPACIO RÍO, TU LUGAR DE ENCUENTRO · CONCEPCIÓN
+          ESPACIO RIO, TU LUGAR DE ENCUENTRO · CONCEPCIÓN
         </p>
       </div>
     </footer>

@@ -1,6 +1,6 @@
 <div align="center">
 
-  <h1>🌿 ESPACIO RÍO</h1>
+  <h1>🌿 ESPACIO RIO</h1>
   <p><strong>Premium Outdoor Lifestyle Destination & Architectural Digital Experience</strong></p>
 
   <p>

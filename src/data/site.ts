@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: 'ESPACIO RÍO',
+  name: 'ESPACIO RIO',
   city: 'Concepción',
   tagline: 'Espacio Río, tu lugar de encuentro',
   metaTitle: 'Espacio Río — Tu lugar de encuentro en Concepción',
