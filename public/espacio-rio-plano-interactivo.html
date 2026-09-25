@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espacio Río · Plano Interactivo</title>
+<style>
+  :root{
+    --bg:#111210;
+    --line:#3a3932;
+    --line2:#555247;
+    --lot:#796c5b;
+    --lot2:#6f6353;
+    --lot-hover:#9b8a72;
+    --text:#d9d2c6;
+    --muted:#77736a;
+    --green:#68745b;
+    --green2:#9cae8c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+  body{overflow-x:hidden}
+  .wrap{min-height:100vh;padding:14px 18px 12px;display:flex;flex-direction:column}
+  .topbar{
+    height:44px;border-top:1px solid #292a27;border-bottom:1px solid #242522;
+    display:flex;align-items:center;justify-content:space-between;padding:0 5px;
+    color:#706d65;font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  }
+  .canvas{position:relative;flex:1;min-height:610px;margin-top:2px}
+  svg{width:100%;height:100%;display:block}
+  .label{fill:#aaa49a;font-size:10px;letter-spacing:1.8px}
+  .small{fill:#827d73;font-size:8px;letter-spacing:1.7px}
+  .lot{
+    fill:var(--lot);stroke:#8d806e;stroke-width:1;cursor:pointer;
+    transition:fill .18s,filter .18s,stroke .18s;
+  }
+  .lot:hover,.lot.active{fill:var(--lot-hover);stroke:#c1ad90;filter:drop-shadow(0 0 7px rgba(201,177,140,.18))}
+  .lot-number{fill:#eee8dd;font-size:14px;font-weight:500;letter-spacing:.3px;pointer-events:none}
+  .lot-area{fill:#d2c9bc;font-size:8.5px;pointer-events:none}
+  .feature{fill:#3c3933;stroke:#605b51;stroke-width:1}
+  .feature-light{fill:#514a40;stroke:#6d6558;stroke-width:1}
+  .dashed{fill:none;stroke:#4b4940;stroke-width:1;stroke-dasharray:7 5}
+  .thin{fill:none;stroke:#3c3c36;stroke-width:1}
+  .parking{fill:#252522;stroke:#46443d;stroke-width:1}
+  .tree{fill:#293128;stroke:#55604b;stroke-width:1}
+  .tree-dot{fill:#354031;stroke:#68755b;stroke-width:1}
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(0,0,0,.58);backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;z-index:10;
+  }
+  .modal-backdrop.open{display:flex}
+  .modal{
+    width:min(420px,calc(100vw - 32px));background:#1a1a17;border:1px solid #454139;
+    box-shadow:0 25px 80px rgba(0,0,0,.55);padding:25px;
+  }
+  .modal-kicker{font-size:9px;letter-spacing:3px;color:#827d72;text-transform:uppercase}
+  .modal h2{margin:8px 0 5px;font-size:28px;font-weight:400;color:#eee7dc}
+  .modal p{margin:0;color:#9f9a90;font-size:13px;line-height:1.6}
+  .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#3b3932;margin-top:20px}
+  .modal-cell{background:#1a1a17;padding:12px}
+  .modal-cell span{display:block;color:#77736b;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+  .modal-cell strong{font-size:13px;font-weight:400;color:#ddd5c8}
+  .close{margin-top:20px;background:transparent;color:#aaa398;border:1px solid #514d44;padding:9px 16px;font-size:9px;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+  .close:hover{background:#292822;color:#fff}
+  @media(max-width:800px){
+    .topbar{font-size:8px;letter-spacing:2px}
+    .canvas{min-height:500px;overflow:auto}
+    svg{min-width:900px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div>Plano interactivo · Zonificación</div>
+    <div>Pasa el cursor · Clic para ver la ficha</div>
+  </header>
+
+  <main class="canvas">
+    <svg viewBox="0 0 1237 650" preserveAspectRatio="xMidYMid meet" aria-label="Plano interactivo Espacio Río">
+      <!-- access / dimension lines -->
+      <path class="thin" d="M38 90V530 M42 90V530 M36 530h12 M36 90h12"/>
+      <path class="thin" d="M48 110h-16 M48 160h-16 M48 206h-16 M48 515h-16"/>
+      <text class="small" x="18" y="142">4,3 M</text>
+      <text class="small" x="18" y="245">14 M</text>
+      <text class="small" x="18" y="408">28 M</text>
+
+      <!-- road corridor (Av. Pedro de Valdivia) -->
+      <path class="thin" d="M68 90v440"/>
+      <path class="thin" d="M68 185 l-5 8 M68 185 l5 8 M68 185 v18"/>
+      <text class="small" x="64" y="160" transform="rotate(-90 64 160)" text-anchor="middle">ACCESO</text>
+      <text class="small" x="64" y="325" transform="rotate(-90 64 325)" text-anchor="middle">AV. PEDRO DE VALDIVIA</text>
+      <path class="thin" d="M68 475 l-5 -8 M68 475 l5 -8 M68 475 v-18"/>
+
+      <!-- upper boundary -->
+      <path class="dashed" d="M65 106 L1090 78 L1092 248 L354 251 L354 284 L613 284"/>
+
+      <!-- lots 02-04a -->
+      <g class="lot-group">
+        <rect class="lot" data-id="02" data-area="92,40 m²" x="76" y="104" width="93" height="57"/>
+        <text class="lot-number" x="124" y="129" text-anchor="middle">02</text>
+        <text class="lot-area" x="124" y="143" text-anchor="middle">92,40 m²</text>
+
+        <rect class="lot" data-id="03" data-area="89,71 m²" x="169" y="104" width="76" height="57"/>
+        <text class="lot-number" x="207" y="129" text-anchor="middle">03</text>
+        <text class="lot-area" x="207" y="143" text-anchor="middle">89,71 m²</text>
+
+        <rect class="lot" data-id="04" data-area="86,06 m²" x="245" y="104" width="91" height="57"/>
+        <text class="lot-number" x="290" y="129" text-anchor="middle">04</text>
+        <text class="lot-area" x="290" y="143" text-anchor="middle">86,06 m²</text>
+
+        <rect class="lot" data-id="04a" data-area="18,30 m²" x="336" y="104" width="39" height="57"/>
+        <text class="lot-number" x="355" y="129" text-anchor="middle" font-size="11">04a</text>
+        <text class="lot-area" x="355" y="143" text-anchor="middle" font-size="7.5">18,3 m²</text>
+      </g>
+
+      <text class="small" x="145" y="181" text-anchor="middle">VEREDA COMERCIAL</text>
+
+      <!-- upper central lots (Sector 11) -->
+      <g>
+        <rect class="lot" data-id="11a" data-area="31,08 m²" x="375" y="104" width="54" height="57"/>
+        <text class="lot-number" x="402" y="130" text-anchor="middle" font-size="12">11a</text><text class="lot-area" x="402" y="145" text-anchor="middle">31,08 m²</text>
+        <rect class="lot" data-id="11b" data-area="30,43 m²" x="429" y="104" width="55" height="57"/>
+        <text class="lot-number" x="456" y="130" text-anchor="middle" font-size="12">11b</text><text class="lot-area" x="456" y="145" text-anchor="middle">30,43 m²</text>
+        <rect class="lot" data-id="11c" data-area="30,43 m²" x="484" y="104" width="55" height="57"/>
+        <text class="lot-number" x="511" y="130" text-anchor="middle" font-size="12">11c</text><text class="lot-area" x="511" y="145" text-anchor="middle">30,43 m²</text>
+        <rect class="lot" data-id="11d" data-area="30,43 m²" x="539" y="104" width="55" height="57"/>
+        <text class="lot-number" x="566" y="130" text-anchor="middle" font-size="12">11d</text><text class="lot-area" x="566" y="145" text-anchor="middle">30,43 m²</text>
+        <rect class="lot" data-id="11e" data-area="25,18 m²" x="594" y="104" width="49" height="57"/>
+        <text class="lot-number" x="618" y="130" text-anchor="middle" font-size="12">11e</text><text class="lot-area" x="618" y="145" text-anchor="middle">25,18 m²</text>
+      </g>
+
+      <!-- parking -->
+      <rect class="parking" x="102" y="173" width="229" height="47"/>
+      <g stroke="#45433c" stroke-width="1">
+        <path d="M118 174v45 M142 174v45 M166 174v45 M190 174v45 M214 174v45 M238 174v45 M262 174v45 M286 174v45 M310 174v45"/>
+      </g>
+      <text class="small" x="216" y="202" text-anchor="middle">57 ESTACIONAMIENTOS</text>
+
+      <!-- central paseo -->
+      <rect class="parking" x="350" y="174" width="290" height="38"/>
+      <circle class="tree-dot" cx="380" cy="193" r="7"/><circle class="tree-dot" cx="418" cy="193" r="7"/>
+      <circle class="tree-dot" cx="558" cy="193" r="7"/><circle class="tree-dot" cx="598" cy="193" r="7"/><circle class="tree-dot" cx="626" cy="193" r="7"/>
+      <text class="small" x="490" y="198" text-anchor="middle">PASEO CENTRAL</text>
+
+      <!-- padel -->
+      <polygon class="feature" points="650,101 738,94 748,246 660,252"/>
+      <polygon fill="none" stroke="#777064" stroke-width="1" points="659,112 726,106 736,234 669,240"/>
+      <line x1="692" y1="109" x2="701" y2="238" stroke="#777064"/>
+      <text class="label" x="699" y="174" text-anchor="middle" transform="rotate(-5 699 174)">CANCHA</text>
+      <text class="label" x="703" y="189" text-anchor="middle" transform="rotate(-5 703 189)">DE PÁDEL</text>
+
+      <!-- cabins -->
+      <rect class="feature" x="755" y="104" width="42" height="151"/>
+      <text class="small" x="777" y="182" text-anchor="middle" transform="rotate(-90 777 182)">CABAÑAS</text>
+
+      <!-- park -->
+      <path class="feature" d="M817 96 Q950 99 1091 77 L1093 249 Q953 264 817 249Z"/>
+      <text class="label" x="953" y="167" text-anchor="middle">PARQUE</text>
+      <text class="small" x="953" y="185" text-anchor="middle">ENTORNO NATURAL</text>
+      <g class="tree-dot">
+        <circle cx="834" cy="110" r="8"/><circle cx="875" cy="137" r="9"/><circle cx="918" cy="115" r="5"/>
+        <circle cx="970" cy="98" r="9"/><circle cx="1042" cy="94" r="8"/><circle cx="1076" cy="111" r="8"/>
+        <circle cx="1001" cy="137" r="6"/><circle cx="1063" cy="158" r="8"/><circle cx="839" cy="171" r="6"/>
+        <circle cx="898" cy="178" r="5"/><circle cx="952" cy="159" r="8"/><circle cx="1020" cy="173" r="9"/>
+        <circle cx="1074" cy="199" r="6"/><circle cx="864" cy="212" r="7"/><circle cx="916" cy="198" r="5"/>
+        <circle cx="975" cy="207" r="8"/><circle cx="1034" cy="221" r="6"/><circle cx="1062" cy="236" r="9"/>
+      </g>
+      <path class="thin" d="M824 224 Q925 173 1081 200"/>
+
+      <!-- lower lots -->
+      <g>
+        <rect class="lot" data-id="05" data-area="31,28 m²" x="346" y="248" width="45" height="49"/>
+        <text class="lot-number" x="368" y="270" text-anchor="middle" font-size="12">05</text><text class="lot-area" x="368" y="283" text-anchor="middle">31,28</text>
+        <rect class="lot" data-id="06" data-area="30,81 m²" x="391" y="248" width="46" height="49"/>
+        <text class="lot-number" x="414" y="270" text-anchor="middle" font-size="12">06</text><text class="lot-area" x="414" y="283" text-anchor="middle">30,81</text>
+        <rect class="lot" data-id="07" data-area="30,84 m²" x="437" y="248" width="47" height="49"/>
+        <text class="lot-number" x="460" y="270" text-anchor="middle" font-size="12">07</text><text class="lot-area" x="460" y="283" text-anchor="middle">30,84</text>
+        <rect class="lot" data-id="08" data-area="30,87 m²" x="484" y="248" width="47" height="49"/>
+        <text class="lot-number" x="507" y="270" text-anchor="middle" font-size="12">08</text><text class="lot-area" x="507" y="283" text-anchor="middle">30,87</text>
+        <rect class="lot" data-id="09" data-area="30,90 m²" x="531" y="248" width="47" height="49"/>
+        <text class="lot-number" x="554" y="270" text-anchor="middle" font-size="12">09</text><text class="lot-area" x="554" y="283" text-anchor="middle">30,90</text>
+        <rect class="lot" data-id="10" data-area="40,15 m²" x="578" y="248" width="42" height="49"/>
+        <text class="lot-number" x="599" y="270" text-anchor="middle" font-size="12">10</text><text class="lot-area" x="599" y="283" text-anchor="middle">40,15</text>
+      </g>
+
+      <!-- lower dashed zoning -->
+      <path class="dashed" d="M346 299v113 M394 299v113 M471 299v113 M558 299v-65 M620 299v-57 M817 250v224 L470 474V300"/>
+      <path class="dashed" d="M354 299 v208 H76 v-272"/>
+
+      <!-- lot 01 / terrace -->
+      <g>
+        <rect x="94" y="324" width="66" height="160" fill="#151412" stroke="#48443b" stroke-width="1"/>
+        <rect class="lot" data-id="01" data-area="176,11 m²" x="99" y="329" width="56" height="126"/>
+        <line x1="99" y1="392" x2="155" y2="392" stroke="#6b5f4f" stroke-width="0.8"/>
+        <text class="lot-number" x="127" y="368" text-anchor="middle">01</text>
+        <text class="lot-area" x="127" y="383" text-anchor="middle">176,11 m²</text>
+        <text class="small" x="127" y="473" text-anchor="middle">TERRAZA</text>
+      </g>
+
+      <!-- parking / internal -->
+      <rect class="parking" x="165" y="324" width="31" height="160"/>
+      <g stroke="#44433d"><path d="M165 340h31 M165 356h31 M165 372h31 M165 388h31 M165 404h31 M165 420h31 M165 436h31 M165 452h31 M165 468h31"/></g>
+
+      <rect class="feature" x="228" y="324" width="80" height="160"/>
+      <path class="feature-light" d="M268 335l15 26h-30z M268 382l15 26h-30z M268 429l15 26h-30z"/>
+
+      <rect class="parking" x="302" y="394" width="78" height="17" rx="3" stroke="#776f62"/>
+      <text class="small" x="341" y="406" text-anchor="middle" font-size="7.5" letter-spacing="1.7px">BICICLETEROS</text>
+
+      <rect class="parking" x="326" y="416" width="30" height="96"/>
+      <g stroke="#44433d"><path d="M326 432h30 M326 448h30 M326 464h30 M326 480h30 M326 496h30"/></g>
+
+      <!-- carwash -->
+      <rect class="feature" x="176" y="512" width="112" height="50"/>
+      <line x1="232" y1="512" x2="232" y2="562" stroke="#555247"/>
+      <line x1="184" y1="547" x2="224" y2="547" stroke="#4e493f" stroke-width="0.8"/>
+      <line x1="184" y1="552" x2="224" y2="552" stroke="#4e493f" stroke-width="0.8"/>
+      <line x1="240" y1="547" x2="280" y2="547" stroke="#4e493f" stroke-width="0.8"/>
+      <line x1="240" y1="552" x2="280" y2="552" stroke="#4e493f" stroke-width="0.8"/>
+      <text class="label" x="232" y="534" text-anchor="middle">CARWASH</text>
+
+      <!-- interior plaza -->
+      <path class="feature" d="M472 301 H818 V474 H472 Z"/>
+      <rect class="feature-light" x="513" y="333" width="86" height="87"/>
+      <text class="small" x="556" y="348" text-anchor="middle">KITCHENETTE</text>
+      <text class="label" x="556" y="384" text-anchor="middle">QUINCHO</text>
+      <text class="label" x="646" y="430" text-anchor="middle">PLAZA INTERIOR</text>
+      <g class="tree-dot">
+        <circle cx="615" cy="357" r="5"/><circle cx="665" cy="355" r="6"/><circle cx="727" cy="365" r="8"/>
+        <circle cx="493" cy="390" r="8"/><circle cx="503" cy="419" r="8"/><circle cx="546" cy="432" r="6"/>
+        <circle cx="591" cy="447" r="8"/><circle cx="631" cy="437" r="6"/><circle cx="759" cy="421" r="7"/>
+        <circle cx="764" cy="459" r="6"/><circle cx="684" cy="452" r="5"/>
+      </g>
+      <path class="thin" d="M488 436 Q620 391 771 405"/>
+
+      <!-- footer -->
+      <line x1="66" y1="579" x2="1190" y2="579" stroke="#2e2f2b"/>
+      <text class="small" x="66" y="596">ESPACIO RÍO · EMPLAZAMIENTO PISO 1 · SUPERFICIES</text>
+      <text class="small" x="66" y="610">PLANO ARQ 002 · B02 · ABRIL 2026 · ÁREA DENTRO DE DESLINDE</text>
+      <text class="small" x="1175" y="596" text-anchor="end">N</text>
+      <circle cx="1175" cy="614" r="17" fill="none" stroke="#353630"/>
+      <path d="M1175 602l-5 22 5-4 5 4z" fill="#7b806f"/>
+      <line x1="990" y1="602" x2="1090" y2="602" stroke="#55544c"/>
+      <line x1="990" y1="598" x2="990" y2="606" stroke="#55544c"/><line x1="1090" y1="598" x2="1090" y2="606" stroke="#55544c"/>
+      <text class="small" x="990" y="615">0</text><text class="small" x="1088" y="615" text-anchor="end">50 M</text>
+    </svg>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="modal">
+  <section class="modal" role="dialog" aria-modal="true">
+    <div class="modal-kicker">Espacio Río · Ficha de unidad</div>
+    <h2 id="mTitle">Local 02</h2>
+    <p id="mDesc">Unidad disponible dentro del plano interactivo.</p>
+    <div class="modal-grid">
+      <div class="modal-cell"><span>Superficie</span><strong id="mArea">92,40 m²</strong></div>
+      <div class="modal-cell"><span>Estado</span><strong>Consultar</strong></div>
+      <div class="modal-cell"><span>Tipo</span><strong>Unidad comercial</strong></div>
+      <div class="modal-cell"><span>Plano</span><strong>Piso 1</strong></div>
+    </div>
+    <button class="close" id="close">Cerrar ficha</button>
+  </section>
+</div>
+
+<script>
+(() => {
+  const modal = document.querySelector('#modal');
+  const title = document.querySelector('#mTitle');
+  const area = document.querySelector('#mArea');
+  const desc = document.querySelector('#mDesc');
+
+  document.querySelectorAll('.lot').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('.lot').forEach(x => x.classList.remove('active'));
+      el.classList.add('active');
+      const id = el.dataset.id;
+      title.textContent = `Local ${id}`;
+      area.textContent = el.dataset.area || 'Consultar';
+      desc.textContent = `Ficha de la unidad ${id}. Haz clic en otra unidad para cambiar la selección.`;
+      modal.classList.add('open');
+    });
+  });
+
+  document.querySelector('#close').addEventListener('click', () => {
+    modal.classList.remove('open');
+    document.querySelectorAll('.lot').forEach(x => x.classList.remove('active'));
+  });
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') modal.classList.remove('open');
+  });
+})();
+</script>
+</body>
+</html>

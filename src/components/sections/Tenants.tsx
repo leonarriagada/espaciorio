@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { tenantsData } from '@/data/tenants';
 import { Tenant } from '@/types';
 import FadeIn from '../motion/FadeIn';
-import ArrowLink from '../ui/ArrowLink';
 
 export default function Tenants() {
   const [filter, setFilter] = useState<string>('todos');

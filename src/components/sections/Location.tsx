@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { siteConfig } from '@/data/site';
-import { MapPin, Clock, Car, Sparkles, Navigation, Coffee } from 'lucide-react';
+import { MapPin, Clock, Car, Sparkles, Navigation } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function Location() {

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Box, Sparkles, Move3d } from 'lucide-react';
+import { Sparkles, Move3d } from 'lucide-react';
 
 interface Masterplan3DViewerProps {
   onSelectBuilding?: (name: string) => void;

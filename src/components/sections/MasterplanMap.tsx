@@ -4,26 +4,19 @@ import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Sparkles,
-  MapPin,
-  Layers,
   ZoomIn,
   ZoomOut,
   RotateCcw,
   Box,
   CheckCircle,
-  ExternalLink,
-  Clock,
   Store,
   X,
-  ChevronRight,
   ShieldCheck,
   Building2,
   Car,
   Filter,
   ArrowRight
 } from 'lucide-react';
-import { tenantsData } from '@/data/tenants';
 import Masterplan3DViewer from '@/components/sections/Masterplan3DViewer';
 
 export interface ZoneData {
@@ -48,14 +41,14 @@ interface MasterplanMapProps {
 }
 
 export const ZONES_REGISTRY: Record<string, ZoneData> = {
-  'zone-a1': {
-    id: 'zone-a1',
+  'lot-01': {
+    id: 'lot-01',
     title: 'Starbucks Drive-Thru',
     category: 'gastronomia',
     categoryLabel: 'Cafetería & Drive-Thru',
-    area: '471,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Cafetería Starbucks con atención al auto y salón de degustación',
+    area: '176,11 m²',
+    nivel: 'Piso 1 · Con Terraza',
+    uso: 'Cafetería de especialidad con atención vehicular exclusiva y terraza de clientes',
     status: 'operativo',
     statusLabel: 'En Operación',
     slug: 'starbucks-drive-thru',
@@ -63,198 +56,248 @@ export const ZONES_REGISTRY: Record<string, ZoneData> = {
     web: 'starbucks.cl',
     image: '/images/nuevos-locales/local-1-starbucks-a.png',
   },
-  'zone-b1': {
-    id: 'zone-b1',
+  'lot-02': {
+    id: 'lot-02',
     title: 'Boulangerie',
     category: 'gastronomia',
-    categoryLabel: 'Panadería & Pastelería',
-    area: '162,59 m²',
-    nivel: 'Piso 1',
-    uso: 'Panadería artesanal, bollería y cafetería de especialidad',
+    categoryLabel: 'Panadería & Pastelería Francesa',
+    area: '92,40 m²',
+    nivel: 'Piso 1 · Vereda Comercial',
+    uso: 'Panadería y repostería artesanal francesa, croissants, baguettes de masa madre, deli y café gourmet por Andrés Gatica',
     status: 'operativo',
     statusLabel: 'En Operación',
-    slug: 'boulangerie',
+    slug: 'boulangerie-pasteleria',
     image: '/images/nuevos-locales/local-3-boulangerie.png',
   },
-  'zone-b2': {
-    id: 'zone-b2',
-    title: 'Pilates Studio',
-    category: 'bienestar',
-    categoryLabel: 'Bienestar & Salud',
-    area: '162,59 m²',
-    nivel: 'Piso 1',
-    uso: 'Estudio especializado de pilates y entrenamiento funcional',
+  'lot-03': {
+    id: 'lot-03',
+    title: 'Kiosclub',
+    category: 'servicios',
+    categoryLabel: 'Minimarket & Confectionery',
+    area: '89,71 m²',
+    nivel: 'Piso 1 · Vereda Comercial',
+    uso: 'Cadena de confitería importada, snacks exclusivos, bebidas premium y conveniencia (Módulo 1)',
     status: 'operativo',
     statusLabel: 'En Operación',
-    slug: 'pilates-studio',
-    image: '/images/nuevos-locales/local-2-pilates.png',
+    slug: 'kiosclub',
+    image: '/images/nuevos-locales/local-1-starbucks-b.png',
   },
-  'zone-b3': {
-    id: 'zone-b3',
-    title: 'Gimnasio Boutique',
-    category: 'deporte',
-    categoryLabel: 'Fitness & Deporte',
-    area: '162,59 m²',
-    nivel: 'Piso 1',
-    uso: 'Gimnasio boutique con equipamiento de alta gama',
+  'lot-04': {
+    id: 'lot-04',
+    title: 'Kiosclub (Módulo 2)',
+    category: 'servicios',
+    categoryLabel: 'Minimarket & Confectionery',
+    area: '86,06 m²',
+    nivel: 'Piso 1 · Vereda Comercial',
+    uso: 'Cadena de confitería importada, snacks exclusivos, bebidas premium y conveniencia (Módulo 2)',
     status: 'operativo',
     statusLabel: 'En Operación',
-    slug: 'gym-boutique',
-    image: '/images/nuevos-locales/local-11-gym.png',
+    slug: 'kiosclub',
+    image: '/images/nuevos-locales/local-1-starbucks-b.png',
   },
-  'zone-b4': {
-    id: 'zone-b4',
+  'lot-04a': {
+    id: 'lot-04a',
     title: 'Sempre Pasta',
     category: 'gastronomia',
-    categoryLabel: 'Restaurante & Trattoria',
-    area: '130,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Restaurante italiano especializado en pastas frescas artesanas',
+    categoryLabel: 'Pastas Artesanales Italianas',
+    area: '18,30 m²',
+    nivel: 'Piso 1 · Vereda Comercial',
+    uso: 'Gastronomía italiana especializada en pastas caseras elaboradas diariamente con salsas tradicionales por Sofía Díaz',
     status: 'operativo',
     statusLabel: 'En Operación',
     slug: 'sempre-pasta',
     image: '/images/nuevos-locales/local-4-sempre-pasta.png',
   },
-  'zone-c1': {
-    id: 'zone-c1',
+  'lot-05': {
+    id: 'lot-05',
     title: 'La Ove Bee',
     category: 'servicios',
-    categoryLabel: 'Moda & Boutique Infantil',
-    area: '60,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Boutique de vestuario infantil y regalos boutique',
+    categoryLabel: 'Boutique Infantil & Regalos',
+    area: '31,28 m²',
+    nivel: 'Piso 1 · Paseo Central',
+    uso: 'Boutique infantil con vestuario delicado, accesorios y regalos exclusivos por Jacqueline Herrera',
     status: 'operativo',
     statusLabel: 'En Operación',
     slug: 'la-ove-bee',
     image: '/images/nuevos-locales/local-5-la-ove-bee.png',
   },
-  'zone-c2': {
-    id: 'zone-c2',
+  'lot-06': {
+    id: 'lot-06',
     title: 'Válgame Dios',
-    category: 'gastronomia',
-    categoryLabel: 'Restaurante & Bar',
-    area: '60,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Gastronomía de autor, picoteo y coctelería',
+    category: 'servicios',
+    categoryLabel: 'Moda Femenina & Vestuario de Autor',
+    area: '30,81 m²',
+    nivel: 'Piso 1 · Paseo Central',
+    uso: 'Propuesta exclusiva de vestuario femenino de autor, calzado y accesorios sofisticados por Paulina Valdevenito',
     status: 'operativo',
     statusLabel: 'En Operación',
     slug: 'valgame-dios',
     image: '/images/nuevos-locales/local-8-valgame-dios.png',
   },
-  'zone-c3': {
-    id: 'zone-c3',
-    title: 'Cerámica Gres',
+  'lot-07': {
+    id: 'lot-07',
+    title: 'Javiera Poch',
     category: 'servicios',
-    categoryLabel: 'Arte & Decoración',
-    area: '60,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Taller de cerámica gres, utilitarios y diseño de interiores',
+    categoryLabel: 'Calzado de Autor & Diseño',
+    area: '30,84 m²',
+    nivel: 'Piso 1 · Paseo Central',
+    uso: 'Exclusiva firma de calzado femenino de autor confeccionado en cuero genuino, carteras y accesorios',
     status: 'operativo',
     statusLabel: 'En Operación',
-    slug: 'ceramica-gres',
-    image: '/images/nuevos-locales/local-9-ceramica-gres.png',
+    slug: 'javiera-poch',
+    image: '/images/nuevos-locales/local-11-gym.png',
   },
-  'zone-c4': {
-    id: 'zone-c4',
-    title: 'Corredora de Propiedades',
+  'lot-08': {
+    id: 'lot-08',
+    title: 'José Manuel',
     category: 'servicios',
-    categoryLabel: 'Servicios Inmobiliarios',
-    area: '60,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Gestión y asesoría inmobiliaria de proyectos residenciales',
+    categoryLabel: 'Concept Store & Lifestyle',
+    area: '30,87 m²',
+    nivel: 'Piso 1 · Paseo Central',
+    uso: 'Concept store curado de moda masculina, calzado y accesorios contemporáneos de alta gama',
     status: 'operativo',
     statusLabel: 'En Operación',
-    slug: 'corredora-propiedades',
+    slug: 'jose-manuel',
     image: '/images/nuevos-locales/local-10-corredora.png',
   },
-  'zone-c5': {
-    id: 'zone-c5',
-    title: 'Manos & Pies',
+  'lot-09': {
+    id: 'lot-09',
+    title: 'Chini Beauty Studio',
     category: 'bienestar',
-    categoryLabel: 'Belleza & Nail Spa',
-    area: '60,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Centro de cuidado estético, manicura y pedicura profesional',
+    categoryLabel: 'Salón de Belleza & Estética',
+    area: '30,90 m²',
+    nivel: 'Piso 1 · Paseo Central',
+    uso: 'Estudio de belleza integral y cuidado estético dirigido por Paula Vega: diseño de cejas, spa capilar y tratamientos',
     status: 'operativo',
     statusLabel: 'En Operación',
-    slug: 'manos-pies',
+    slug: 'chini-beauty-studio',
     image: '/images/nuevos-locales/local-7-manos-pies.png',
   },
-  'zone-c6': {
-    id: 'zone-c6',
-    title: 'Barbería Tradicional',
+  'lot-10': {
+    id: 'lot-10',
+    title: 'Navi BarberShop',
     category: 'barberia',
-    categoryLabel: 'Barbería & Grooming',
-    area: '60,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Corte de cabello masculino, barbería y tratamiento capilar',
+    categoryLabel: 'Barbería & Corte Masculino',
+    area: '40,15 m²',
+    nivel: 'Piso 1 · Paseo Central',
+    uso: 'Barbería premium liderada por Ricardo Cea, con cortes clásicos y modernos, perfilado tradicional de barba y toalla caliente',
     status: 'operativo',
     statusLabel: 'En Operación',
-    slug: 'barberia',
+    slug: 'navi-barbershop',
     image: '/images/nuevos-locales/local-6-barberia.png',
   },
-  'zone-c-n1': {
-    id: 'zone-c-n1',
-    title: 'Canchas de Pádel (Pista 1)',
+  'lot-12': {
+    id: 'lot-12',
+    title: 'Claudia Arriagada Propiedades',
+    category: 'servicios',
+    categoryLabel: 'Gestión Inmobiliaria & Asesoría',
+    area: '31,08 m²',
+    nivel: 'Piso 1 · Sector Servicios Norte',
+    uso: 'Asesoría inmobiliaria profesional, corretaje de propiedades exclusivas, tasaciones y gestión de inversiones',
+    status: 'operativo',
+    statusLabel: 'En Operación',
+    slug: 'claudia-arriagada-corredora',
+    image: '/images/nuevos-locales/local-10-corredora.png',
+  },
+  'lot-13': {
+    id: 'lot-13',
+    title: 'Pilates Reformer',
+    category: 'bienestar',
+    categoryLabel: 'Mind-Body Studio',
+    area: '30,43 m²',
+    nivel: 'Piso 1 · Paseo Norte',
+    uso: 'Estudio boutique de Pilates Reformer con equipamiento de alta gama a cargo de Pablo Simpson (Módulo 1)',
+    status: 'operativo',
+    statusLabel: 'En Operación',
+    slug: 'pilates-reformer',
+    image: '/images/nuevos-locales/local-2-pilates.png',
+  },
+  'lot-14': {
+    id: 'lot-14',
+    title: 'Pilates Reformer (Módulo Estudio)',
+    category: 'bienestar',
+    categoryLabel: 'Mind-Body Studio',
+    area: '30,43 m²',
+    nivel: 'Piso 1 · Paseo Norte',
+    uso: 'Sala de entrenamiento postural, reformer y elongación funcional (Módulo 2)',
+    status: 'operativo',
+    statusLabel: 'En Operación',
+    slug: 'pilates-reformer',
+    image: '/images/nuevos-locales/local-2-pilates.png',
+  },
+  'lot-15': {
+    id: 'lot-15',
+    title: 'Local 11d (Disponible)',
+    category: 'servicios',
+    categoryLabel: 'Espacio Comercial',
+    area: '30,43 m²',
+    nivel: 'Piso 1 · Paseo Norte',
+    uso: 'Unidad comercial disponible con vitrina directa hacia el paseo y terrazas',
+    status: 'disponible',
+    statusLabel: 'Disponible',
+  },
+  'lot-16': {
+    id: 'lot-16',
+    title: 'Fiorella Innocenti · Cerámica Gres',
+    category: 'servicios',
+    categoryLabel: 'Galería de Arte & Taller',
+    area: '25,18 m²',
+    nivel: 'Piso 1 · Conexión Pádel',
+    uso: 'Taller de cerámica gres y galería de diseño de autor: piezas decorativas y utilitarias exclusivas hechas a mano y clases',
+    status: 'operativo',
+    statusLabel: 'En Operación',
+    slug: 'fiorella-innocenti-ceramica',
+    image: '/images/nuevos-locales/local-9-ceramica-gres.png',
+  },
+  'lot-padel': {
+    id: 'lot-padel',
+    title: 'Canchas de Pádel',
     category: 'deporte',
-    categoryLabel: 'Arriendo de Canchas & Pádel',
+    categoryLabel: 'Arriendo & Pádel Club',
     area: '1.120,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Cancha deportiva panorámica con césped sintético e iluminación',
+    nivel: 'Piso 1 · Sector Deportivo',
+    uso: 'Canchas de pádel techadas de estándar panorámico con iluminación LED profesional',
     status: 'operativo',
     statusLabel: 'En Operación',
     slug: 'canchas-padel',
     image: '/images/nuevos-locales/canchas-padel.png',
   },
-  'zone-c-n2': {
-    id: 'zone-c-n2',
-    title: 'Canchas de Pádel (Pista 2)',
-    category: 'deporte',
-    categoryLabel: 'Arriendo de Canchas & Pádel',
-    area: '1.120,00 m²',
-    nivel: 'Piso 1',
-    uso: 'Cancha deportiva panorámica con iluminación profesional',
-    status: 'operativo',
-    statusLabel: 'En Operación',
-    slug: 'canchas-padel',
-    image: '/images/nuevos-locales/canchas-padel.png',
-  },
-  'zone-green': {
-    id: 'zone-green',
-    title: 'Área Verde & Parque Botánico',
-    category: 'general',
-    categoryLabel: 'Paisajismo & Naturaleza',
-    area: '2.840,00 m²',
-    nivel: 'Piso 1 Exterior',
-    uso: 'Senderos peatonales, plazas de descanso y arborización nativa',
-    status: 'operativo',
-    statusLabel: 'Uso Público',
-  },
-  'zone-carwash': {
-    id: 'zone-carwash',
+  'lot-carwash': {
+    id: 'lot-carwash',
     title: 'Carwash & Detailing',
     category: 'servicios',
     categoryLabel: 'Servicios Automotrices',
     area: '150,00 m²',
-    nivel: 'Piso 1 Estacionamientos',
-    uso: 'Lavado ecológico y detallado vehicular',
+    nivel: 'Piso 1 · Acceso Estacionamientos',
+    uso: 'Lavado ecológico de alta presión y detallado cerámico vehicular',
     status: 'operativo',
     statusLabel: 'En Operación',
     slug: 'carwash-premium',
     image: '/images/nuevos-locales/carwash.png',
   },
-  'zone-quincho': {
-    id: 'zone-quincho',
-    title: 'Quincho Corporativo',
+  'lot-quincho': {
+    id: 'lot-quincho',
+    title: 'Quincho & Kitchenette',
     category: 'servicios',
     categoryLabel: 'Eventos & Networking',
     area: '200,00 m²',
-    nivel: 'Piso 1 / Terrazas',
-    uso: 'Espacio equipado para eventos privados y reuniones corporativas',
+    nivel: 'Piso 1 · Plaza Interior',
+    uso: 'Espacio equipado para eventos privados, networking corporativo y celebraciones',
     status: 'operativo',
     statusLabel: 'En Operación',
     slug: 'quincho-corporativo',
     image: '/images/nuevos-locales/quincho-corporativo.png',
+  },
+  'lot-parque': {
+    id: 'lot-parque',
+    title: 'Parque · Entorno Natural',
+    category: 'general',
+    categoryLabel: 'Paisajismo & Naturaleza',
+    area: '2.840,00 m²',
+    nivel: 'Piso 1 Exterior',
+    uso: 'Senderos peatonales, áreas verdes nativas y plazas de descanso familiar',
+    status: 'operativo',
+    statusLabel: 'Uso Público',
   },
 };
 
@@ -278,8 +321,8 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     setTooltipPos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+      x: Math.min(e.clientX - rect.left + 15, rect.width - 250),
+      y: Math.max(e.clientY - rect.top - 130, 10),
     });
   };
 
@@ -294,7 +337,6 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
   };
 
   const handleBackgroundClick = (e: React.MouseEvent) => {
-    // If clicking outside SVG shapes (on the SVG background), close drawer
     if (e.target === e.currentTarget || (e.target as HTMLElement).tagName === 'svg') {
       setActiveDrawerZone(null);
     }
@@ -310,28 +352,112 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
   const isZoneFiltered = (zoneId: string) => {
     if (activeCategory === 'all') return true;
     const zone = ZONES_REGISTRY[zoneId];
-    return zone && zone.category === activeCategory;
+    return zone ? zone.category === activeCategory : true;
   };
 
-  const getFillColor = (zoneId: string) => {
+  const getLotState = (zoneId: string) => {
     const zone = ZONES_REGISTRY[zoneId];
-    const isSelected = activeDrawerZone?.id === zoneId || (zone?.slug && zone.slug === selectedSlug);
+    const isSelected = activeDrawerZone?.id === zoneId || (Boolean(zone?.slug) && zone?.slug === selectedSlug);
     const isHovered = hoveredZoneId === zoneId;
     const isMatch = isZoneFiltered(zoneId);
 
-    if (!isMatch) return '#1A1E24';
-
-    if (isSelected) return '#FFE9A3';
-    if (isHovered) return '#F5D68E';
-
-    if (zoneId.startsWith('zone-b')) return '#2C3844';
-    if (zoneId === 'zone-a1') return '#1E3E34';
-    if (zoneId.startsWith('zone-c-n')) return '#1B354C';
-    if (zoneId.startsWith('zone-c')) return '#3B2D4A';
-    if (zoneId === 'zone-green') return '#1A3323';
-
-    return '#222831';
+    return { isSelected, isHovered, isMatch };
   };
+
+  const renderLot = (
+    id: string,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    num: string,
+    areaText?: string,
+    fontSizeNum = 14
+  ) => {
+    const { isSelected, isHovered, isMatch } = getLotState(id);
+    let fill = '#796c5b';
+    let stroke = '#8d806e';
+    let strokeWidth = 1;
+    let filter = undefined;
+    let textColor = '#eee8dd';
+    let areaColor = '#d2c9bc';
+
+    if (!isMatch) {
+      fill = '#252320';
+      stroke = '#3a3832';
+      textColor = '#55524b';
+      areaColor = '#44423c';
+    } else if (isSelected) {
+      fill = '#FFE9A3';
+      stroke = '#FFFFFF';
+      strokeWidth = 2;
+      filter = 'drop-shadow(0 0 10px rgba(255,233,163,0.55))';
+      textColor = '#080A0D';
+      areaColor = '#2B2414';
+    } else if (isHovered) {
+      fill = '#9b8a72';
+      stroke = '#c1ad90';
+      strokeWidth = 1.5;
+      filter = 'drop-shadow(0 0 7px rgba(201,177,140,0.35))';
+    }
+
+    const cx = x + width / 2;
+    const cy = y + height / 2;
+
+    return (
+      <g
+        key={id}
+        className="cursor-pointer transition-all duration-200"
+        onMouseEnter={() => setHoveredZoneId(id)}
+        onMouseLeave={() => setHoveredZoneId(null)}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleZoneClick(id);
+        }}
+        filter={filter}
+      >
+        <rect
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          fill={fill}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
+          className="transition-colors duration-200"
+        />
+        <text
+          x={cx}
+          y={areaText ? cy - 2 : cy + 4}
+          textAnchor="middle"
+          fill={textColor}
+          fontSize={fontSizeNum}
+          fontWeight={isSelected ? '700' : '500'}
+          className="pointer-events-none select-none transition-colors duration-200"
+        >
+          {num}
+        </text>
+        {areaText && (
+          <text
+            x={cx}
+            y={cy + 13}
+            textAnchor="middle"
+            fill={areaColor}
+            fontSize={8.5}
+            fontWeight={isSelected ? '600' : 'normal'}
+            className="pointer-events-none select-none transition-colors duration-200"
+          >
+            {areaText}
+          </text>
+        )}
+      </g>
+    );
+  };
+
+  const padelState = getLotState('lot-padel');
+  const parqueState = getLotState('lot-parque');
+  const carwashState = getLotState('lot-carwash');
+  const quinchoState = getLotState('lot-quincho');
 
   return (
     <div className="flex flex-col gap-6 w-full relative">
@@ -456,8 +582,8 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onClick={(e) => !isIsometric && handleBackgroundClick(e)}
-        className={`relative w-full bg-[#0D1117] rounded-3xl border border-white/15 overflow-hidden shadow-2xl transition-all duration-500 touch-pan-y ${
-          isIsometric ? 'h-[580px]' : 'aspect-[1150/560] min-h-[420px]'
+        className={`relative w-full bg-[#111210] rounded-3xl border border-[#3A3932] overflow-hidden shadow-2xl transition-all duration-500 touch-pan-y ${
+          isIsometric ? 'h-[580px]' : 'aspect-[1237/650] min-h-[460px]'
         }`}
       >
         {/* Action Controls Overlay */}
@@ -504,24 +630,25 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
         {isIsometric ? (
           <Masterplan3DViewer
             onSelectBuilding={(name) => {
-              // Match Blender mesh name to zone
-              if (name.includes('Starbucks')) handleZoneClick('zone-a1');
-              else if (name.includes('Boulangerie')) handleZoneClick('zone-b1');
-              else if (name.includes('Pilates')) handleZoneClick('zone-b2');
-              else if (name.includes('Gym')) handleZoneClick('zone-b3');
-              else if (name.includes('SemprePasta')) handleZoneClick('zone-b4');
-              else if (name.includes('OveBee')) handleZoneClick('zone-c1');
-              else if (name.includes('ValgameDios')) handleZoneClick('zone-c2');
-              else if (name.includes('Ceramica')) handleZoneClick('zone-c3');
-              else if (name.includes('Corredora')) handleZoneClick('zone-c4');
-              else if (name.includes('ManosPies')) handleZoneClick('zone-c5');
-              else if (name.includes('Barberia')) handleZoneClick('zone-c6');
-              else if (name.includes('Padel')) handleZoneClick('zone-c-n1');
-              else if (name.includes('Parque')) handleZoneClick('zone-green');
+              if (name.includes('Starbucks')) handleZoneClick('lot-01');
+              else if (name.includes('Boulangerie')) handleZoneClick('lot-02');
+              else if (name.includes('Kiosclub')) handleZoneClick('lot-03');
+              else if (name.includes('SemprePasta')) handleZoneClick('lot-04a');
+              else if (name.includes('OveBee')) handleZoneClick('lot-05');
+              else if (name.includes('ValgameDios')) handleZoneClick('lot-06');
+              else if (name.includes('JavieraPoch')) handleZoneClick('lot-07');
+              else if (name.includes('JoseManuel')) handleZoneClick('lot-08');
+              else if (name.includes('ChiniBeauty') || name.includes('ManosPies')) handleZoneClick('lot-09');
+              else if (name.includes('Barberia') || name.includes('Navi')) handleZoneClick('lot-10');
+              else if (name.includes('Corredora') || name.includes('Claudia')) handleZoneClick('lot-12');
+              else if (name.includes('Pilates')) handleZoneClick('lot-13');
+              else if (name.includes('Ceramica') || name.includes('Fiorella')) handleZoneClick('lot-16');
+              else if (name.includes('Padel')) handleZoneClick('lot-padel');
+              else if (name.includes('Parque')) handleZoneClick('lot-parque');
             }}
           />
         ) : (
-          /* Floor 1 SVG Map (Full-Width Original 1150 x 560 Aspect Ratio) */
+          /* Floor 1 SVG Map (Exact Architectural Layout 1237 x 650) */
           activeFloor === 'piso1' && (
             <div
               className="w-full h-full transition-transform duration-500 ease-out origin-center"
@@ -529,347 +656,516 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
                 transform: `scale(${zoomLevel})`,
               }}
             >
-            <svg
-              viewBox="0 0 1150 560"
-              className="w-full h-full block touch-none select-none"
-              xmlns="http://www.w3.org/2000/svg"
-              onClick={handleBackgroundClick}
-            >
-              <defs>
-                <pattern id="mp-ph" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
-                  <line x1="4" y1="0" x2="4" y2="8" stroke="#333D4B" strokeWidth="0.8" opacity="0.6" />
-                </pattern>
-
-                <symbol id="mp-tree" viewBox="-10 -10 20 20">
-                  <circle r="8" fill="#2E4A35" stroke="#4A7553" strokeWidth="1" />
-                  <circle r="4.5" fill="#426B4B" opacity="0.7" />
-                  <circle r="2" fill="#5D8C67" opacity="0.6" />
-                </symbol>
-              </defs>
-
-              {/* Road Access (Av. Pedro de Valdivia) */}
-              <rect x="96" y="92" width="64" height="402" fill="#161B22" stroke="#2D3748" strokeWidth="1" />
-              <line x1="96" y1="92" x2="96" y2="494" stroke="#FFE9A3" strokeWidth="1.5" strokeDasharray="6,6" opacity="0.7" />
-              <text
-                transform="translate(76,295) rotate(-90)"
-                fill="#FFE9A3"
-                fontSize="10"
-                fontWeight="600"
-                letterSpacing="0.12em"
-                textAnchor="middle"
+              <svg
+                viewBox="0 0 1237 650"
+                preserveAspectRatio="xMidYMid meet"
+                className="w-full h-full block touch-none select-none"
+                aria-label="Plano interactivo Espacio Río"
+                onClick={handleBackgroundClick}
               >
-                AV. PEDRO DE VALDIVIA
-              </text>
+                {/* Access / Dimension lines */}
+                <path d="M38 90V530 M42 90V530 M36 530h12 M36 90h12" fill="none" stroke="#3c3c36" strokeWidth={1} />
+                <path d="M48 110h-16 M48 160h-16 M48 206h-16 M48 515h-16" fill="none" stroke="#3c3c36" strokeWidth={1} />
+                <text x="18" y="142" fill="#827d73" fontSize={8} letterSpacing="1.7px" textAnchor="middle">
+                  4,3 M
+                </text>
+                <text x="18" y="245" fill="#827d73" fontSize={8} letterSpacing="1.7px" textAnchor="middle">
+                  14 M
+                </text>
+                <text x="18" y="408" fill="#827d73" fontSize={8} letterSpacing="1.7px" textAnchor="middle">
+                  28 M
+                </text>
 
-              {/* LAYER 1 — Green Park (Right) */}
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-green')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-green')}
-                opacity={isZoneFiltered('zone-green') ? 1 : 0.25}
-              >
+                {/* Road corridor (Av. Pedro de Valdivia) */}
+                <path d="M68 90v440" fill="none" stroke="#3c3c36" strokeWidth={1} />
+                <path d="M68 185 l-5 8 M68 185 l5 8 M68 185 v18" fill="none" stroke="#776f62" strokeWidth={1.2} />
+                <text x="64" y="160" transform="rotate(-90 64 160)" fill="#aaa49a" fontSize={8} letterSpacing="1.8px" textAnchor="middle">
+                  ACCESO
+                </text>
+                <text x="64" y="325" transform="rotate(-90 64 325)" fill="#827d73" fontSize={8} letterSpacing="1.8px" textAnchor="middle">
+                  AV. PEDRO DE VALDIVIA
+                </text>
+                <path d="M68 475 l-5 -8 M68 475 l5 -8 M68 475 v-18" fill="none" stroke="#776f62" strokeWidth={1.2} />
+
+                {/* Upper boundary */}
                 <path
-                  d="M 870,93 L 1110,104 L 1110,492 L 870,492 Z"
-                  fill={getFillColor('zone-green')}
-                  stroke={hoveredZoneId === 'zone-green' ? '#FFE9A3' : '#2E4A35'}
-                  strokeWidth={hoveredZoneId === 'zone-green' ? 2 : 1.2}
+                  d="M65 106 L1090 78 L1092 248 L354 251 L354 284 L613 284"
+                  fill="none"
+                  stroke="#4b4940"
+                  strokeWidth={1}
+                  strokeDasharray="7 5"
                 />
-              </g>
 
-              {/* Trees Grid */}
-              <g pointerEvents="none" opacity={isZoneFiltered('zone-green') ? 0.85 : 0.2}>
-                <use href="#mp-tree" x="900" y="138" width="28" height="28" />
-                <use href="#mp-tree" x="950" y="155" width="26" height="26" />
-                <use href="#mp-tree" x="1000" y="136" width="28" height="28" />
-                <use href="#mp-tree" x="1050" y="152" width="28" height="28" />
-                <use href="#mp-tree" x="900" y="210" width="28" height="28" />
-                <use href="#mp-tree" x="950" y="232" width="30" height="30" />
-                <use href="#mp-tree" x="1000" y="208" width="28" height="28" />
-                <use href="#mp-tree" x="1050" y="228" width="26" height="26" />
-                <use href="#mp-tree" x="900" y="290" width="28" height="28" />
-                <use href="#mp-tree" x="950" y="310" width="26" height="26" />
-                <use href="#mp-tree" x="1000" y="288" width="30" height="30" />
-                <use href="#mp-tree" x="1050" y="308" width="28" height="28" />
-                <use href="#mp-tree" x="900" y="370" width="26" height="26" />
-                <use href="#mp-tree" x="950" y="392" width="28" height="28" />
-                <use href="#mp-tree" x="1000" y="368" width="30" height="30" />
-              </g>
+                {/* Lots 02 - 04a */}
+                {renderLot('lot-02', 76, 104, 93, 57, '02', '92,40 m²')}
+                {renderLot('lot-03', 169, 104, 76, 57, '03', '89,71 m²')}
+                {renderLot('lot-04', 245, 104, 91, 57, '04', '86,06 m²')}
+                {renderLot('lot-04a', 336, 104, 39, 57, '04a', '18,3 m²', 11)}
 
-              {/* LAYER 2 — Parking Bays */}
-              <rect x="160" y="218" width="500" height="48" fill="#1A202C" stroke="#2D3748" strokeWidth="0.8" />
-              <rect x="490" y="346" width="380" height="146" fill="#1A202C" stroke="#2D3748" strokeWidth="0.8" />
+                <text x="145" y="181" textAnchor="middle" fill="#827d73" fontSize={8} letterSpacing="1.7px">
+                  VEREDA COMERCIAL
+                </text>
 
-              {/* LAYER 3 — Canchas Deportivas */}
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-c-n1')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-c-n1')}
-                opacity={isZoneFiltered('zone-c-n1') ? 1 : 0.25}
-              >
+                {/* Upper central lots (11a - 11e / Sector 11) */}
+                {renderLot('lot-12', 375, 104, 54, 57, '11a', '31,08 m²', 12)}
+                {renderLot('lot-13', 429, 104, 55, 57, '11b', '30,43 m²', 12)}
+                {renderLot('lot-14', 484, 104, 55, 57, '11c', '30,43 m²', 12)}
+                {renderLot('lot-15', 539, 104, 55, 57, '11d', '30,43 m²', 12)}
+                {renderLot('lot-16', 594, 104, 49, 57, '11e', '25,18 m²', 12)}
+
+                {/* Parking Area (57 Estacionamientos) */}
+                <rect x="102" y="173" width="229" height="47" fill="#252522" stroke="#46443d" strokeWidth={1} />
+                <g stroke="#45433c" strokeWidth={1}>
+                  <path d="M118 174v45 M142 174v45 M166 174v45 M190 174v45 M214 174v45 M238 174v45 M262 174v45 M286 174v45 M310 174v45" />
+                </g>
+                <text x="216" y="202" textAnchor="middle" fill="#827d73" fontSize={8} letterSpacing="1.7px">
+                  57 ESTACIONAMIENTOS
+                </text>
+
+                {/* Central Paseo */}
+                <rect x="350" y="174" width="290" height="38" fill="#252522" stroke="#46443d" strokeWidth={1} />
+                <circle cx="380" cy="193" r="7" fill="#354031" stroke="#68755b" strokeWidth={1} />
+                <circle cx="418" cy="193" r="7" fill="#354031" stroke="#68755b" strokeWidth={1} />
+                <circle cx="558" cy="193" r="7" fill="#354031" stroke="#68755b" strokeWidth={1} />
+                <circle cx="598" cy="193" r="7" fill="#354031" stroke="#68755b" strokeWidth={1} />
+                <circle cx="626" cy="193" r="7" fill="#354031" stroke="#68755b" strokeWidth={1} />
+                <text x="490" y="198" textAnchor="middle" fill="#827d73" fontSize={8} letterSpacing="1.7px">
+                  PASEO CENTRAL
+                </text>
+
+                {/* Cancha de Pádel */}
+                <g
+                  className="cursor-pointer transition-all duration-200"
+                  onMouseEnter={() => setHoveredZoneId('lot-padel')}
+                  onMouseLeave={() => setHoveredZoneId(null)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleZoneClick('lot-padel');
+                  }}
+                  filter={padelState.isSelected ? 'drop-shadow(0 0 10px rgba(255,233,163,0.5))' : undefined}
+                >
+                  <polygon
+                    points="650,101 738,94 748,246 660,252"
+                    fill={padelState.isSelected ? '#FFE9A3' : padelState.isHovered ? '#514a40' : '#3c3933'}
+                    stroke={padelState.isSelected ? '#FFFFFF' : padelState.isHovered ? '#c1ad90' : '#605b51'}
+                    strokeWidth={padelState.isSelected ? 2 : 1}
+                  />
+                  <polygon
+                    fill="none"
+                    stroke={padelState.isSelected ? '#554a22' : '#777064'}
+                    strokeWidth={1}
+                    points="659,112 726,106 736,234 669,240"
+                  />
+                  <line x1="692" y1="109" x2="701" y2="238" stroke={padelState.isSelected ? '#554a22' : '#777064'} />
+                  <text
+                    x="699"
+                    y="174"
+                    textAnchor="middle"
+                    transform="rotate(-5 699 174)"
+                    fill={padelState.isSelected ? '#080A0D' : '#aaa49a'}
+                    fontSize={10}
+                    letterSpacing="1.8px"
+                    fontWeight={padelState.isSelected ? '700' : 'normal'}
+                    className="pointer-events-none select-none"
+                  >
+                    CANCHA
+                  </text>
+                  <text
+                    x="703"
+                    y="189"
+                    textAnchor="middle"
+                    transform="rotate(-5 703 189)"
+                    fill={padelState.isSelected ? '#080A0D' : '#aaa49a'}
+                    fontSize={10}
+                    letterSpacing="1.8px"
+                    fontWeight={padelState.isSelected ? '700' : 'normal'}
+                    className="pointer-events-none select-none"
+                  >
+                    DE PÁDEL
+                  </text>
+                </g>
+
+                {/* Cabins / Baños & Camarines */}
+                <rect x="755" y="104" width="42" height="151" fill="#3c3933" stroke="#605b51" strokeWidth={1} />
+                <text
+                  x="777"
+                  y="182"
+                  textAnchor="middle"
+                  transform="rotate(-90 777 182)"
+                  fill="#827d73"
+                  fontSize={8}
+                  letterSpacing="1.7px"
+                >
+                  CABAÑAS
+                </text>
+
+                {/* Parque Entorno Natural */}
+                <g
+                  className="cursor-pointer transition-all duration-200"
+                  onMouseEnter={() => setHoveredZoneId('lot-parque')}
+                  onMouseLeave={() => setHoveredZoneId(null)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleZoneClick('lot-parque');
+                  }}
+                  filter={parqueState.isSelected ? 'drop-shadow(0 0 10px rgba(255,233,163,0.5))' : undefined}
+                >
+                  <path
+                    d="M817 96 Q950 99 1091 77 L1093 249 Q953 264 817 249Z"
+                    fill={parqueState.isSelected ? '#2A3C2A' : parqueState.isHovered ? '#434038' : '#3c3933'}
+                    stroke={parqueState.isSelected ? '#FFE9A3' : parqueState.isHovered ? '#c1ad90' : '#605b51'}
+                    strokeWidth={parqueState.isSelected ? 2 : 1}
+                  />
+                  <text
+                    x="953"
+                    y="167"
+                    textAnchor="middle"
+                    fill={parqueState.isSelected ? '#FFE9A3' : '#aaa49a'}
+                    fontSize={10}
+                    letterSpacing="1.8px"
+                    fontWeight="600"
+                    className="pointer-events-none select-none"
+                  >
+                    PARQUE
+                  </text>
+                  <text
+                    x="953"
+                    y="185"
+                    textAnchor="middle"
+                    fill={parqueState.isSelected ? '#FFFFFF' : '#827d73'}
+                    fontSize={8}
+                    letterSpacing="1.7px"
+                    className="pointer-events-none select-none"
+                  >
+                    ENTORNO NATURAL
+                  </text>
+                  <g fill="#354031" stroke="#68755b" strokeWidth={1} pointerEvents="none">
+                    <circle cx="834" cy="110" r="8" />
+                    <circle cx="875" cy="137" r="9" />
+                    <circle cx="918" cy="115" r="5" />
+                    <circle cx="970" cy="98" r="9" />
+                    <circle cx="1042" cy="94" r="8" />
+                    <circle cx="1076" cy="111" r="8" />
+                    <circle cx="1001" cy="137" r="6" />
+                    <circle cx="1063" cy="158" r="8" />
+                    <circle cx="839" cy="171" r="6" />
+                    <circle cx="898" cy="178" r="5" />
+                    <circle cx="952" cy="159" r="8" />
+                    <circle cx="1020" cy="173" r="9" />
+                    <circle cx="1074" cy="199" r="6" />
+                    <circle cx="864" cy="212" r="7" />
+                    <circle cx="916" cy="198" r="5" />
+                    <circle cx="975" cy="207" r="8" />
+                    <circle cx="1034" cy="221" r="6" />
+                    <circle cx="1062" cy="236" r="9" />
+                  </g>
+                  <path d="M824 224 Q925 173 1081 200" fill="none" stroke="#3c3c36" strokeWidth={1} pointerEvents="none" />
+                </g>
+
+                {/* Lower lots (05 - 10) */}
+                {renderLot('lot-05', 346, 248, 45, 49, '05', '31,28 m²', 12)}
+                {renderLot('lot-06', 391, 248, 46, 49, '06', '30,81 m²', 12)}
+                {renderLot('lot-07', 437, 248, 47, 49, '07', '30,84 m²', 12)}
+                {renderLot('lot-08', 484, 248, 47, 49, '08', '30,87 m²', 12)}
+                {renderLot('lot-09', 531, 248, 47, 49, '09', '30,90 m²', 12)}
+                {renderLot('lot-10', 578, 248, 42, 49, '10', '40,15 m²', 12)}
+
+                {/* Lower dashed zoning boundary */}
+                <path
+                  d="M346 299v113 M394 299v113 M471 299v113 M558 299v-65 M620 299v-57 M817 250v224 L470 474V300"
+                  fill="none"
+                  stroke="#4b4940"
+                  strokeWidth={1}
+                  strokeDasharray="7 5"
+                />
+                <path
+                  d="M354 299 v208 H76 v-272"
+                  fill="none"
+                  stroke="#4b4940"
+                  strokeWidth={1}
+                  strokeDasharray="7 5"
+                />
+
+                {/* Lot 01 / Starbucks & Terraza */}
+                <g
+                  className="cursor-pointer transition-all duration-200"
+                  onMouseEnter={() => setHoveredZoneId('lot-01')}
+                  onMouseLeave={() => setHoveredZoneId(null)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleZoneClick('lot-01');
+                  }}
+                >
+                  {/* Outer container box enclosing both Local 01 and Terraza */}
+                  <rect
+                    x="94"
+                    y="324"
+                    width="66"
+                    height="160"
+                    fill="#151412"
+                    stroke="#48443B"
+                    strokeWidth={1}
+                  />
+
+                  {/* Inner brown box of Local 01 */}
+                  <rect
+                    x="99"
+                    y="329"
+                    width="56"
+                    height="126"
+                    fill={
+                      getLotState('lot-01').isSelected
+                        ? '#FFE9A3'
+                        : getLotState('lot-01').isHovered
+                        ? '#9b8a72'
+                        : '#796c5b'
+                    }
+                    stroke={
+                      getLotState('lot-01').isSelected
+                        ? '#FFFFFF'
+                        : getLotState('lot-01').isHovered
+                        ? '#c1ad90'
+                        : '#8d806e'
+                    }
+                    strokeWidth={getLotState('lot-01').isSelected ? 2 : 1}
+                    filter={
+                      getLotState('lot-01').isSelected
+                        ? 'drop-shadow(0 0 10px rgba(255,233,163,0.55))'
+                        : undefined
+                    }
+                    className="transition-colors duration-200"
+                  />
+
+                  {/* Subtle divider inside Local 01 */}
+                  <line
+                    x1="99"
+                    y1="392"
+                    x2="155"
+                    y2="392"
+                    stroke={getLotState('lot-01').isSelected ? '#E2CA7C' : '#6B5F4F'}
+                    strokeWidth={0.8}
+                  />
+
+                  {/* Lot 01 Number & Area */}
+                  <text
+                    x="127"
+                    y="368"
+                    textAnchor="middle"
+                    fill={getLotState('lot-01').isSelected ? '#080A0D' : '#eee8dd'}
+                    fontSize={14}
+                    fontWeight={getLotState('lot-01').isSelected ? '700' : '500'}
+                    className="pointer-events-none select-none"
+                  >
+                    01
+                  </text>
+                  <text
+                    x="127"
+                    y="383"
+                    textAnchor="middle"
+                    fill={getLotState('lot-01').isSelected ? '#2B2414' : '#d2c9bc'}
+                    fontSize={8.5}
+                    fontWeight={getLotState('lot-01').isSelected ? '600' : 'normal'}
+                    className="pointer-events-none select-none"
+                  >
+                    176,11 m²
+                  </text>
+
+                  {/* Terraza label at bottom of outer frame */}
+                  <text
+                    x="127"
+                    y="473"
+                    textAnchor="middle"
+                    fill="#827d73"
+                    fontSize={8}
+                    letterSpacing="1.7px"
+                    className="pointer-events-none select-none"
+                  >
+                    TERRAZA
+                  </text>
+                </g>
+
+                {/* Left Parking Bay (10 stalls, aligned with Local 01 and Central Feature) */}
+                <rect x="165" y="324" width="31" height="160" fill="#252522" stroke="#46443d" strokeWidth={1} />
+                <g stroke="#44433d" strokeWidth={1}>
+                  <path d="M165 340h31 M165 356h31 M165 372h31 M165 388h31 M165 404h31 M165 420h31 M165 436h31 M165 452h31 M165 468h31" />
+                </g>
+
+                {/* Central Feature with 3 Triangles (aligned from y=324 to y=484) */}
+                <rect x="228" y="324" width="80" height="160" fill="#3c3933" stroke="#605b51" strokeWidth={1} />
+                <path
+                  d="M268 335l15 26h-30z M268 382l15 26h-30z M268 429l15 26h-30z"
+                  fill="#514a40"
+                  stroke="#6d6558"
+                  strokeWidth={1}
+                />
+
+                {/* Bicicleteros Badge (aligned with middle triangle) */}
                 <rect
-                  x="660"
-                  y="105"
-                  width="108"
-                  height="161"
-                  fill={getFillColor('zone-c-n1')}
-                  stroke={hoveredZoneId === 'zone-c-n1' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-c-n1' ? 2 : 1.2}
+                  x="302"
+                  y="394"
+                  width="78"
+                  height="17"
+                  rx="3"
+                  fill="#252522"
+                  stroke="#776f62"
+                  strokeWidth={1}
                 />
-                <line x1="660" y1="186" x2="768" y2="186" stroke="#FFE9A3" strokeWidth="0.9" opacity="0.6" />
-                <line x1="714" y1="105" x2="714" y2="266" stroke="#FFE9A3" strokeWidth="0.7" opacity="0.4" />
-              </g>
+                <text
+                  x="341"
+                  y="406"
+                  textAnchor="middle"
+                  fill="#aaa49a"
+                  fontSize={7.5}
+                  letterSpacing="1.7px"
+                  className="select-none pointer-events-none"
+                >
+                  BICICLETEROS
+                </text>
 
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-c-n2')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-c-n2')}
-                opacity={isZoneFiltered('zone-c-n2') ? 1 : 0.25}
-              >
-                <rect
-                  x="772"
-                  y="105"
-                  width="100"
-                  height="161"
-                  fill={getFillColor('zone-c-n2')}
-                  stroke={hoveredZoneId === 'zone-c-n2' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-c-n2' ? 2 : 1.2}
-                />
-                <line x1="772" y1="186" x2="872" y2="186" stroke="#FFE9A3" strokeWidth="0.9" opacity="0.6" />
-                <line x1="822" y1="105" x2="822" y2="266" stroke="#FFE9A3" strokeWidth="0.7" opacity="0.4" />
-              </g>
+                {/* Right Parking / Bicycle Stalls directly below Bicicleteros */}
+                <rect x="326" y="416" width="30" height="96" fill="#252522" stroke="#46443d" strokeWidth={1} />
+                <g stroke="#44433d" strokeWidth={1}>
+                  <path d="M326 432h30 M326 448h30 M326 464h30 M326 480h30 M326 496h30" />
+                </g>
 
-              {/* LAYER 4 — Bloque B (Locales Norte B1 - B4) */}
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-b1')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-b1')}
-                opacity={isZoneFiltered('zone-b1') ? 1 : 0.25}
-              >
-                <rect
-                  x="160"
-                  y="108"
-                  width="138"
-                  height="110"
-                  fill={getFillColor('zone-b1')}
-                  stroke={hoveredZoneId === 'zone-b1' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-b1' ? 2 : 1.2}
-                />
-                <text x="229" y="156" fill="#F5F3EA" fontSize="13" fontWeight="bold" textAnchor="middle">B1</text>
-                <text x="229" y="174" fill="#FFE9A3" fontSize="9" textAnchor="middle">Boulangerie</text>
-              </g>
+                {/* Carwash (positioned below the central block and left parking, with clean margin) */}
+                <g
+                  className="cursor-pointer transition-all duration-200"
+                  onMouseEnter={() => setHoveredZoneId('lot-carwash')}
+                  onMouseLeave={() => setHoveredZoneId(null)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleZoneClick('lot-carwash');
+                  }}
+                  filter={carwashState.isSelected ? 'drop-shadow(0 0 10px rgba(255,233,163,0.5))' : undefined}
+                >
+                  <rect
+                    x="176"
+                    y="512"
+                    width="112"
+                    height="50"
+                    fill={carwashState.isSelected ? '#FFE9A3' : carwashState.isHovered ? '#60584b' : '#3c3933'}
+                    stroke={carwashState.isSelected ? '#FFFFFF' : carwashState.isHovered ? '#c1ad90' : '#605b51'}
+                    strokeWidth={carwashState.isSelected ? 2 : 1}
+                  />
+                  <line x1="232" y1="512" x2="232" y2="562" stroke={carwashState.isSelected ? '#BFA253' : '#555247'} strokeWidth={1} />
+                  {/* Wash bay stripes at bottom */}
+                  <line x1="184" y1="547" x2="224" y2="547" stroke={carwashState.isSelected ? '#BFA253' : '#4E493F'} strokeWidth={0.8} />
+                  <line x1="184" y1="552" x2="224" y2="552" stroke={carwashState.isSelected ? '#BFA253' : '#4E493F'} strokeWidth={0.8} />
+                  <line x1="240" y1="547" x2="280" y2="547" stroke={carwashState.isSelected ? '#BFA253' : '#4E493F'} strokeWidth={0.8} />
+                  <line x1="240" y1="552" x2="280" y2="552" stroke={carwashState.isSelected ? '#BFA253' : '#4E493F'} strokeWidth={0.8} />
+                  <text
+                    x="232"
+                    y="534"
+                    textAnchor="middle"
+                    fill={carwashState.isSelected ? '#080A0D' : '#aaa49a'}
+                    fontSize={10}
+                    letterSpacing="1.8px"
+                    fontWeight={carwashState.isSelected ? '700' : 'normal'}
+                    className="pointer-events-none select-none"
+                  >
+                    CARWASH
+                  </text>
+                </g>
 
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-b2')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-b2')}
-                opacity={isZoneFiltered('zone-b2') ? 1 : 0.25}
-              >
-                <rect
-                  x="298"
-                  y="108"
-                  width="138"
-                  height="110"
-                  fill={getFillColor('zone-b2')}
-                  stroke={hoveredZoneId === 'zone-b2' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-b2' ? 2 : 1.2}
-                />
-                <text x="367" y="156" fill="#F5F3EA" fontSize="13" fontWeight="bold" textAnchor="middle">B2</text>
-                <text x="367" y="174" fill="#FFE9A3" fontSize="9" textAnchor="middle">Pilates</text>
-              </g>
+                {/* Interior Plaza, Quincho & Kitchenette */}
+                <g
+                  className="cursor-pointer transition-all duration-200"
+                  onMouseEnter={() => setHoveredZoneId('lot-quincho')}
+                  onMouseLeave={() => setHoveredZoneId(null)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleZoneClick('lot-quincho');
+                  }}
+                  filter={quinchoState.isSelected ? 'drop-shadow(0 0 10px rgba(255,233,163,0.5))' : undefined}
+                >
+                  <path d="M472 301 H818 V474 H472 Z" fill="#3c3933" stroke="#605b51" strokeWidth={1} pointerEvents="none" />
+                  <rect
+                    x="513"
+                    y="333"
+                    width="86"
+                    height="87"
+                    fill={quinchoState.isSelected ? '#FFE9A3' : quinchoState.isHovered ? '#60584b' : '#514a40'}
+                    stroke={quinchoState.isSelected ? '#FFFFFF' : quinchoState.isHovered ? '#c1ad90' : '#6d6558'}
+                    strokeWidth={quinchoState.isSelected ? 2 : 1}
+                  />
+                  <text
+                    x="556"
+                    y="348"
+                    textAnchor="middle"
+                    fill={quinchoState.isSelected ? '#332B1E' : '#827d73'}
+                    fontSize={8}
+                    letterSpacing="1.7px"
+                    className="pointer-events-none select-none"
+                  >
+                    KITCHENETTE
+                  </text>
+                  <text
+                    x="556"
+                    y="384"
+                    textAnchor="middle"
+                    fill={quinchoState.isSelected ? '#080A0D' : '#aaa49a'}
+                    fontSize={10}
+                    letterSpacing="1.8px"
+                    fontWeight={quinchoState.isSelected ? '700' : 'normal'}
+                    className="pointer-events-none select-none"
+                  >
+                    QUINCHO
+                  </text>
+                  <text
+                    x="646"
+                    y="430"
+                    textAnchor="middle"
+                    fill="#aaa49a"
+                    fontSize={10}
+                    letterSpacing="1.8px"
+                    className="pointer-events-none select-none"
+                  >
+                    PLAZA INTERIOR
+                  </text>
+                  <g fill="#354031" stroke="#68755b" strokeWidth={1} pointerEvents="none">
+                    <circle cx="615" cy="357" r="5" />
+                    <circle cx="665" cy="355" r="6" />
+                    <circle cx="727" cy="365" r="8" />
+                    <circle cx="493" cy="390" r="8" />
+                    <circle cx="503" cy="419" r="8" />
+                    <circle cx="546" cy="432" r="6" />
+                    <circle cx="591" cy="447" r="8" />
+                    <circle cx="631" cy="437" r="6" />
+                    <circle cx="759" cy="421" r="7" />
+                    <circle cx="764" cy="459" r="6" />
+                    <circle cx="684" cy="452" r="5" />
+                  </g>
+                  <path d="M488 436 Q620 391 771 405" fill="none" stroke="#3c3c36" strokeWidth={1} pointerEvents="none" />
+                </g>
 
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-b3')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-b3')}
-                opacity={isZoneFiltered('zone-b3') ? 1 : 0.25}
-              >
-                <rect
-                  x="436"
-                  y="108"
-                  width="138"
-                  height="110"
-                  fill={getFillColor('zone-b3')}
-                  stroke={hoveredZoneId === 'zone-b3' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-b3' ? 2 : 1.2}
-                />
-                <text x="505" y="156" fill="#F5F3EA" fontSize="13" fontWeight="bold" textAnchor="middle">B3</text>
-                <text x="505" y="174" fill="#FFE9A3" fontSize="9" textAnchor="middle">Gym Boutique</text>
-              </g>
+                {/* Architectural Scale & Footnote Legend */}
+                <line x1="66" y1="579" x2="1190" y2="579" stroke="#2e2f2b" strokeWidth={1} />
+                <text x="66" y="596" fill="#827d73" fontSize={8} letterSpacing="1.7px">
+                  ESPACIO RÍO · EMPLAZAMIENTO PISO 1 · SUPERFICIES
+                </text>
+                <text x="66" y="610" fill="#827d73" fontSize={8} letterSpacing="1.7px">
+                  PLANO ARQ-002 · B02 · ABRIL 2026 · ÁREA DENTRO DE DESLINDE
+                </text>
 
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-b4')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-b4')}
-                opacity={isZoneFiltered('zone-b4') ? 1 : 0.25}
-              >
-                <rect
-                  x="574"
-                  y="108"
-                  width="86"
-                  height="110"
-                  fill={getFillColor('zone-b4')}
-                  stroke={hoveredZoneId === 'zone-b4' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-b4' ? 2 : 1.2}
-                />
-                <text x="617" y="156" fill="#F5F3EA" fontSize="13" fontWeight="bold" textAnchor="middle">B4</text>
-                <text x="617" y="174" fill="#FFE9A3" fontSize="9" textAnchor="middle">Sempre Pasta</text>
-              </g>
+                {/* Compass Rose */}
+                <text x="1175" y="596" textAnchor="end" fill="#827d73" fontSize={8} letterSpacing="1.7px">
+                  N
+                </text>
+                <circle cx="1175" cy="614" r="17" fill="none" stroke="#353630" strokeWidth={1} />
+                <path d="M1175 602l-5 22 5-4 5 4z" fill="#7b806f" />
 
-              {/* LAYER 5 — Bloque C (Locales C1 - C6) */}
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-c1')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-c1')}
-                opacity={isZoneFiltered('zone-c1') ? 1 : 0.25}
-              >
-                <rect
-                  x="492"
-                  y="266"
-                  width="63"
-                  height="80"
-                  fill={getFillColor('zone-c1')}
-                  stroke={hoveredZoneId === 'zone-c1' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-c1' ? 2 : 1.2}
-                />
-                <text x="523" y="295" fill="#F5F3EA" fontSize="10" fontWeight="bold" textAnchor="middle">C1</text>
-                <text transform="rotate(-90,523,322)" x="523" y="322" fill="#FFE9A3" fontSize="7.5" textAnchor="middle">Ove Bee</text>
-              </g>
-
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-c2')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-c2')}
-                opacity={isZoneFiltered('zone-c2') ? 1 : 0.25}
-              >
-                <rect
-                  x="555"
-                  y="266"
-                  width="63"
-                  height="80"
-                  fill={getFillColor('zone-c2')}
-                  stroke={hoveredZoneId === 'zone-c2' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-c2' ? 2 : 1.2}
-                />
-                <text x="586" y="295" fill="#F5F3EA" fontSize="10" fontWeight="bold" textAnchor="middle">C2</text>
-                <text transform="rotate(-90,586,322)" x="586" y="322" fill="#FFE9A3" fontSize="7.5" textAnchor="middle">Válgame Dios</text>
-              </g>
-
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-c3')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-c3')}
-                opacity={isZoneFiltered('zone-c3') ? 1 : 0.25}
-              >
-                <rect
-                  x="618"
-                  y="266"
-                  width="63"
-                  height="80"
-                  fill={getFillColor('zone-c3')}
-                  stroke={hoveredZoneId === 'zone-c3' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-c3' ? 2 : 1.2}
-                />
-                <text x="649" y="295" fill="#F5F3EA" fontSize="10" fontWeight="bold" textAnchor="middle">C3</text>
-                <text transform="rotate(-90,649,322)" x="649" y="322" fill="#FFE9A3" fontSize="7.5" textAnchor="middle">Cerámica</text>
-              </g>
-
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-c4')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-c4')}
-                opacity={isZoneFiltered('zone-c4') ? 1 : 0.25}
-              >
-                <rect
-                  x="681"
-                  y="266"
-                  width="63"
-                  height="80"
-                  fill={getFillColor('zone-c4')}
-                  stroke={hoveredZoneId === 'zone-c4' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-c4' ? 2 : 1.2}
-                />
-                <text x="712" y="295" fill="#F5F3EA" fontSize="10" fontWeight="bold" textAnchor="middle">C4</text>
-                <text transform="rotate(-90,712,322)" x="712" y="322" fill="#FFE9A3" fontSize="7.5" textAnchor="middle">Corredora</text>
-              </g>
-
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-c5')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-c5')}
-                opacity={isZoneFiltered('zone-c5') ? 1 : 0.25}
-              >
-                <rect
-                  x="744"
-                  y="266"
-                  width="63"
-                  height="80"
-                  fill={getFillColor('zone-c5')}
-                  stroke={hoveredZoneId === 'zone-c5' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-c5' ? 2 : 1.2}
-                />
-                <text x="775" y="295" fill="#F5F3EA" fontSize="10" fontWeight="bold" textAnchor="middle">C5</text>
-                <text transform="rotate(-90,775,322)" x="775" y="322" fill="#FFE9A3" fontSize="7.5" textAnchor="middle">Manos/Pies</text>
-              </g>
-
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-c6')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-c6')}
-                opacity={isZoneFiltered('zone-c6') ? 1 : 0.25}
-              >
-                <rect
-                  x="807"
-                  y="266"
-                  width="63"
-                  height="80"
-                  fill={getFillColor('zone-c6')}
-                  stroke={hoveredZoneId === 'zone-c6' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-c6' ? 2 : 1.2}
-                />
-                <text x="838" y="295" fill="#F5F3EA" fontSize="10" fontWeight="bold" textAnchor="middle">C6</text>
-                <text transform="rotate(-90,838,322)" x="838" y="322" fill="#FFE9A3" fontSize="7.5" textAnchor="middle">Barbería</text>
-              </g>
-
-              {/* LAYER 6 — Bloque A1 (Starbucks) */}
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onMouseEnter={() => setHoveredZoneId('zone-a1')}
-                onMouseLeave={() => setHoveredZoneId(null)}
-                onClick={() => handleZoneClick('zone-a1')}
-                opacity={isZoneFiltered('zone-a1') ? 1 : 0.25}
-              >
-                <rect
-                  x="160"
-                  y="346"
-                  width="200"
-                  height="146"
-                  fill={getFillColor('zone-a1')}
-                  stroke={hoveredZoneId === 'zone-a1' ? '#FFE9A3' : '#4A5568'}
-                  strokeWidth={hoveredZoneId === 'zone-a1' ? 2 : 1.2}
-                />
-                <text x="260" y="414" fill="#F5F3EA" fontSize="15" fontWeight="bold" textAnchor="middle">A1</text>
-                <text x="260" y="434" fill="#FFE9A3" fontSize="11" fontWeight="600" textAnchor="middle">Starbucks Drive-Thru</text>
-              </g>
-
-              {/* Labels & Perimeter */}
-              <path d="M 160,93 L 870,93 L 1110,104 L 1110,492 L 870,492 L 160,492 Z" fill="none" stroke="#FFE9A3" strokeWidth="1.5" strokeDasharray="8,6" opacity="0.6" />
-              <text x="714" y="190" fill="#F5F3EA" fontSize="9" textAnchor="middle">CANCHA 1</text>
-              <text x="822" y="190" fill="#F5F3EA" fontSize="9" textAnchor="middle">CANCHA 2</text>
-              <text x="990" y="460" fill="#FFE9A3" fontSize="10" fontWeight="600" textAnchor="middle">PARQUE & ÁREA VERDE</text>
-            </svg>
+                {/* Graphic Scale */}
+                <line x1="990" y1="602" x2="1090" y2="602" stroke="#55544c" strokeWidth={1} />
+                <line x1="990" y1="598" x2="990" y2="606" stroke="#55544c" strokeWidth={1} />
+                <line x1="1090" y1="598" x2="1090" y2="606" stroke="#55544c" strokeWidth={1} />
+                <text x="990" y="615" fill="#827d73" fontSize={8} letterSpacing="1.7px">
+                  0
+                </text>
+                <text x="1088" y="615" textAnchor="end" fill="#827d73" fontSize={8} letterSpacing="1.7px">
+                  50 M
+                </text>
+              </svg>
             </div>
           )
         )}
@@ -887,7 +1183,7 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
               Terrazas Mirador & Quincho Corporativo
             </h4>
             <button
-              onClick={() => handleZoneClick('zone-quincho')}
+              onClick={() => handleZoneClick('lot-quincho')}
               className="bg-[#FFE9A3] text-[#080A0D] px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors cursor-pointer shadow-lg"
             >
               Ver Ficha Quincho
@@ -908,7 +1204,7 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
               Estacionamientos & Carwash Detailing
             </h4>
             <button
-              onClick={() => handleZoneClick('zone-carwash')}
+              onClick={() => handleZoneClick('lot-carwash')}
               className="bg-[#FFE9A3] text-[#080A0D] px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors cursor-pointer shadow-lg"
             >
               Ver Ficha Carwash
@@ -925,8 +1221,8 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.15 }}
               style={{
-                left: Math.min(tooltipPos.x + 15, (containerRef.current?.offsetWidth || 300) - 240),
-                top: Math.max(tooltipPos.y - 120, 10),
+                left: tooltipPos.x,
+                top: tooltipPos.y,
               }}
               className="absolute z-30 w-60 bg-[#161B22]/95 backdrop-blur-md p-4 rounded-2xl border border-[#FFE9A3]/40 shadow-2xl pointer-events-none"
             >
@@ -954,14 +1250,14 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
                 </p>
 
                 <span className="text-[9px] font-bold text-[#FFE9A3] uppercase tracking-widest pt-1 flex items-center gap-1">
-                  <span>✦ Haz clic para desplegar info</span>
+                  <span>✦ Clic para ver ficha completa</span>
                 </span>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Slide-Over Side Drawer ("Panel Lateral con la Info al Pinchar") */}
+        {/* Slide-Over Side Drawer */}
         <AnimatePresence>
           {activeDrawerZone && (
             <motion.div
@@ -996,7 +1292,7 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
                 {/* Title & Description */}
                 <div>
                   <span className="text-[10px] uppercase font-bold text-[#FFE9A3] tracking-widest block mb-1">
-                    Local Seleccionado
+                    Unidad / Local
                   </span>
                   <h3 className="font-display text-2xl sm:text-3xl text-white font-normal leading-tight mb-2">
                     {activeDrawerZone.title}
@@ -1017,7 +1313,7 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute top-3 left-3 bg-[#080A0D]/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-semibold text-[#FFE9A3] uppercase tracking-wider border border-[#FFE9A3]/30">
-                      Render Interior 3D
+                      Vista Interior
                     </div>
                   </div>
                 )}
@@ -1082,7 +1378,7 @@ export default function MasterplanMap({ onSelectLocal, selectedSlug }: Masterpla
                     }}
                     className="w-full bg-white/10 border border-white/20 text-white px-5 py-3 rounded-2xl text-xs font-semibold uppercase tracking-wider hover:bg-white/20 transition-colors cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <span>Ver Ficha Completa del Local</span>
+                    <span>Ver Galería y Detalles del Local</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 )}
